@@ -1,2 +1,3 @@
 # TeamPortfolio
-Portfolio page for team Umeå showcasing project and progress as a team. Team memebers represented and prestended to know the team, this porfotiol all works a new letter for team Umeå where you can find information about upcoming events reregaridng the team
+
+This portfolio page showcases the projects and progress of Team Umeå. Team members are represented and presented to help you get to know the team. This portfolio also serves as a newsletter for Team Umeå, where you can find information about upcoming events regarding the team.
