@@ -12,6 +12,7 @@ export default function FormInput({
   onChange,
   onBlur,
   errorMessage,
+  autoFocus,
   children,
   ...props
 }) {
@@ -28,7 +29,6 @@ export default function FormInput({
 
   const handlePaste = (e) => {
     e.preventDefault();
-    console.log(e.target);
 
     const clipboardData = e.clipboardData.getData("text");
 
@@ -61,6 +61,7 @@ export default function FormInput({
           autoComplete="off"
           autoCorrect="off"
           spellCheck="false"
+          autoFocus={autoFocus}
           onChange={handleChange}
           onPaste={handlePaste}
           onBlur={(e) => onBlur && onBlur(e.target.value)}

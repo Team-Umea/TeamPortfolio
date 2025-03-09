@@ -10,16 +10,22 @@ export default function SecurityQuestionForm({ securityQuestion }) {
   return (
     <div className="flex flex-col gap-y-8 w-full">
       <h2 className="text-2xl text-gray-600 font-semibold">Verify Authenticity!</h2>
-      <p className="text-gray-700 font-semibold">{securityQuestion}</p>
+      <div className="space-y-2">
+        <p className="text-red-700 font-semibold">
+          Answer your security question as the verification code provided is incorrect
+        </p>
+        <p className="text-gray-700 font-semibold">{securityQuestion}</p>
+      </div>
       <Controller
-        name="securityQuestion.securityQuestion"
+        name="questionAnswer.questionAnswer"
         control={control}
         defaultValue=""
         render={({ field }) => (
           <FormInput
             label="Security question"
             value={field.value}
-            errorMessage={errors?.securityQuestion?.securityQuestion?.message}
+            errorMessage={errors?.questionAnswer?.questionAnswer?.message}
+            autoFocus={true}
             onChange={field.onChange}
           />
         )}

@@ -7,7 +7,7 @@ import { userSchema } from "./user";
 export const SignInTypeEnum = {
   User: "user",
   VerificationCode: "verificationCode",
-  SecurityQuestion: "securityQuestion",
+  QuestionAnswer: "questionAnswer",
   Password: "password",
 };
 
@@ -21,8 +21,8 @@ export const signInFormSchema = z.discriminatedUnion("signInType", [
     verificationCode: verificationCodeSchema,
   }),
   z.object({
-    signInType: z.literal(SignInTypeEnum.SecurityQuestion),
-    securityQuestion: securityQuestionSchema,
+    signInType: z.literal(SignInTypeEnum.QuestionAnswer),
+    questionAnswer: securityQuestionSchema,
   }),
   z.object({
     signInType: z.literal(SignInTypeEnum.Password),

@@ -19,6 +19,7 @@ export default function PasswordForm() {
             label="Password"
             value={field.value}
             errorMessage={errors?.password?.password?.message}
+            autoFocus={true}
             onChange={field.onChange}
           />
         )}

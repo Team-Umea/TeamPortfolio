@@ -19,6 +19,7 @@ export default function UserForm() {
             label="Username or email"
             value={field.value}
             errorMessage={errors?.user?.user?.message}
+            autoFocus={true}
             onChange={field.onChange}
           />
         )}

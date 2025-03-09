@@ -4,8 +4,7 @@ import { AUTHECHO_ENDPOINTS } from "./endpoints";
 export const requestVerificationCode = async ({ user }) => {
   const data = { user };
   try {
-    const response = await axios.post(AUTHECHO_ENDPOINTS.REQUESTCODE, data);
-    return response;
+    return await axios.post(AUTHECHO_ENDPOINTS.REQUESTCODE, data);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(
@@ -29,8 +28,6 @@ export const verifyVerificationCode = async ({ user, verificationCode }) => {
 
     return response;
   } catch (error) {
-    console.log("err", error);
-
     if (axios.isAxiosError(error)) {
       throw new Error(
         error.response?.data.message || "An error occurred while verifying verfication code."
@@ -44,7 +41,7 @@ export const verifyVerificationCode = async ({ user, verificationCode }) => {
 export const validateSecurityQuestion = async ({ user, questionAnswer }) => {
   const data = { user, questionAnswer };
   try {
-    const response = await axios.post(AUTHECHO_ENDPOINTS.VALIDATEQUESTION, data);
+    return await axios.post(AUTHECHO_ENDPOINTS.VALIDATEQUESTION, data);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(

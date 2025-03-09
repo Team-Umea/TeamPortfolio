@@ -29,9 +29,9 @@ export default function SignInForm() {
   const {
     watch,
     getValues,
+    setValue,
     setError,
     formState: { isSubmitting, errors },
-    reset,
     handleSubmit,
   } = formMethods;
 
@@ -49,21 +49,23 @@ export default function SignInForm() {
   const verifyVerificationCodeMutation = useMutation({
     mutationFn: verifyVerificationCode,
     onSuccess: () => {
-      console.log("Success");
+      setValue("questionAnswer.questionAnswer", "");
       setSignInType(SignInTypeEnum.Password);
     },
     onError: () => {
-      setSignInType(SignInTypeEnum.SecurityQuestion);
+      setValue("questionAnswer.questionAnswer", "");
+      setSignInType(SignInTypeEnum.QuestionAnswer);
     },
   });
 
   const validateSecurityQuestionMutation = useMutation({
     mutationFn: validateSecurityQuestion,
     onSuccess: () => {
+      setValue("verificationCode.verificationCode", "");
       setSignInType(SignInTypeEnum.VerificationCode);
     },
     onError: (error) => {
-      setError("securityQuestion.securityQuestion", { type: "manual", message: error.message });
+      setError("questionAnswer.questionAnswer", { type: "manual", message: error.message });
     },
   });
 
@@ -80,7 +82,7 @@ export default function SignInForm() {
   const signInType = watch("signInType");
   const signInTypeIsUser = signInType === "user";
   const signInTypeIsVerificationCode = signInType === "verificationCode";
-  const signInTypeIsSecurityQuestion = signInType === "securityQuestion";
+  const signInTypeIsSecurityQuestion = signInType === "questionAnswer";
   const signInTypeIsPassword = signInType === "password";
 
   const isValid = Object.keys(errors).length === 0;
@@ -96,12 +98,12 @@ export default function SignInForm() {
 
   const onSubmit = async () => {
     const data = getValues();
-
     let payload;
 
     switch (signInType) {
       case "user":
         payload = { user: data.user.user };
+
         requestVerificationCodeMutation.mutate(payload);
         break;
       case "verificationCode":
@@ -112,10 +114,10 @@ export default function SignInForm() {
 
         verifyVerificationCodeMutation.mutate(payload);
         break;
-      case "securityQuestion":
+      case "questionAnswer":
         payload = {
           user: data.user.user,
-          securityQuestion: data.securityQuestion.securityQuestion,
+          questionAnswer: data.questionAnswer.questionAnswer,
         };
 
         validateSecurityQuestionMutation.mutate(payload);
@@ -126,6 +128,7 @@ export default function SignInForm() {
           verificationCode: data.verificationCode.verificationCode,
           password: data.password.password,
         };
+
         signInMutation.mutate(payload);
         break;
       default:
@@ -138,7 +141,7 @@ export default function SignInForm() {
       <FormProvider {...formMethods}>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col items-center px-6 pt-12 pb-6 rounded-xl shadow-lg bg-slate-200">
+          className="flex flex-col items-center w-[90%] max-w-[500px] px-6 pt-12 pb-6 rounded-xl shadow-lg bg-slate-200">
           {signInTypeIsUser && <UserForm />}
           {signInTypeIsVerificationCode && <VerificationCodeForm />}
           {signInTypeIsSecurityQuestion && (

@@ -19,6 +19,7 @@ export default function VerificationCodeForm() {
             label="Verification Code"
             value={field.value}
             errorMessage={errors?.verificationCode?.verificationCode?.message}
+            autoFocus={true}
             onChange={field.onChange}
           />
         )}
