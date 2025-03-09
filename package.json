@@ -1,32 +1,33 @@
 {
-  "name": "team-umea-portfolio",
-  "version": "1.0.0",
-  "description": "Portfolio page for team Umeå showcasing project and progress as a team. Team memebers represented and prestended to know the team, this porfotiol all works a new letter for team Umeå where you can find information about upcoming events reregaridng the team",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "build": "cd public && npm run build",
-    "proxy": "node server.js",
-    "react": "cd public && npm run build",
-    "dev": "concurrently \"npm start\" \"cd public && npm run dev\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Team-Umea/TeamPortfolio.git"
-  },
-  "author": "Team-Umea",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Team-Umea/TeamPortfolio/issues"
-  },
-  "homepage": "https://github.com/Team-Umea/TeamPortfolio#readme",
-  "dependencies": {
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "http-proxy-middleware": "^3.0.3",
-    "path": "^0.12.7"
-  },
-  "devDependencies": {
-    "concurrently": "^9.1.2"
-  }
+    "name": "team-umea-portfolio",
+    "version": "1.0.0",
+    "description": "Portfolio page for team Umeå showcasing project and progress as a team. Team memebers represented and prestended to know the team, this porfotiol all works a new letter for team Umeå where you can find information about upcoming events reregaridng the team",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "build": "cd public && npm run build",
+        "proxy": "node server.js",
+        "react": "cd public && npm run build",
+        "dev": "concurrently \"npm start\" \"cd public && npm run dev\"",
+        "install:all": "npm install && npm install --prefix public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Team-Umea/TeamPortfolio.git"
+    },
+    "author": "Team-Umea",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Team-Umea/TeamPortfolio/issues"
+    },
+    "homepage": "https://github.com/Team-Umea/TeamPortfolio#readme",
+    "dependencies": {
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "http-proxy-middleware": "^3.0.3",
+        "path": "^0.12.7"
+    },
+    "devDependencies": {
+        "concurrently": "^9.1.2"
+    }
 }
