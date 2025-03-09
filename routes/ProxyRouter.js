@@ -1,4 +1,4 @@
-const router = require("express").Router();
+const router = require("express")();
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const path = require("path");
 const REACT_DEV_SERVER = "http://localhost:5173";

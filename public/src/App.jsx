@@ -23,7 +23,10 @@ export default function App() {
       <ul className="space-y-2">
         {members.map((member, index) => {
           return (
-            <li key={index} className="text-2xl text-center text-gray-400 font-semibold">
+            <li
+              key={index}
+              className="text-2xl text-center text-gray-400 font-semibold"
+            >
               {member}
             </li>
           );
