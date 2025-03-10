@@ -12,6 +12,10 @@ const useAuthStore = () => {
   const dispath = useDispatch();
   const authState = useSelector((state) => state.auth);
 
+  const verifySession = useCallback(() => {
+    dispath({ type: "VERIFY_AUTH" });
+  }, [dispath]);
+
   const updateIsAuthenticated = useCallback(
     (isAuthenticated) => {
       dispath(setIsAuthenticated(isAuthenticated));
@@ -46,6 +50,7 @@ const useAuthStore = () => {
 
   return {
     ...authState,
+    verifySession,
     updateIsAuthenticated,
     updateIsAdmin,
     updateUsername,
