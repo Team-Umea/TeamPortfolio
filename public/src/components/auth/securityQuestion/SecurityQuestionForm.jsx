@@ -8,11 +8,10 @@ export default function SecurityQuestionForm({ securityQuestion }) {
   } = useFormContext();
 
   return (
-    <div className="flex flex-col gap-y-8 w-full">
-      <h2 className="text-2xl text-gray-600 font-semibold">Verify Authenticity!</h2>
+    <div className="flex flex-col my-8 w-full">
       <div className="space-y-2">
         <p className="text-red-700 font-semibold">
-          Answer your security question as the verification code provided is incorrect
+          Svara på din säkerhetsfråga eftersom verifieringskoden som angivits är felaktig
         </p>
         <p className="text-gray-700 font-semibold">{securityQuestion}</p>
       </div>
@@ -22,7 +21,7 @@ export default function SecurityQuestionForm({ securityQuestion }) {
         defaultValue=""
         render={({ field }) => (
           <FormInput
-            label="Security question"
+            label="Säkerhetsfråga"
             value={field.value}
             errorMessage={errors?.questionAnswer?.questionAnswer?.message}
             autoFocus={true}

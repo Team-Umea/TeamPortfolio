@@ -8,15 +8,14 @@ export default function VerificationCodeForm() {
   } = useFormContext();
 
   return (
-    <div className="flex flex-col gap-y-8 w-full">
-      <h2 className="text-2xl text-gray-600 font-semibold">Verify Access!</h2>
+    <div className="flex flex-col my-8 w-full">
       <Controller
         name="verificationCode.verificationCode"
         control={control}
         defaultValue=""
         render={({ field }) => (
           <FormInput
-            label="Verification Code"
+            label="Verifieringskod"
             value={field.value}
             errorMessage={errors?.verificationCode?.verificationCode?.message}
             autoFocus={true}

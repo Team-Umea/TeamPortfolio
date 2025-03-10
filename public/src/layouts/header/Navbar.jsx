@@ -11,7 +11,7 @@ export default function Navbar() {
       <ul>{/* Nav links */}</ul>
       <div>
         <PrimaryBtn onClick={() => navigate("/signin")}>
-          <span className="text-lg">Sign in</span>
+          <span className="text-lg">Logga in</span>
           <IoLogInOutline size={24} />
         </PrimaryBtn>
       </div>

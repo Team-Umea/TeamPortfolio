@@ -25,6 +25,7 @@ export default function SignInForm() {
   });
 
   const [securityQuestion, setSecurityQuestion] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     watch,
@@ -37,6 +38,7 @@ export default function SignInForm() {
 
   const requestVerificationCodeMutation = useMutation({
     mutationFn: requestVerificationCode,
+    onMutate: () => setIsLoading(true),
     onSuccess: (data) => {
       setSecurityQuestion(data.data.question);
       setSignInType(SignInTypeEnum.VerificationCode);
@@ -44,10 +46,12 @@ export default function SignInForm() {
     onError: (error) => {
       setError("user.user", { type: "manual", message: error.message });
     },
+    onSettled: () => setIsLoading(false),
   });
 
   const verifyVerificationCodeMutation = useMutation({
     mutationFn: verifyVerificationCode,
+    onMutate: () => setIsLoading(true),
     onSuccess: () => {
       setValue("questionAnswer.questionAnswer", "");
       setSignInType(SignInTypeEnum.Password);
@@ -56,10 +60,12 @@ export default function SignInForm() {
       setValue("questionAnswer.questionAnswer", "");
       setSignInType(SignInTypeEnum.QuestionAnswer);
     },
+    onSettled: () => setIsLoading(false),
   });
 
   const validateSecurityQuestionMutation = useMutation({
     mutationFn: validateSecurityQuestion,
+    onMutate: () => setIsLoading(true),
     onSuccess: () => {
       setValue("verificationCode.verificationCode", "");
       setSignInType(SignInTypeEnum.VerificationCode);
@@ -67,16 +73,19 @@ export default function SignInForm() {
     onError: (error) => {
       setError("questionAnswer.questionAnswer", { type: "manual", message: error.message });
     },
+    onSettled: () => setIsLoading(false),
   });
 
   const signInMutation = useMutation({
     mutationFn: signIn,
+    onMutate: () => setIsLoading(true),
     onSuccess: () => {
       console.log("Signed in");
     },
     onError: (error) => {
       setError("password.password", { type: "manual", message: error.message });
     },
+    onSettled: () => setIsLoading(false),
   });
 
   const signInType = watch("signInType");
@@ -96,7 +105,7 @@ export default function SignInForm() {
     return formData[formType];
   };
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     const data = getValues();
     let payload;
 
@@ -136,12 +145,26 @@ export default function SignInForm() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <PuffLoader size={70} className="m-auto" />
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col justify-center items-center h-screen">
       <FormProvider {...formMethods}>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col items-center w-[90%] max-w-[500px] px-6 pt-12 pb-6 rounded-xl shadow-lg bg-slate-200">
+          <div className="flex flex-col items-center pb-4 mb-4 border-b-[1px] border-slate-400 w-full">
+            <a href="https://authecho.com" className="cursor-pointer">
+              <img src="https://authecho.com/assets/authechoLogo-Bv1kmwoB.svg" alt="authecho" />
+            </a>
+            <p className="text-lg text-blue-700">Logga in med ditt Authecho konto</p>
+          </div>
           {signInTypeIsUser && <UserForm />}
           {signInTypeIsVerificationCode && <VerificationCodeForm />}
           {signInTypeIsSecurityQuestion && (
@@ -150,7 +173,9 @@ export default function SignInForm() {
           {signInTypeIsPassword && <PasswordForm />}
           <div className="mt-22 w-full">
             <PrimaryBtn type="submit">
-              <span className="text-lg font-medium">Continue</span>
+              <span className="text-lg font-medium">
+                {signInTypeIsPassword ? "Logga in" : "Nästa"}
+              </span>
             </PrimaryBtn>
           </div>
           <a
@@ -158,8 +183,8 @@ export default function SignInForm() {
             target="_blank"
             className="mt-6 max-w-[90%] text-blue-700 cursor-pointer border-b-[1px] border-transparent transition-all duration-300 ease hover:border-blue-700">
             {signInTypeIsUser
-              ? "Don't have an accout? Sign up here!"
-              : "Forgot your credentials? Manage your account here."}
+              ? "Har du inget konto? Registrera dig här!"
+              : "Glömt dina inloggningsuppgifter? Hantera ditt konto här"}
           </a>
         </form>
       </FormProvider>

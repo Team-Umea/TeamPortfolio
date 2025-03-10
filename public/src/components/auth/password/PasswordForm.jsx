@@ -8,15 +8,14 @@ export default function PasswordForm() {
   } = useFormContext();
 
   return (
-    <div className="flex flex-col gap-y-8 w-full">
-      <h2 className="text-2xl text-gray-600 font-semibold">Final Step!</h2>
+    <div className="flex flex-col my-8 w-full">
       <Controller
         name="password.password"
         control={control}
         defaultValue=""
         render={({ field }) => (
           <FormInput
-            label="Password"
+            label="Lösenord"
             value={field.value}
             errorMessage={errors?.password?.password?.message}
             autoFocus={true}

@@ -56,7 +56,7 @@ export const validateSecurityQuestion = async ({ user, questionAnswer }) => {
 export const signIn = async ({ user, verificationCode, password }) => {
   const data = { user, verificationCode, password };
   try {
-    const response = await axios.post(AUTHECHO_ENDPOINTS.SIGNIN, data);
+    return await axios.post(AUTHECHO_ENDPOINTS.SIGNIN, data);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(error.response?.data.message || "An error occurred while signing in.");
