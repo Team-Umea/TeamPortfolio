@@ -15,6 +15,7 @@ import {
   verifyVerificationCode,
 } from "../../api/authecho";
 import PasswordForm from "./password/PasswordForm";
+import useAuthStore from "../../hooks/useAuthStore";
 
 export default function SignInForm() {
   const formMethods = useForm({
@@ -23,7 +24,7 @@ export default function SignInForm() {
       signInType: SignInTypeEnum.User,
     },
   });
-
+  const { updateIsAuthenticated, updateIsAdmin, updateUsername, updateEmail } = useAuthStore();
   const [securityQuestion, setSecurityQuestion] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,7 +33,7 @@ export default function SignInForm() {
     getValues,
     setValue,
     setError,
-    formState: { isSubmitting, errors },
+    formState: { errors },
     handleSubmit,
   } = formMethods;
 
@@ -79,8 +80,15 @@ export default function SignInForm() {
   const signInMutation = useMutation({
     mutationFn: signIn,
     onMutate: () => setIsLoading(true),
-    onSuccess: () => {
-      console.log("Signed in");
+    onSuccess: (data) => {
+      const username = data.data.name;
+      const email = data.data.email;
+      const isAdmin = data.data.isAppAdmin;
+
+      updateIsAuthenticated(true);
+      isAdmin && updateIsAdmin(true);
+      username && updateUsername(username);
+      email && updateEmail(email);
     },
     onError: (error) => {
       setError("password.password", { type: "manual", message: error.message });

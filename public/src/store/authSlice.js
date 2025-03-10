@@ -32,9 +32,20 @@ const authSlice = createSlice({
       state.name = action.payload;
       sessionStorage.setItem(USERNAME_KEY, JSON.stringify(action.payload));
     },
+    clearAuth: (state) => {
+      state.isAuthenticated = false;
+      state.isAdmin = false;
+      state.username = "";
+      state.email = "";
+      sessionStorage.removeItem(IS_AUTHENTICATED_KEY);
+      sessionStorage.removeItem(IS_ADMIN_KEY);
+      sessionStorage.removeItem(USERNAME_KEY);
+      sessionStorage.removeItem(EMAIL_KEY);
+    },
   },
 });
 
-export const { setIsAuthenticated, setIsAdmin, setUsername, setEmail } = authSlice.actions;
+export const { setIsAuthenticated, setIsAdmin, setUsername, setEmail, clearAuth } =
+  authSlice.actions;
 
 export default authSlice.reducer;

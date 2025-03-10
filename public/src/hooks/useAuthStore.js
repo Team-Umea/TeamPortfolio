@@ -1,5 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail, setIsAdmin, setIsAuthenticated, setUsername } from "../store/authSlice";
+import {
+  clearAuth,
+  setEmail,
+  setIsAdmin,
+  setIsAuthenticated,
+  setUsername,
+} from "../store/authSlice";
+import { useCallback } from "react";
 
 const useAuthStore = () => {
   const dispath = useDispatch();
@@ -33,12 +40,17 @@ const useAuthStore = () => {
     [dispath]
   );
 
+  const resetAuth = useCallback(() => {
+    dispath(clearAuth());
+  }, [dispath]);
+
   return {
     ...authState,
     updateIsAuthenticated,
     updateIsAdmin,
     updateUsername,
     updateEmail,
+    resetAuth,
   };
 };
 
