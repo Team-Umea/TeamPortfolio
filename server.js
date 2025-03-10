@@ -6,8 +6,6 @@ require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const NODE_ENV = process.env.NODE_ENV || "development";
-const REACT_DEV_SERVER = "http://localhost:5173";
 
 app.use("/api", Router);
 app.use(ProxyRouter);

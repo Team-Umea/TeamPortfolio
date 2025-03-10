@@ -60,9 +60,9 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(verifySession.fulfilled, (state, action) => {
       const { session } = action.payload;
-      const isAdmin = session.isAppAdmin;
-      const username = session.name;
-      const email = session.email;
+      const isAdmin = session ? session.isAppAdmin : false;
+      const username = session ? session.name : "";
+      const email = session ? session.email : "";
 
       state.isAuthenticated = true;
       state.isAdmin = !!isAdmin;
