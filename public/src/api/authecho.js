@@ -10,6 +10,8 @@ export const requestVerificationCode = async ({ user }) => {
       throw new Error(
         error.response?.data.message || "Ett fel inträffade vid begäran om verifieringskod."
       );
+    } else if (error instanceof Error) {
+      throw new Error(error.message);
     } else {
       throw new Error("Ett oväntat fel inträffade");
     }
@@ -32,6 +34,8 @@ export const verifyVerificationCode = async ({ user, verificationCode }) => {
       throw new Error(
         error.response?.data.message || "Ett fel inträffade vid verifiering av verifieringskod."
       );
+    } else if (error instanceof Error) {
+      throw new Error(error.message);
     } else {
       throw new Error("Ett oväntat fel inträffade");
     }
@@ -47,6 +51,8 @@ export const validateSecurityQuestion = async ({ user, questionAnswer }) => {
       throw new Error(
         error.response?.data.message || "Ett fel inträffade vid validering av säkerhetsfråga."
       );
+    } else if (error instanceof Error) {
+      throw new Error(error.message);
     } else {
       throw new Error("Ett oväntat fel inträffade");
     }
@@ -60,6 +66,8 @@ export const signIn = async ({ user, verificationCode, password }) => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(error.response?.data.message || "Ett fel inträffade vid inloggning.");
+    } else if (error instanceof Error) {
+      throw new Error(error.message);
     } else {
       throw new Error("Ett oväntat fel inträffade");
     }
