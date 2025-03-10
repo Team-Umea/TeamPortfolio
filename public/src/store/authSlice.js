@@ -29,7 +29,7 @@ const authSlice = createSlice({
       sessionStorage.setItem(USERNAME_KEY, JSON.stringify(action.payload));
     },
     setEmail: (state, action) => {
-      state.name = action.payload;
+      state.email = action.payload;
       sessionStorage.setItem(USERNAME_KEY, JSON.stringify(action.payload));
     },
     clearAuth: (state) => {

@@ -16,8 +16,10 @@ import {
 } from "../../api/authecho";
 import PasswordForm from "./password/PasswordForm";
 import useAuthStore from "../../hooks/useAuthStore";
+import { useNavigate } from "react-router";
 
 export default function SignInForm() {
+  const navigate = useNavigate();
   const formMethods = useForm({
     resolver: zodResolver(signInFormSchema),
     defaultValues: {
@@ -86,9 +88,15 @@ export default function SignInForm() {
       const isAdmin = data.data.isAppAdmin;
 
       updateIsAuthenticated(true);
-      isAdmin && updateIsAdmin(true);
       username && updateUsername(username);
       email && updateEmail(email);
+
+      if (isAdmin) {
+        updateIsAdmin(true);
+        navigate("/admin");
+      } else {
+        navigate("/user");
+      }
     },
     onError: (error) => {
       setError("password.password", { type: "manual", message: error.message });

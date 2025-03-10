@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 export default function FormInput({
   label,
@@ -16,6 +18,8 @@ export default function FormInput({
   children,
   ...props
 }) {
+  const [inputType, setInputType] = useState(type);
+
   const charCount = value ? String(value).length : 0;
   const remainingChars = maxLength !== undefined ? maxLength - charCount : undefined;
   const minCharsMet = minLength !== undefined ? charCount >= minLength : false;
@@ -36,6 +40,10 @@ export default function FormInput({
     onChange(type === "number" ? Number(newValue) : newValue);
   };
 
+  const togglePasswordVisibilty = () => {
+    setInputType((prev) => (prev === "password" ? "text" : "password"));
+  };
+
   return (
     <div className="flex flex-col gap-y-2 w-full">
       <div
@@ -50,24 +58,31 @@ export default function FormInput({
           errorMessage ? "border-red-500" : "border-transparent"
         }`}>
         <label className="text-lg text-slate-600 font-medium">{label}</label>
-        <input
-          type={type}
-          value={controlledValue}
-          placeholder={placeholder}
-          min={min}
-          max={max}
-          minLength={minLength}
-          maxLength={maxLength}
-          autoComplete="off"
-          autoCorrect="off"
-          spellCheck="false"
-          autoFocus={autoFocus}
-          onChange={handleChange}
-          onPaste={handlePaste}
-          onBlur={(e) => onBlur && onBlur(e.target.value)}
-          {...props}
-          className="mb-2 p-2 w-full border-0 outline-none border-b-2 border-gray-400"
-        />
+        <div className="flex p-2 border-b-2 border-gray-400">
+          <input
+            type={inputType}
+            value={controlledValue}
+            placeholder={placeholder}
+            min={min}
+            max={max}
+            minLength={minLength}
+            maxLength={maxLength}
+            autoComplete="off"
+            autoCorrect="off"
+            spellCheck="false"
+            autoFocus={autoFocus}
+            onChange={handleChange}
+            onPaste={handlePaste}
+            onBlur={(e) => onBlur && onBlur(e.target.value)}
+            {...props}
+            className="w-full border-0 outline-none"
+          />
+          {type === "password" && (
+            <button type="button" onClick={togglePasswordVisibilty} className="cursor-pointer">
+              {inputType === "password" ? <FiEye size={24} /> : <FiEyeOff size={24} />}
+            </button>
+          )}
+        </div>
         {(minLength !== undefined || maxLength !== undefined) && (
           <div className="text-sm text-gray-600">
             {minCharsMet ? (

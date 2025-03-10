@@ -22,6 +22,7 @@ export default function SecurityQuestionForm({ securityQuestion }) {
         render={({ field }) => (
           <FormInput
             label="Säkerhetsfråga"
+            type="password"
             value={field.value}
             errorMessage={errors?.questionAnswer?.questionAnswer?.message}
             autoFocus={true}

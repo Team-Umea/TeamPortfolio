@@ -16,6 +16,7 @@ export default function PasswordForm() {
         render={({ field }) => (
           <FormInput
             label="Lösenord"
+            type="password"
             value={field.value}
             errorMessage={errors?.password?.password?.message}
             autoFocus={true}
