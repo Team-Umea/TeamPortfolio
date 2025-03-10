@@ -1,6 +1,8 @@
 const createProfile = async (req, res) => {
   try {
     console.log("Profile", req.body);
+    console.log("User: ", req.user);
+
     res.status(401).json({ message: "Profil har skapats", success: true });
   } catch (error) {
     console.error(error);

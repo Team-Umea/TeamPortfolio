@@ -225,8 +225,10 @@ export default function ProfileForm() {
           />
           <div className="w-fit m-auto mt-8">
             <PrimaryBtn type="submit">
-              <span className="text-lg">Skapa profil</span>
-              {isLoading ? <PuffLoader size={28} color="white" /> : <FiPlus size={28} />}
+              <span className="flex justify-center items-center gap-x-2 mx-4">
+                <span className="text-lg">Skapa profil</span>
+                {isLoading ? <PuffLoader size={28} color="white" /> : <FiPlus size={28} />}
+              </span>
             </PrimaryBtn>
           </div>
         </form>
