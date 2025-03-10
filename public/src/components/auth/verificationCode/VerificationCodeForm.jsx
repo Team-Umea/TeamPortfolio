@@ -9,6 +9,9 @@ export default function VerificationCodeForm() {
 
   return (
     <div className="flex flex-col my-8 w-full">
+      <p className="pl-4 text-lg text-gray-500 font-medium">
+        En verifieringskod har skickats till din e-postadress
+      </p>
       <Controller
         name="verificationCode.verificationCode"
         control={control}

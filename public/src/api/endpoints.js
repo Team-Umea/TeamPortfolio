@@ -1,5 +1,9 @@
 export const SERVER_URL = "http://localhost:3000";
 
+export const ENDPOINTS = {
+  CREATEPROFILE: `${SERVER_URL}/api/admin/createprofile`,
+};
+
 export const AUTHECHO_ENDPOINTS = {
   REQUESTCODE: `${SERVER_URL}/authecho/app/requestcode`,
   VERIFYCODE: `${SERVER_URL}/authecho/app/verifycode`,

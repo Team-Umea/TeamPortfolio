@@ -6,6 +6,8 @@ export const requestVerificationCode = async ({ user }) => {
   try {
     return await axios.post(AUTHECHO_ENDPOINTS.REQUESTCODE, data);
   } catch (error) {
+    console.log(error);
+
     if (axios.isAxiosError(error)) {
       throw new Error(
         error.response?.data.message || "Ett fel inträffade vid begäran om verifieringskod."

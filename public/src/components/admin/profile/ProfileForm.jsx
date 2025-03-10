@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, FormProvider, set, useForm } from "react-hook-form";
 import { profileSchema } from "../../../validations/admin/profile";
 import useAuthStore from "../../../hooks/useAuthStore";
@@ -22,13 +22,34 @@ export default function ProfileForm() {
       name: username,
       email: email,
       title: "Student",
+      age: 19,
+      phone: "0763132500",
+      linkedin:
+        "https://github.com/OzzoDev/AuthEcho/blob/main/client/public/src/components/admin/AdminSidebarTab.tsx",
+      github:
+        "https://github.com/OzzoDev/AuthEcho/blob/main/client/public/src/components/admin/AdminSidebarTab.tsx",
+      portfolio:
+        "https://github.com/OzzoDev/AuthEcho/blob/main/client/public/src/components/admin/AdminSidebarTab.tsx",
+      bio: "https://github.com/OzzoDev/AuthEcho/blob/main/client/public/src/components/admin/AdminSidebarTab.tsxhttps://github.com/OzzoDev/AuthEcho/blob/main/client/public/src/components/admin/AdminSidebarTab.tsxhttps://github.com/OzzoDev/AuthEcho/blob/main/client/public/src/components/admin/AdminSidebarTab.tsx",
     },
   });
   const {
     control,
+    setError,
+    clearErrors,
+    watch,
+    getValues,
     formState: { errors },
     handleSubmit,
   } = formMethods;
+
+  useEffect(() => {
+    const subscription = watch(() => {
+      clearErrors("root");
+    });
+
+    return () => subscription.unsubscribe();
+  }, [clearErrors]);
 
   const createProfileMuation = useMutation({
     mutationFn: createProfile,
@@ -38,6 +59,7 @@ export default function ProfileForm() {
     },
     onError: (error) => {
       setToastMessage(error.message);
+      setRootError(error.message);
     },
     onSettled: () => setIsLoading(false),
   });
@@ -46,10 +68,19 @@ export default function ProfileForm() {
     createProfileMuation.mutate(data);
   };
 
+  const setRootError = (message) => {
+    setError("root", {
+      type: "manual",
+      message: message,
+    });
+  };
+
   const translateDefaultErrorMessage = (messageKey) => {
     const message = errors && errors[messageKey] ? errors[messageKey].message : undefined;
     return message === "Required" ? "Fältet får inte vara tomt" : message;
   };
+
+  const hasRootError = errors?.root?.message;
 
   return (
     <>
@@ -200,7 +231,13 @@ export default function ProfileForm() {
           </div>
         </form>
       </FormProvider>
-      <Toast message={toastMessage} show={!!toastMessage} onClose={() => setToastMessage("")} />
+      <Toast
+        message={toastMessage}
+        show={!!toastMessage}
+        isError={hasRootError}
+        visibilityDuration={5}
+        onClose={() => setToastMessage("")}
+      />
     </>
   );
 }

@@ -9,13 +9,11 @@ const AUTHECHO_API_KEY = process.env.AUTHECHO_API_KEY;
 const AUTHECHO_SERVER = process.env.AUTHECHO_SERVER;
 
 const REACT_DEV_SERVER = "http://localhost:5173";
-const USER_SESSION_DURATION = 168;
 const isRunningInProd = process.env.NODE_ENV === "production";
 
 router.use("/authecho", (req, _, next) => {
   req.headers["authecho-app-name"] = APPNAME;
   req.headers["authecho-app-key"] = AUTHECHO_API_KEY;
-  req.headers["user-session-duration"] = USER_SESSION_DURATION;
 
   next();
 });

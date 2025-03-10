@@ -1,6 +1,8 @@
-const { getMembers } = require("../controllers/Controller");
-
 const router = require("express").Router();
+const { getMembers } = require("../controllers/Controller");
+const AdminRouter = require("./AdminRouter");
+
+router.use("/admin", AdminRouter);
 
 router.get("/members", getMembers);
 
