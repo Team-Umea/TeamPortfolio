@@ -8,10 +8,10 @@ export const requestVerificationCode = async ({ user }) => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(
-        error.response?.data.message || "An error occurred while requesting verification code."
+        error.response?.data.message || "Ett fel inträffade vid begäran om verifieringskod."
       );
     } else {
-      throw new Error("An unexpected error occurred.");
+      throw new Error("Ett oväntat fel inträffade");
     }
   }
 };
@@ -23,17 +23,17 @@ export const verifyVerificationCode = async ({ user, verificationCode }) => {
     const response = await axios.post(AUTHECHO_ENDPOINTS.VERIFYCODE, data);
 
     if (!response.data.success) {
-      throw new Error("Invalid Code");
+      throw new Error("Ogiltig kod");
     }
 
     return response;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(
-        error.response?.data.message || "An error occurred while verifying verfication code."
+        error.response?.data.message || "Ett fel inträffade vid verifiering av verifieringskod."
       );
     } else {
-      throw new Error("Invalid Code");
+      throw new Error("Ett oväntat fel inträffade");
     }
   }
 };
@@ -45,10 +45,10 @@ export const validateSecurityQuestion = async ({ user, questionAnswer }) => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(
-        error.response?.data.message || "An error occurred while validating security question."
+        error.response?.data.message || "Ett fel inträffade vid validering av säkerhetsfråga."
       );
     } else {
-      throw new Error("An unexpected error occurred.");
+      throw new Error("Ett oväntat fel inträffade");
     }
   }
 };
@@ -59,9 +59,9 @@ export const signIn = async ({ user, verificationCode, password }) => {
     return await axios.post(AUTHECHO_ENDPOINTS.SIGNIN, data);
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(error.response?.data.message || "An error occurred while signing in.");
+      throw new Error(error.response?.data.message || "Ett fel inträffade vid inloggning.");
     } else {
-      throw new Error("An unexpected error occurred.");
+      throw new Error("Ett oväntat fel inträffade");
     }
   }
 };

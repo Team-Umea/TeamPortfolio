@@ -15,6 +15,7 @@ export default function FormInput({
   onBlur,
   errorMessage,
   autoFocus,
+  isRequired,
   children,
   ...props
 }) {
@@ -57,9 +58,13 @@ export default function FormInput({
         className={`p-4 border-2 rounded-md ${
           errorMessage ? "border-red-500" : "border-transparent"
         }`}>
-        <label className="text-lg text-slate-600 font-medium">{label}</label>
-        <div className="flex p-2 border-b-2 border-gray-400">
-          <input
+        <div className="flex items-center gap-x-2">
+          <label className="text-lg text-slate-600 font-medium">{label}</label>
+          {isRequired && <span className="text-2xl text-red-500 font-bold">*</span>}
+        </div>
+
+        {type === "textarea" ? (
+          <textarea
             type={inputType}
             value={controlledValue}
             placeholder={placeholder}
@@ -75,28 +80,49 @@ export default function FormInput({
             onPaste={handlePaste}
             onBlur={(e) => onBlur && onBlur(e.target.value)}
             {...props}
-            className="w-full border-0 outline-none"
+            className="w-full h-[300px] p-2 border-2 border-gray-400 rounded-md resize-none"
           />
-          {type === "password" && (
-            <button type="button" onClick={togglePasswordVisibilty} className="cursor-pointer">
-              {inputType === "password" ? <FiEye size={24} /> : <FiEyeOff size={24} />}
-            </button>
-          )}
-        </div>
+        ) : (
+          <div className="flex p-2 border-b-2 border-gray-400">
+            <input
+              type={inputType}
+              value={controlledValue}
+              placeholder={placeholder}
+              min={min}
+              max={max}
+              minLength={minLength}
+              maxLength={maxLength}
+              autoComplete="off"
+              autoCorrect="off"
+              spellCheck="false"
+              autoFocus={autoFocus}
+              onChange={handleChange}
+              onPaste={handlePaste}
+              onBlur={(e) => onBlur && onBlur(e.target.value)}
+              {...props}
+              className="w-full border-0 outline-none"
+            />
+            {type === "password" && (
+              <button type="button" onClick={togglePasswordVisibilty} className="cursor-pointer">
+                {inputType === "password" ? <FiEye size={24} /> : <FiEyeOff size={24} />}
+              </button>
+            )}
+          </div>
+        )}
         {(minLength !== undefined || maxLength !== undefined) && (
           <div className="text-sm text-gray-600">
             {minCharsMet ? (
               remainingChars !== undefined ? (
                 <span>
-                  <span className="text-black font-semibold">{remainingChars}</span> char&nbsp;
-                  {remainingChars !== 1 ? "s" : ""} remaining
+                  <span className="text-black font-semibold">{remainingChars}</span> tecken&nbsp;
+                  {remainingChars !== 1 ? "återstående" : ""}
                 </span>
               ) : (
-                "Minimum characters met"
+                "Minimiantal tecken uppfyllt"
               )
             ) : (
               <span>
-                A minimum of {minLength} characters is required. The current character count is
+                Minst {minLength} tecken krävs. Det aktuella teckenantalet är
                 <span className="text-black font-semibold">&nbsp;{charCount}.</span>
               </span>
             )}
