@@ -18,6 +18,23 @@ export const createProfile = async (profile) => {
   }
 };
 
+export const editProfile = async (profile) => {
+  try {
+    const response = await axios.put(ENDPOINTS.EDITPROFILE, profile);
+    return response.data.profile;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        error.response?.data.message || "Ett fel inträffade vid redigering av profile"
+      );
+    } else if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("Ett oväntat fel inträffade");
+    }
+  }
+};
+
 export const getProfile = async () => {
   try {
     const response = await axios.get(ENDPOINTS.GETPROFILE);

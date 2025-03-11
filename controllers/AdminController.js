@@ -15,6 +15,28 @@ const createProfile = async (req, res) => {
   }
 };
 
+const editProfile = async (req, res) => {
+  try {
+    const profileData = req.body;
+    const user = req.user;
+
+    const updatedProfile = await ProfileModel.findOneAndUpdate(
+      { _id: user._id },
+      { $set: { ...profileData } },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedProfile) {
+      return res.status(404).json({ message: "Profil kunde inte hittas", success: false });
+    }
+
+    res.status(201).json({ message: "Profil har skapats", profile: updatedProfile, success: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Serverfel", success: false });
+  }
+};
+
 const getProfile = async (req, res) => {
   const userID = req.user._id;
 
@@ -35,4 +57,5 @@ const getProfile = async (req, res) => {
 module.exports = {
   createProfile,
   getProfile,
+  editProfile,
 };

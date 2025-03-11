@@ -8,6 +8,7 @@ import QuestionPage from "../pages/admin/QuestionPage";
 import ProjectPage from "../pages/admin/ProjectPage";
 import EventsPage from "../pages/admin/EventsPage";
 import ProfilePage from "../pages/admin/ProfilePage";
+import ManageProfilePage from "../pages/admin/ManageProfilePage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route path="signin" element={<SignInPage />} />
       <Route path="admin" element={<AdminLayout />}>
         <Route index element={<ProfilePage />} />
+        <Route path="manageprofile" element={<ManageProfilePage />} />
         <Route path="events" element={<EventsPage />} />
         <Route path="projects" element={<ProjectPage />} />
         <Route path="questions" element={<QuestionPage />} />
