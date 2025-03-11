@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const { getMembers } = require("../controllers/Controller");
-const { ensureAuthenticatd, ensureAdmin } = require("../middlewares/Auth");
+const { ensureAdmin, ensureAuthenticated } = require("../middlewares/Auth");
 const AdminRouter = require("./AdminRouter");
 
-router.use("/admin", ensureAuthenticatd, ensureAdmin, AdminRouter);
+router.use("/admin", ensureAuthenticated, ensureAdmin, AdminRouter);
 
 router.get("/members", getMembers);
 

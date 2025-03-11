@@ -1,8 +1,9 @@
-const { createProfile } = require("../controllers/AdminController");
+const router = require("express").Router();
+const { createProfile, getProfile } = require("../controllers/AdminController");
 const { ensureNewProfile } = require("../middlewares/Profile");
 const { validateProfile } = require("../validators/profileValidator");
 
-const router = require("express").Router();
+router.get("/profile", getProfile);
 
 router.post("/createprofile", validateProfile, ensureNewProfile, createProfile);
 

@@ -2,6 +2,7 @@ export const SERVER_URL = "http://localhost:3000";
 
 export const ENDPOINTS = {
   CREATEPROFILE: `${SERVER_URL}/api/admin/createprofile`,
+  GETPROFILE: `${SERVER_URL}/api/admin/profile`,
 };
 
 export const AUTHECHO_ENDPOINTS = {
