@@ -19,6 +19,7 @@ export default function VerificationCodeForm() {
         render={({ field }) => (
           <FormInput
             label="Verifieringskod"
+            type="password"
             value={field.value}
             errorMessage={errors?.verificationCode?.verificationCode?.message}
             autoFocus={true}
