@@ -24,7 +24,6 @@ export default function ProfileForm() {
   });
 
   const {
-    getValues,
     setError,
     clearErrors,
     watch,
@@ -85,7 +84,7 @@ export default function ProfileForm() {
   };
 
   const hasRootError = errors?.root?.message;
-  const profileImage = profile.profileImage;
+  const profileImage = profile?.profileImage;
 
   return (
     <>

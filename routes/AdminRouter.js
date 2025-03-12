@@ -16,6 +16,13 @@ router.post(
   validateImage,
   createProfile
 );
-router.put("/editprofile", validateProfile, ensureUniqueProfile, editProfile);
+router.put(
+  "/editprofile",
+  upload.single("profileImage"),
+  validateProfile,
+  ensureUniqueProfile,
+  validateImage,
+  editProfile
+);
 
 module.exports = router;

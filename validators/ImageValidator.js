@@ -1,4 +1,5 @@
 const Joi = require("joi");
+const { validateUrl } = require("../utils/helpers");
 
 const imageSchema = Joi.object({
   originalname: Joi.string()
@@ -13,6 +14,14 @@ const imageSchema = Joi.object({
 }).unknown(true);
 
 const validateImage = (req, res, next) => {
+  const profileImage = req.body.profileImage;
+
+  const isImageUrl = typeof profileImage === "string";
+
+  if (isImageUrl && validateUrl(profileImage)) {
+    return next();
+  }
+
   if (!req.file) {
     return res.status(400).json({ message: "Profilbild krävs", success: false });
   }

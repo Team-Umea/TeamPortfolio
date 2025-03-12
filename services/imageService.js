@@ -6,7 +6,7 @@ const uploadImageToCloudinary = async (fileBuffer) => {
       const stream = cloudinary.uploader.upload_stream(
         { folder: "profile-images", format: "webp" },
         (error, result) => {
-          if (error) return reject(new Error("Image upload failed: " + error.message));
+          if (error) return reject(new Error("Uppladdning av bild misslyckades: " + error.message));
           resolve({ url: result.secure_url, public_id: result.public_id });
         }
       );
@@ -14,7 +14,7 @@ const uploadImageToCloudinary = async (fileBuffer) => {
       stream.end(fileBuffer);
     });
   } catch (error) {
-    throw new Error("Image upload failed: " + error.message);
+    throw new Error("Uppladdning av bild misslyckades: " + error.message);
   }
 };
 

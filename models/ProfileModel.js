@@ -1,6 +1,20 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const ProfileImageSchema = new Schema(
+  {
+    url: {
+      type: String,
+      required: true,
+    },
+    id: {
+      type: String,
+      required: true,
+    },
+  },
+  { _id: false }
+);
+
 const ProfileSchema = new Schema({
   name: {
     type: String,
@@ -38,11 +52,7 @@ const ProfileSchema = new Schema({
     type: String,
     required: true,
   },
-  profileImage: {
-    type: String,
-    required: true,
-    unique: true,
-  },
+  profileImage: ProfileImageSchema,
 });
 
 ProfileSchema.index(

@@ -23,8 +23,10 @@ export const createProfile = async (profile) => {
 };
 
 export const editProfile = async (profile) => {
+  const formData = appendToFormData(profile);
+
   try {
-    const response = await axios.put(ENDPOINTS.EDITPROFILE, profile);
+    const response = await axios.put(ENDPOINTS.EDITPROFILE, formData);
     return response.data.profile;
   } catch (error) {
     if (axios.isAxiosError(error)) {
