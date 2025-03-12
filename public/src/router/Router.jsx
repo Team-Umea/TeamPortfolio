@@ -9,6 +9,7 @@ import ProjectPage from "../pages/admin/ProjectPage";
 import EventsPage from "../pages/admin/EventsPage";
 import ProfilePage from "../pages/admin/ProfilePage";
 import ManageProfilePage from "../pages/admin/ManageProfilePage";
+import AddEventPage from "../pages/admin/AddEventPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,7 +19,9 @@ const router = createBrowserRouter(
       <Route path="admin" element={<AdminLayout />}>
         <Route index element={<ProfilePage />} />
         <Route path="manageprofile" element={<ManageProfilePage />} />
-        <Route path="events" element={<EventsPage />} />
+        <Route path="events" element={<EventsPage />}>
+          <Route path="addevent" element={<AddEventPage />} />
+        </Route>
         <Route path="projects" element={<ProjectPage />} />
         <Route path="questions" element={<QuestionPage />} />
       </Route>
