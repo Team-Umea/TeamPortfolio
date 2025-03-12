@@ -9,12 +9,14 @@ import Toast from "../../common/Toast";
 import useProfileStore from "../../../hooks/useProfileStore";
 import ProfileDetailsForm from "./ProfileDetailsForm";
 import ImageInput from "../../form/ImageInput";
+import useScrollTo from "../../../hooks/useScrollTo";
 
 export default function ProfileForm() {
   const { username, email } = useAuthStore();
   const { profile, updateProfile } = useProfileStore();
   const [isLoading, setIsLoading] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const { scrollToTopSmooth } = useScrollTo();
 
   const formMethods = useForm({
     resolver: zodResolver(profileSchema),
@@ -44,12 +46,12 @@ export default function ProfileForm() {
     onMutate: () => setIsLoading(true),
     onSuccess: (createdProfile) => {
       updateProfile(createdProfile);
-      console.log("Profile response: ", createdProfile);
       setToastMessage("Profil har skapats");
     },
     onError: (error) => {
       setToastMessage(error.message);
       setRootError(error.message);
+      scrollToTopSmooth();
     },
     onSettled: () => setIsLoading(false),
   });
@@ -76,6 +78,10 @@ export default function ProfileForm() {
     }
   };
 
+  const onError = () => {
+    scrollToTopSmooth();
+  };
+
   const setRootError = (message) => {
     setError("root", {
       type: "manual",
@@ -90,7 +96,7 @@ export default function ProfileForm() {
     <>
       <FormProvider {...formMethods}>
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmit, onError)}
           className="flex flex-col items-center gap-y-6 m-auto w-[90%]">
           <div className="flex flex-col-reverse md:flex-row justify-between gap-x-24 w-full">
             <ProfileDetailsForm isLoading={isLoading} />
