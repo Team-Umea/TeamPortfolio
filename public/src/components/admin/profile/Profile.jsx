@@ -14,7 +14,7 @@ export default function Profile({ profile }) {
         {profile.name}, {profile.age}
       </p>
       <p className="text-gray-700 font-medium">{profile.title}</p>
-      <div className="flex gap-x-8">
+      <div className="flex flex-col md:flex-row gap-x-8 gap-y-2">
         <div className="flex items-center gap-x-2">
           <MdOutlineMailOutline size={24} />
           <p className="font-medium">{profile.email}</p>
