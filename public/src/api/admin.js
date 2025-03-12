@@ -1,11 +1,15 @@
 import axios from "axios";
 import { ENDPOINTS } from "./endpoints";
+import { appendToFormData } from "../utils/helpers";
 
 export const createProfile = async (profile) => {
+  const formData = appendToFormData(profile);
   try {
-    const response = await axios.post(ENDPOINTS.CREATEPROFILE, profile);
+    const response = await axios.post(ENDPOINTS.CREATEPROFILE, formData);
     return response.data;
   } catch (error) {
+    console.log(error);
+
     if (axios.isAxiosError(error)) {
       throw new Error(
         error.response?.data.message || "Ett fel inträffade vid skapandet av profile"

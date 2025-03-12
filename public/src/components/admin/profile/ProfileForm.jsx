@@ -73,15 +73,12 @@ export default function ProfileForm() {
   const onSubmit = (data) => {
     console.log(data);
 
-    // if (profile) {
-    //   editProfileMuation.mutate(data);
-    // } else {
-    //   createProfileMuation.mutate(data);
-    // }
+    if (profile) {
+      editProfileMuation.mutate(data);
+    } else {
+      createProfileMuation.mutate(data);
+    }
   };
-
-  // console.log(errors);
-  // console.log(getValues());
 
   const setRootError = (message) => {
     setError("root", {

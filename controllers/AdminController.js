@@ -6,6 +6,8 @@ const createProfile = async (req, res) => {
     const user = req.user;
     const newProfile = new ProfileModel({ _id: user._id, ...profileData });
 
+    console.log("Profile image", req.image);
+
     await newProfile.save();
 
     res.status(201).json({ message: "Profil har skapats", success: true });

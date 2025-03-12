@@ -45,7 +45,9 @@ const profileSchema = Joi.object({
 
 const validateProfile = async (req, res, next) => {
   try {
-    await profileSchema.validateAsync(req.body);
+    const { profileImage, ...profileData } = req.body;
+
+    await profileSchema.validateAsync(profileData);
     next();
   } catch (error) {
     return res.status(400).json({

@@ -14,6 +14,7 @@ export default function ProfilePage() {
   const { data: profile, isLoading } = useQuery({
     queryFn: getProfile,
     queryKey: ["profile"],
+    retry: false,
   });
 
   useEffect(() => {

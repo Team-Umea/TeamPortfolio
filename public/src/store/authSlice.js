@@ -40,11 +40,11 @@ const authSlice = createSlice({
     },
     setUsername: (state, action) => {
       state.username = action.payload;
-      sessionStorage.setItem(USERNAME_KEY, JSON.stringify(action.payload));
+      sessionStorage.setItem(USERNAME_KEY, action.payload);
     },
     setEmail: (state, action) => {
       state.email = action.payload;
-      sessionStorage.setItem(EMAIL_KEY, JSON.stringify(action.payload));
+      sessionStorage.setItem(EMAIL_KEY, action.payload);
     },
     clearAuth: (state) => {
       state.isAuthenticated = false;
