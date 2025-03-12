@@ -12,3 +12,14 @@ export function appendToFormData(dataObject) {
 
   return formData;
 }
+
+export const getTodayString = () => {
+  const today = new Date();
+  return today.toISOString().split("T")[0];
+};
+
+export const getFutureDateString = (days) => {
+  const futureDate = new Date();
+  futureDate.setDate(futureDate.getDate() + days);
+  return futureDate.toISOString().split("T")[0];
+};

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { ENDPOINTS } from "./endpoints";
-import { appendToFormData } from "../utils/helpers";
+import { ENDPOINTS } from "../endpoints";
+import { appendToFormData } from "../../utils/helpers";
 
 export const createProfile = async (profile) => {
   const formData = appendToFormData(profile);
@@ -9,12 +9,8 @@ export const createProfile = async (profile) => {
     const response = await axios.post(ENDPOINTS.CREATEPROFILE, formData);
     return response.data.profile;
   } catch (error) {
-    console.log(error);
-
     if (axios.isAxiosError(error)) {
-      throw new Error(
-        error.response?.data.message || "Ett fel inträffade vid skapandet av profile"
-      );
+      throw new Error(error.response?.data.message || "Ett fel inträffade vid skapandet av profil");
     } else if (error instanceof Error) {
       throw new Error(error.message);
     } else {
@@ -32,7 +28,7 @@ export const editProfile = async (profile) => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(
-        error.response?.data.message || "Ett fel inträffade vid redigering av profile"
+        error.response?.data.message || "Ett fel inträffade vid redigering av profil"
       );
     } else if (error instanceof Error) {
       throw new Error(error.message);
@@ -48,9 +44,7 @@ export const getProfile = async () => {
     return response.data.profile;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(
-        error.response?.data.message || "Ett fel inträffade vid skapandet av profile"
-      );
+      throw new Error(error.response?.data.message || "Ett fel inträffade vid hämtning av profil");
     } else if (error instanceof Error) {
       throw new Error(error.message);
     } else {

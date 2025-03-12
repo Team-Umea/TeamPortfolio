@@ -4,7 +4,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { profileSchema } from "../../../validations/admin/profile";
 import useAuthStore from "../../../hooks/useAuthStore";
 import { useMutation } from "@tanstack/react-query";
-import { createProfile, editProfile } from "../../../api/admin";
+import { createProfile, editProfile } from "../../../api/admin/profile";
 import Toast from "../../common/Toast";
 import useProfileStore from "../../../hooks/useProfileStore";
 import ProfileDetailsForm from "./ProfileDetailsForm";
@@ -78,7 +78,7 @@ export default function ProfileForm() {
     }
   };
 
-  const onError = () => {
+  const onError = (err) => {
     scrollToTopSmooth();
   };
 

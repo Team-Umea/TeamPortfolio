@@ -4,6 +4,7 @@ export const ENDPOINTS = {
   CREATEPROFILE: `${SERVER_URL}/api/admin/createprofile`,
   EDITPROFILE: `${SERVER_URL}/api/admin/editprofile`,
   GETPROFILE: `${SERVER_URL}/api/admin/profile`,
+  ADDEVENT: `${SERVER_URL}/api/admin/addevent`,
 };
 
 export const AUTHECHO_ENDPOINTS = {

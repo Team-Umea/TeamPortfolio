@@ -20,7 +20,7 @@ export default function ImageInput({ name, imagePlaceHolder }) {
     }
   };
 
-  const errorMessage = errors?.profileImage?.message;
+  const errorMessage = errors?.[name]?.message;
 
   return (
     <div className="w-full h-full">

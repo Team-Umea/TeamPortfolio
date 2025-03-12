@@ -2,7 +2,7 @@ import { Navigate } from "react-router";
 import useAuthStore from "../../hooks/useAuthStore";
 import ProfileForm from "../../components/admin/profile/ProfileForm";
 import { useQuery } from "@tanstack/react-query";
-import { getProfile } from "../../api/admin";
+import { getProfile } from "../../api/admin/profile";
 import Loader from "../../components/common/Loader";
 import Profile from "../../components/admin/profile/Profile";
 import { useEffect } from "react";
