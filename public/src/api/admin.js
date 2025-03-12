@@ -6,7 +6,7 @@ export const createProfile = async (profile) => {
   const formData = appendToFormData(profile);
   try {
     const response = await axios.post(ENDPOINTS.CREATEPROFILE, formData);
-    return response.data;
+    return response.data.profile;
   } catch (error) {
     console.log(error);
 

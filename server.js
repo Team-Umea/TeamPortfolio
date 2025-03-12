@@ -5,7 +5,7 @@ const Router = require("./routes/Router");
 const ProxyRouter = require("./routes/ProxyRouter");
 
 require("dotenv").config();
-require("./models/db");
+require("./config/db");
 
 const app = express();
 const PORT = process.env.PORT || 8080;

@@ -3,11 +3,8 @@ import React, { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { profileSchema } from "../../../validations/admin/profile";
 import useAuthStore from "../../../hooks/useAuthStore";
-import PrimaryBtn from "../../btn/PrimaryBtn";
-import { FiPlus } from "react-icons/fi";
 import { useMutation } from "@tanstack/react-query";
 import { createProfile, editProfile } from "../../../api/admin";
-import { PuffLoader } from "react-spinners";
 import Toast from "../../common/Toast";
 import useProfileStore from "../../../hooks/useProfileStore";
 import ProfileDetailsForm from "./ProfileDetailsForm";
@@ -46,7 +43,9 @@ export default function ProfileForm() {
   const createProfileMuation = useMutation({
     mutationFn: createProfile,
     onMutate: () => setIsLoading(true),
-    onSuccess: () => {
+    onSuccess: (createdProfile) => {
+      updateProfile(createdProfile);
+      console.log("Profile response: ", createdProfile);
       setToastMessage("Profil har skapats");
     },
     onError: (error) => {
@@ -71,8 +70,6 @@ export default function ProfileForm() {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
-
     if (profile) {
       editProfileMuation.mutate(data);
     } else {
@@ -88,6 +85,7 @@ export default function ProfileForm() {
   };
 
   const hasRootError = errors?.root?.message;
+  const profileImage = profile.profileImage;
 
   return (
     <>
@@ -98,7 +96,7 @@ export default function ProfileForm() {
           <div className="flex flex-col-reverse md:flex-row justify-between gap-x-24 w-full">
             <ProfileDetailsForm isLoading={isLoading} />
             <div className="mx-auto w-full md:w-[600px] max-w-[400px] h-[500px]">
-              <ImageInput name="profileImage" />
+              <ImageInput name="profileImage" imagePlaceHolder={profileImage} />
             </div>
           </div>
         </form>

@@ -3,13 +3,13 @@ import { useFormContext } from "react-hook-form";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { GoPlus } from "react-icons/go";
 
-export default function ImageInput({ name }) {
+export default function ImageInput({ name, imagePlaceHolder }) {
   const {
     register,
     setValue,
     formState: { errors },
   } = useFormContext();
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState(imagePlaceHolder);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
