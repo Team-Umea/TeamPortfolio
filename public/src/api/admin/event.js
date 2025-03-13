@@ -60,11 +60,25 @@ export const getEventById = async (eventID) => {
     const response = await axios.post(ENDPOINTS.GETEVENTBYID, { eventID });
     return response.data.event;
   } catch (error) {
-    console.log(error);
-
     if (axios.isAxiosError(error)) {
       throw new Error(
         error.response?.data.message || "Ett fel inträffade när evenemang skulle hämtas"
+      );
+    } else if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("Ett oväntat fel inträffade");
+    }
+  }
+};
+
+export const deleteEvent = async (eventID) => {
+  try {
+    return await axios.delete(`${ENDPOINTS.DELETEEVENT}?eventid=${eventID}`);
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        error.response?.data.message || "Ett fel inträffade när evenemang skulle raderas"
       );
     } else if (error instanceof Error) {
       throw new Error(error.message);

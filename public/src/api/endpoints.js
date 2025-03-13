@@ -8,6 +8,7 @@ export const ENDPOINTS = {
   EDITEVENT: `${SERVER_URL}/api/admin/editevent`,
   GETEVENTS: `${SERVER_URL}/api/events`,
   GETEVENTBYID: `${SERVER_URL}/api/event`,
+  DELETEEVENT: `${SERVER_URL}/api/admin/deleteevent`,
 };
 
 export const AUTHECHO_ENDPOINTS = {

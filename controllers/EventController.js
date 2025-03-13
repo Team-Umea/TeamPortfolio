@@ -96,9 +96,23 @@ const getEventById = async (req, res) => {
   }
 };
 
+const deleteEvent = async (req, res) => {
+  const { eventid: eventID } = req.query;
+
+  try {
+    await EventModel.deleteOne({ _id: eventID });
+
+    res.status(204).json({ message: "Evenemang har raderats", success: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Serverfel", success: false });
+  }
+};
+
 module.exports = {
   addEvent,
   editEvent,
   getEvents,
   getEventById,
+  deleteEvent,
 };

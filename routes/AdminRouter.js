@@ -6,7 +6,7 @@ const { validateImage } = require("../validators/imageValidator");
 const { validateProfile } = require("../validators/profileValidator");
 const { validateEvent } = require("../validators/eventValidator");
 const { createProfile, editProfile, getProfile } = require("../controllers/ProfileController");
-const { editEvent, addEvent } = require("../controllers/EventController");
+const { editEvent, addEvent, deleteEvent } = require("../controllers/EventController");
 
 router.get("/profile", getProfile);
 
@@ -29,5 +29,7 @@ router.put(
   editProfile
 );
 router.put("/editevent", upload.single("image"), validateEvent, validateImage, editEvent);
+
+router.delete("/deleteevent", deleteEvent);
 
 module.exports = router;

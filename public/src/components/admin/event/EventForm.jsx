@@ -1,8 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useState } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
-import { profileSchema } from "../../../validations/admin/profile";
-import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Toast from "../../common/Toast";
 import useScrollTo from "../../../hooks/useScrollTo";
 import FormInput from "../../form/FormInput";
@@ -25,7 +24,7 @@ export default function EventForm({ event }) {
   const formMethods = useForm({
     resolver: zodResolver(eventSchema),
     defaultValues: {
-      ...(event ? event : { data: getTodayString() }),
+      ...(event ? event : { date: getTodayString() }),
     },
   });
 
@@ -49,7 +48,6 @@ export default function EventForm({ event }) {
     mutationFn: addEvent,
     onMutate: () => setIsLoading(true),
     onSuccess: () => {
-      setToastMessage("Evenemang har lagts till");
       queryClient.invalidateQueries(["events"]);
       navigate("/admin/events");
     },
@@ -63,7 +61,6 @@ export default function EventForm({ event }) {
     mutationFn: editEvent,
     onMutate: () => setIsLoading(true),
     onSuccess: () => {
-      setToastMessage("Evenemang har uppdaterats");
       queryClient.invalidateQueries(["events"]);
       navigate("/admin/events");
     },

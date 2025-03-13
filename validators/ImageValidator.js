@@ -13,8 +13,8 @@ const imageSchema = Joi.object({
   }),
 }).unknown(true);
 
-const validateImage = (req, res, next) => {
-  const hasImage = hasValidImageUrl(req.body);
+const validateImage = async (req, res, next) => {
+  const hasImage = await hasValidImageUrl(req.body);
 
   if (hasImage) {
     return next();
