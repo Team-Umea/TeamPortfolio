@@ -1,5 +1,5 @@
 const Joi = require("joi");
-const { validateUrl } = require("../utils/helpers");
+const { hasValidImageUrl } = require("../utils/helpers");
 
 const imageSchema = Joi.object({
   originalname: Joi.string()
@@ -14,9 +14,9 @@ const imageSchema = Joi.object({
 }).unknown(true);
 
 const validateImage = (req, res, next) => {
-  const image = req.body.profileImage || req.body.image;
+  const hasImage = hasValidImageUrl(req.body);
 
-  if (validateUrl(image)) {
+  if (hasImage) {
     return next();
   }
 
