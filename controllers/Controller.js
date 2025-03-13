@@ -8,7 +8,12 @@ const getMembers = (_, res) => {
 
 const getEvents = async (_, res) => {
   try {
-    const events = await EventModel.find();
+    const eventDocs = await EventModel.find();
+
+    const events = eventDocs.map((ev) => {
+      const { __v, ...eventData } = ev.toObject();
+      return { ...eventData, image: ev.image.url };
+    });
 
     res.status(201).json({ events, success: true });
   } catch (error) {

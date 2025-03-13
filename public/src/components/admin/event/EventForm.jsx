@@ -28,7 +28,6 @@ export default function EventForm() {
   });
 
   const {
-    // setError,
     clearErrors,
     watch,
     control,
@@ -58,7 +57,6 @@ export default function EventForm() {
   });
 
   const onSubmit = (data) => {
-    // console.log("Event data: ", data);
     addEventMuation.mutate(data);
   };
 
@@ -78,7 +76,7 @@ export default function EventForm() {
       <FormProvider {...formMethods}>
         <form
           onSubmit={handleSubmit(onSubmit, onError)}
-          className="flex flex-col items-center gap-y-6 m-auto w-[90%]">
+          className="flex flex-col items-center gap-y-6 m-auto w-[90%] max-w-[900px]">
           <Controller
             name="event"
             control={control}
