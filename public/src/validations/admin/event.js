@@ -6,7 +6,7 @@ export const eventSchema = z.object({
   date: z.string().refine((date) => !isNaN(Date.parse(date)), {
     message: "Ogiltigt datum",
   }),
-  description: z.string().min(50, "Ange minst 50 tecken").max(500, "Max 500 tecken tillåtet"),
+  description: z.string().min(100, "Ange minst 100 tecken").max(2000, "Max 2000 tecken tillåtet"),
   image: z.union([
     z
       .instanceof(File, "En bild måste laddas upp")

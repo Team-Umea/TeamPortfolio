@@ -1,10 +1,16 @@
 const router = require("express").Router();
 const multer = require("multer");
 const upload = multer();
-const { createProfile, getProfile, editProfile } = require("../controllers/AdminController");
+const {
+  createProfile,
+  getProfile,
+  editProfile,
+  addEvent,
+} = require("../controllers/AdminController");
 const { ensureNewProfile, ensureUniqueProfile } = require("../middlewares/Profile");
-const { validateImage } = require("../validators/ImageValidator");
+const { validateImage } = require("../validators/imageValidator");
 const { validateProfile } = require("../validators/profileValidator");
+const { validateEvent } = require("../validators/eventValidator");
 
 router.get("/profile", getProfile);
 
@@ -16,6 +22,7 @@ router.post(
   validateImage,
   createProfile
 );
+
 router.put(
   "/editprofile",
   upload.single("profileImage"),
@@ -24,5 +31,7 @@ router.put(
   validateImage,
   editProfile
 );
+
+router.post("/addevent", upload.single("image"), validateEvent, validateImage, addEvent);
 
 module.exports = router;

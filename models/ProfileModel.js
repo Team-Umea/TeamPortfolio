@@ -1,19 +1,6 @@
 const mongoose = require("mongoose");
+const ImageSchema = require("./ImageSchema");
 const Schema = mongoose.Schema;
-
-const ProfileImageSchema = new Schema(
-  {
-    url: {
-      type: String,
-      required: true,
-    },
-    id: {
-      type: String,
-      required: true,
-    },
-  },
-  { _id: false }
-);
 
 const ProfileSchema = new Schema({
   name: {
@@ -52,7 +39,7 @@ const ProfileSchema = new Schema({
     type: String,
     required: true,
   },
-  profileImage: ProfileImageSchema,
+  profileImage: ImageSchema,
 });
 
 ProfileSchema.index(

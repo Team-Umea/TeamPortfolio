@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useState } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { profileSchema } from "../../../validations/admin/profile";
-import { useMutation } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Toast from "../../common/Toast";
 import useScrollTo from "../../../hooks/useScrollTo";
 import FormInput from "../../form/FormInput";
@@ -15,6 +15,7 @@ import { getTodayString } from "../../../utils/helpers";
 import ImageInput from "../../form/ImageInput";
 
 export default function EventForm() {
+  const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const { scrollToTopSmooth } = useScrollTo();
@@ -48,6 +49,7 @@ export default function EventForm() {
     onMutate: () => setIsLoading(true),
     onSuccess: () => {
       setToastMessage("Evenemang har lagts till");
+      queryClient.invalidateQueries(["events"]);
     },
     onError: (error) => {
       setToastMessage(error.message);
@@ -56,8 +58,8 @@ export default function EventForm() {
   });
 
   const onSubmit = (data) => {
-    console.log("Event data: ", data);
-    // addEventMuation(data);
+    // console.log("Event data: ", data);
+    addEventMuation.mutate(data);
   };
 
   const onError = (err) => {
@@ -116,8 +118,8 @@ export default function EventForm() {
                 label="Beskrivning av evenemang"
                 type="textarea"
                 value={field.value}
-                minLength={50}
-                maxLength={500}
+                minLength={100}
+                maxLength={2000}
                 placeholder="Ange en beskrivning evenemanget"
                 isRequired={true}
                 errorMessage={translateDefaultErrorMessage("description")}

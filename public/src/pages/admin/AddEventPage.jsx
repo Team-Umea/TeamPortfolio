@@ -7,7 +7,7 @@ import EventForm from "../../components/admin/event/EventForm";
 export default function AddEventPage() {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col gap-y-32">
+    <div className="flex flex-col gap-y-12">
       <div className="w-fit p-4 mb">
         <PrimaryBtn onClick={() => navigate(-1)}>
           <IoIosArrowRoundBack size={24} />
