@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-
 require("dotenv").config();
 
 const JWT_SECRET = process.env.JWT_APP_SECRET;
@@ -16,9 +15,15 @@ const ensureAuthenticated = (req, res, next) => {
     }
 
     req.user = decoded;
-
     next();
   } catch (error) {
+    if (error instanceof jwt.JsonWebTokenError) {
+      return res.status(403).json({
+        message: "Din session har löpt ut, logga in igen för att forsätta",
+        success: false,
+      });
+    }
+
     console.error(error);
     res.status(500).json({ message: "Serverfel", success: false });
   }
@@ -37,13 +42,19 @@ const ensureAdmin = (req, res, next) => {
     const isAdmin = decoded.isAdmin;
 
     if (!isAdmin) {
-      return res.status(403).json({ message: "Unauthenticated", success: false });
+      return res.status(403).json({ message: "Access denied", success: false });
     }
 
     req.user = decoded;
-
     next();
   } catch (error) {
+    if (error instanceof jwt.JsonWebTokenError) {
+      return res.status(403).json({
+        message: "Din session har löpt ut, logga in igen för att forsätta",
+        success: false,
+      });
+    }
+
     console.error(error);
     res.status(500).json({ message: "Serverfel", success: false });
   }
