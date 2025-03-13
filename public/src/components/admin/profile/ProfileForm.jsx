@@ -78,7 +78,7 @@ export default function ProfileForm() {
     }
   };
 
-  const onError = (err) => {
+  const onError = () => {
     scrollToTopSmooth();
   };
 

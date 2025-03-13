@@ -18,8 +18,6 @@ export default function EventList() {
     return <h2 className=" px-4 text-2xl text-red-500 font-semibold">Inga evenemang tillagda</h2>;
   }
 
-  console.log("Events: ", events);
-
   return (
     <ul className="flex flex-col gap-y-32 m-auto w-[90%] max-w-[1100px]">
       {events.map((event, index) => {

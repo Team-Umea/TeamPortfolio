@@ -14,16 +14,14 @@ const imageSchema = Joi.object({
 }).unknown(true);
 
 const validateImage = (req, res, next) => {
-  const profileImage = req.body.profileImage;
+  const image = req.body.profileImage || req.body.image;
 
-  const isImageUrl = typeof profileImage === "string";
-
-  if (isImageUrl && validateUrl(profileImage)) {
+  if (validateUrl(image)) {
     return next();
   }
 
   if (!req.file) {
-    return res.status(400).json({ message: "Profilbild krävs", success: false });
+    return res.status(400).json({ message: "Bild krävs", success: false });
   }
 
   const { error } = imageSchema.validate(req.file);

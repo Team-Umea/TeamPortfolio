@@ -1,6 +1,11 @@
 const Joi = require("joi");
 
 const eventSchema = Joi.object({
+  _id: Joi.string().required().messages({
+    "string.base": "Ogiltigt evenemang id",
+    "string.empty": "Evenemang id får inte vara tomt",
+    "any.required": "Evenemang id är obligatoriskt",
+  }),
   event: Joi.string().required().messages({
     "string.base": "Ogiltigt evenemangsnamn",
     "string.empty": "Evenemangsnamn får inte vara tomt",

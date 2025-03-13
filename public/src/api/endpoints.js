@@ -5,7 +5,9 @@ export const ENDPOINTS = {
   EDITPROFILE: `${SERVER_URL}/api/admin/editprofile`,
   GETPROFILE: `${SERVER_URL}/api/admin/profile`,
   ADDEVENT: `${SERVER_URL}/api/admin/addevent`,
+  EDITEVENT: `${SERVER_URL}/api/admin/editevent`,
   GETEVENTS: `${SERVER_URL}/api/events`,
+  GETEVENTBYID: `${SERVER_URL}/api/event`,
 };
 
 export const AUTHECHO_ENDPOINTS = {

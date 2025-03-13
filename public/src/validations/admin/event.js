@@ -2,6 +2,7 @@ import { z } from "zod";
 import { validateUrl } from "./profile";
 
 export const eventSchema = z.object({
+  _id: z.string().optional(),
   event: z.string().nonempty("Ogiltigt namn"),
   date: z.string().refine((date) => !isNaN(Date.parse(date)), {
     message: "Ogiltigt datum",

@@ -1,7 +1,6 @@
 const ProfileModel = require("../models/ProfileModel");
 const cloudinary = require("../config/cloudinary");
 const { uploadImageToCloudinary } = require("../services/imageService");
-const EventModel = require("../models/EventModel");
 
 const createProfile = async (req, res) => {
   try {
@@ -87,30 +86,8 @@ const getProfile = async (req, res) => {
   }
 };
 
-const addEvent = async (req, res) => {
-  try {
-    const eventData = req.body;
-
-    const image = await uploadImageToCloudinary(req.image.buffer);
-    const imageData = { url: image.url, id: image.public_id };
-
-    const newEvent = new EventModel({ image: imageData, ...eventData });
-
-    await newEvent.save();
-
-    const { __v, ...eventDetails } = newEvent.toObject();
-    const event = { ...eventDetails, image: image.url };
-
-    res.status(201).json({ message: "Evenemang har lagts till", event, success: true });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Serverfel", success: false });
-  }
-};
-
 module.exports = {
   createProfile,
-  getProfile,
   editProfile,
-  addEvent,
+  getProfile,
 };
