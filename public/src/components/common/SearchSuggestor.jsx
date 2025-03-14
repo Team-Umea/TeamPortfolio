@@ -54,7 +54,7 @@ export default function SearchSuggestor({
   const disabled = !suggestions || suggestions.length === 0;
 
   return (
-    <div className="relative flex items-center gap-x-4 pb-[1px] border-b-[1px]">
+    <div className="relative flex items-center gap-x-4 pb-2 border-b-[1px]">
       <IoIosSearch size={24} />
       <input
         value={searchQuery}

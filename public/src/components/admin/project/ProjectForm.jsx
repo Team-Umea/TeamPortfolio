@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { Controller, FormProvider, useForm } from "react-hook-form";
 import { useQueryClient } from "@tanstack/react-query";
 import Toast from "../../common/Toast";
 import useScrollTo from "../../../hooks/useScrollTo";
@@ -12,6 +12,7 @@ import AddColleagues from "./AddColleagues";
 import { projectSchema } from "../../../validations/admin/project";
 import { getFutureDateString, getTodayString } from "../../../utils/helpers";
 import AddTech from "./AddTech";
+import FormInput from "../../form/FormInput";
 
 export default function ProjectForm({ project }) {
   //   const navigate = useNavigate();
@@ -27,7 +28,6 @@ export default function ProjectForm({ project }) {
         ? project
         : {
             startDate: getTodayString(),
-            endDate: getFutureDateString(7),
             colleagues: [],
             techStack: [],
           }),
@@ -94,7 +94,6 @@ export default function ProjectForm({ project }) {
     return message === "Required" ? "Fältet får inte vara tomt" : message;
   };
 
-  //   const eventImage = event?.image;
   const hasRootError = errors?.root?.message;
 
   return (
@@ -103,35 +102,62 @@ export default function ProjectForm({ project }) {
         <form
           onSubmit={handleSubmit(onSubmit, onError)}
           className="flex flex-col items-center gap-y-6 m-auto w-[90%] max-w-[900px]">
-          <AddColleagues />
-          <AddTech />
-          {/* <Controller
-            name="event"
+          <Controller
+            name="project"
             control={control}
             render={({ field }) => (
               <FormInput
-                label="Namn för evenemang"
+                label="Namn på projekt"
                 value={field.value}
-                placeholder="Ange evenemangnamn"
+                placeholder="Ange projektnamn"
                 isRequired={true}
                 autoFocus={true}
-                errorMessage={translateDefaultErrorMessage("event")}
+                errorMessage={translateDefaultErrorMessage("project")}
                 onChange={field.onChange}
               />
             )}
           />
           <Controller
-            name="date"
+            name="startDate"
             control={control}
             render={({ field }) => (
               <FormInput
-                label="Datum"
+                label="Startdatum"
                 type="date"
                 min={getTodayString()}
                 value={field.value}
-                placeholder="Ange när evenemanget ska arrangeras"
+                placeholder="Ange när projektet påbörjades"
                 isRequired={true}
-                errorMessage={translateDefaultErrorMessage("date")}
+                errorMessage={translateDefaultErrorMessage("startDate")}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          <Controller
+            name="endDate"
+            control={control}
+            render={({ field }) => (
+              <FormInput
+                label="Slutdatum"
+                type="date"
+                value={field.value}
+                placeholder="Ange när projektet avlutades om det har avslutats"
+                errorMessage={translateDefaultErrorMessage("endDate")}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          <Controller
+            name="github"
+            control={control}
+            render={({ field }) => (
+              <FormInput
+                label="Github"
+                type="url"
+                value={field.value}
+                placeholder="Ange github URL"
+                isRequired={true}
+                errorMessage={translateDefaultErrorMessage("github")}
                 onChange={field.onChange}
               />
             )}
@@ -153,10 +179,8 @@ export default function ProjectForm({ project }) {
               />
             )}
           />
-          <div className="mx-auto mb-12 w-full px-6 h-[600px]">
-            <ImageInput name="image" imagePlaceHolder={eventImage} />
-          </div> */}
-
+          <AddColleagues />
+          <AddTech />
           <div className="w-fit m-auto mt-8">
             <PrimaryBtn type="submit">
               <span className="flex justify-center items-center gap-x-2 mx-4">

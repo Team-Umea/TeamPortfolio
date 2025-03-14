@@ -62,7 +62,7 @@ export default function AddColleagues() {
   const colleaguesErrorMessage = errors?.colleagues?.message;
 
   return (
-    <div className="flex flex-col gap-y-2 w-full">
+    <div className="flex flex-col gap-y-2 w-full my-10">
       <p className="text-lg text-slate-600 font-medium">
         Lägg till kollegor som har bidragit till projektet
       </p>

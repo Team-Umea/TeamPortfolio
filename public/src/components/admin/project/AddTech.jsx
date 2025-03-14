@@ -3,6 +3,7 @@ import { useFormContext } from "react-hook-form";
 import AddTechInput from "./AddTechInput";
 import PrimaryBtn from "../../btn/PrimaryBtn";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { useEffect } from "react";
 
 export default function AddTech() {
   const {
@@ -14,6 +15,21 @@ export default function AddTech() {
   } = useFormContext();
 
   const techStack = watch("techStack");
+
+  useEffect(() => {
+    const filledFields = techStack.filter((field) => field);
+    const isValid = filledFields.length >= 3;
+    const hasAddedFields = techStack.length >= 3;
+    if (isValid) {
+      clearErrors("techStack");
+    }
+    if (hasAddedFields) {
+      setError("techStack", {
+        type: "manual",
+        message: "Minst 3 av teknologierna måste vara ifyllda",
+      });
+    }
+  }, [techStack.join("")]);
 
   const addEmptyTech = () => {
     if (techStack.length >= 10) return;
@@ -39,7 +55,10 @@ export default function AddTech() {
     setValue("techStack", filteredTechStack);
   };
 
-  const errorMessage = errors?.techStack?.message || errors?.techStack?.root?.message;
+  const errorMessage =
+    errors?.techStack?.techStack?.message ||
+    errors?.techStack?.message ||
+    errors?.techStack?.root?.message;
 
   return (
     <div className="flex flex-col gap-y-6 w-full">

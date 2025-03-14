@@ -101,7 +101,7 @@ export default function EventForm({ event }) {
             control={control}
             render={({ field }) => (
               <FormInput
-                label="Namn för evenemang"
+                label="Namn på evenemang"
                 value={field.value}
                 placeholder="Ange evenemangnamn"
                 isRequired={true}

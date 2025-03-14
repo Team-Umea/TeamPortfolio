@@ -55,7 +55,7 @@ export default function FormInput({
         <HiOutlineExclamationCircle size={24} color="red" />
       </div>
       <div
-        className={`p-4 border-2 rounded-md ${
+        className={`flex flex-col gap-y-2 p-4 border-2 rounded-md ${
           errorMessage ? "border-red-500" : "border-transparent"
         }`}>
         <div className="flex items-center gap-x-2">
