@@ -13,6 +13,7 @@ import { projectSchema } from "../../../validations/admin/project";
 import { getFutureDateString, getTodayString } from "../../../utils/helpers";
 import AddTech from "./AddTech";
 import FormInput from "../../form/FormInput";
+import ReadmeInput from "./ReadmeInput";
 
 export default function ProjectForm({ project }) {
   //   const navigate = useNavigate();
@@ -181,6 +182,7 @@ export default function ProjectForm({ project }) {
           />
           <AddColleagues />
           <AddTech />
+          <ReadmeInput name="readme" />
           <div className="w-fit m-auto mt-8">
             <PrimaryBtn type="submit">
               <span className="flex justify-center items-center gap-x-2 mx-4">

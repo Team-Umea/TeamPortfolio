@@ -36,6 +36,12 @@ export const projectSchema = z
           path: ["techStack"],
         }
       ),
+    readme: z.union([
+      z.instanceof(File, "En README-fil måste laddas upp").refine((file) => !!file, {
+        message: "En README-fil måste laddas upp",
+      }),
+      z.string().refine(validateUrl, "Ogiltig URL"),
+    ]),
   })
   .refine(
     (data) => {

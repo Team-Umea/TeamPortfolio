@@ -23,3 +23,19 @@ export const getFutureDateString = (days) => {
   futureDate.setDate(futureDate.getDate() + days);
   return futureDate.toISOString().split("T")[0];
 };
+
+export function convertToRawUrl(blobUrl) {
+  const pattern = /https:\/\/github\.com\/(.+)\/blob\/(.+)\/(.+)/;
+  const match = blobUrl.match(pattern);
+
+  if (match) {
+    const repository = match[1];
+    const branch = match[2];
+    const filePath = match[3];
+
+    const rawUrl = `https://raw.githubusercontent.com/${repository}/${branch}/${filePath}`;
+    return rawUrl;
+  } else {
+    throw new Error("Invalid GitHub blob URL");
+  }
+}
