@@ -1,10 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import EventForm from "../../../components/admin/event/EventForm";
 import PrimaryBtn from "../../../components/btn/PrimaryBtn";
 
-export default function AddEventPage() {
+export default function AddProjectPage() {
   const navigate = useNavigate();
 
   return (
@@ -15,7 +14,7 @@ export default function AddEventPage() {
           Tillbaka
         </PrimaryBtn>
       </div>
-      <EventForm />
+      {/* <EventForm /> */}
     </div>
   );
 }
