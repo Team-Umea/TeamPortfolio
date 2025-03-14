@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { GoPlus } from "react-icons/go";
-import PrimaryBtn from "../../components/btn/PrimaryBtn";
+import PrimaryBtn from "../../../components/btn/PrimaryBtn";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router";
-import EventList from "../../components/admin/event/EventList";
-import useScrollTo from "../../hooks/useScrollTo";
-import Toast from "../../components/common/Toast";
+import EventList from "../../../components/admin/event/EventList";
+import useScrollTo from "../../../hooks/useScrollTo";
+import Toast from "../../../components/common/Toast";
 
 export default function EventsPage() {
   const navigate = useNavigate();

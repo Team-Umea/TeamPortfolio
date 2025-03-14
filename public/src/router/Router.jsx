@@ -1,16 +1,16 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from "react-router";
 import RootLayout from "../layouts/RootLayout";
 import HomePage from "../pages/HomePage";
-import SignInPage from "../pages/SignInPage";
-import UserPage from "../pages/UserPage";
+import SignInPage from "../pages/auth/SignInPage";
+import UserPage from "../pages/user/UserPage";
 import AdminLayout from "../layouts/admin/AdminLayout";
 import QuestionPage from "../pages/admin/QuestionPage";
 import ProjectPage from "../pages/admin/ProjectPage";
-import EventsPage from "../pages/admin/EventsPage";
-import ProfilePage from "../pages/admin/ProfilePage";
-import ManageProfilePage from "../pages/admin/ManageProfilePage";
-import AddEventPage from "../pages/admin/AddEventPage";
-import ManageEventPage from "../pages/admin/ManageEventPage";
+import EventsPage from "../pages/admin/event/EventsPage";
+import ProfilePage from "../pages/admin/profile/ProfilePage";
+import ManageProfilePage from "../pages/admin/profile/ManageProfilePage";
+import AddEventPage from "../pages/admin/event/AddEventPage";
+import ManageEventPage from "../pages/admin/event/ManageEventPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router";
-import { getEventById } from "../../api/admin/event";
-import Loader from "../../components/common/Loader";
-import PrimaryBtn from "../../components/btn/PrimaryBtn";
+import { getEventById } from "../../../api/admin/event";
+import Loader from "../../../components/common/Loader";
+import PrimaryBtn from "../../../components/btn/PrimaryBtn";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import EventForm from "../../components/admin/event/EventForm";
+import EventForm from "../../../components/admin/event/EventForm";
 
 export default function ManageEventPage() {
   const navigate = useNavigate();

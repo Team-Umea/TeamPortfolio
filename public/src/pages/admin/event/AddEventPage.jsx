@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import PrimaryBtn from "../../components/btn/PrimaryBtn";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import EventForm from "../../components/admin/event/EventForm";
+import EventForm from "../../../components/admin/event/EventForm";
+import PrimaryBtn from "../../../components/btn/PrimaryBtn";
 
 export default function AddEventPage() {
   const navigate = useNavigate();

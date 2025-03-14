@@ -1,12 +1,11 @@
 import { Navigate } from "react-router";
-import useAuthStore from "../../hooks/useAuthStore";
-import ProfileForm from "../../components/admin/profile/ProfileForm";
+import useAuthStore from "../../../hooks/useAuthStore";
 import { useQuery } from "@tanstack/react-query";
-import { getProfile } from "../../api/admin/profile";
-import Loader from "../../components/common/Loader";
-import Profile from "../../components/admin/profile/Profile";
+import { getProfile } from "../../../api/admin/profile";
+import Loader from "../../../components/common/Loader";
+import Profile from "../../../components/admin/profile/Profile";
 import { useEffect } from "react";
-import useProfileStore from "../../hooks/useProfileStore";
+import useProfileStore from "../../../hooks/useProfileStore";
 
 export default function ProfilePage() {
   const { isAuthenticated, isAdmin } = useAuthStore();

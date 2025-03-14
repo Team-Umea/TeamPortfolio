@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
-import ProfileForm from "../../components/admin/profile/ProfileForm";
-import PrimaryBtn from "../../components/btn/PrimaryBtn";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import PrimaryBtn from "../../../components/btn/PrimaryBtn";
+import ProfileForm from "../../../components/admin/profile/ProfileForm";
 
 export default function ManageProfilePage() {
   const navigate = useNavigate();
