@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import OutlineBtn from "../btn/OutlineBtn";
-import SearchSuggestor from "../common/SearchSuggestor";
+import OutlineBtn from "../../btn/OutlineBtn";
+import SearchSuggestor from "../../common/SearchSuggestor";
 import { useFormContext } from "react-hook-form";
-import useProfileStore from "../../hooks/useProfileStore";
+import useProfileStore from "../../../hooks/useProfileStore";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { useQuery } from "@tanstack/react-query";
-import { getProfileAlis } from "../../api/admin/profile";
+import { getProfileAlis } from "../../../api/admin/profile";
 import { useEffect } from "react";
-
-const COLLEAGUES = ["Oscar Burman", "Frank", "Sebbe", "Andy", "Tobbe", "Robin", "Elias", "Neriman"];
 
 export default function AddColleagues() {
   const { profile } = useProfileStore();
@@ -65,7 +63,9 @@ export default function AddColleagues() {
 
   return (
     <div className="flex flex-col gap-y-2 w-full">
-      <p className="text-gray-400">Lägg till kollegor som har bidragit till projektet</p>
+      <p className="text-lg text-slate-600 font-medium">
+        Lägg till kollegor som har bidragit till projektet
+      </p>
       <div
         className={`flex justify-between gap-x-12 mb-4 ${
           colleaguesErrorMessage ? "opacity-100" : "opacity-0"

@@ -19,7 +19,10 @@ export const projectSchema = z
       }),
     description: z.string().min(100, "Ange minst 100 tecken").max(2000, "Max 2000 tecken tillåtet"),
     colleagues: z.array(z.string()).optional(),
-    techStack: z.array(z.string().nonempty("Ogiltig teknologi")).min(3).max(10),
+    techStack: z
+      .array(z.string().nonempty("Ogiltig teknologi"))
+      .min(3, "Minst 3 teknologier krävs")
+      .max(10, "Max 10 teknologier tillåtet"),
   })
   .refine(
     (data) => {

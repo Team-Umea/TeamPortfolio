@@ -57,7 +57,6 @@ export default function SearchSuggestor({
     <div className="relative flex items-center gap-x-4 pb-[1px] border-b-[1px]">
       <IoIosSearch size={24} />
       <input
-        name="admins"
         value={searchQuery}
         placeholder={disabled ? disabledPlaceholder : enabledPlaceHolder}
         autoComplete="off"

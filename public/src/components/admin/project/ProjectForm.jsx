@@ -8,9 +8,10 @@ import PrimaryBtn from "../../btn/PrimaryBtn";
 import { PuffLoader } from "react-spinners";
 import { FiPlus } from "react-icons/fi";
 import { useNavigate } from "react-router";
-import AddColleagues from "../../form/AddColleagues";
+import AddColleagues from "./AddColleagues";
 import { projectSchema } from "../../../validations/admin/project";
 import { getFutureDateString, getTodayString } from "../../../utils/helpers";
+import AddTech from "./AddTech";
 
 export default function ProjectForm({ project }) {
   //   const navigate = useNavigate();
@@ -103,6 +104,7 @@ export default function ProjectForm({ project }) {
           onSubmit={handleSubmit(onSubmit, onError)}
           className="flex flex-col items-center gap-y-6 m-auto w-[90%] max-w-[900px]">
           <AddColleagues />
+          <AddTech />
           {/* <Controller
             name="event"
             control={control}
