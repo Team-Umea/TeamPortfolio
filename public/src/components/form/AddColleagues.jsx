@@ -5,14 +5,31 @@ import SearchSuggestor from "../common/SearchSuggestor";
 import { useFormContext } from "react-hook-form";
 import useProfileStore from "../../hooks/useProfileStore";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { useQuery } from "@tanstack/react-query";
+import { getProfileAlis } from "../../api/admin/profile";
+import { useEffect } from "react";
 
 const COLLEAGUES = ["Oscar Burman", "Frank", "Sebbe", "Andy", "Tobbe", "Robin", "Elias", "Neriman"];
 
 export default function AddColleagues() {
   const { profile } = useProfileStore();
-  const [availableColleagues, setAvailableColleagues] = useState(
-    COLLEAGUES.filter((coll) => coll !== profile.name)
-  );
+  const { data: profileAlias = [] } = useQuery({
+    queryFn: getProfileAlis,
+    queryKey: ["profileAlias"],
+  });
+
+  const [availableColleagues, setAvailableColleagues] = useState([]);
+
+  useEffect(() => {
+    if (profileAlias?.length) {
+      const filteredProfileAlias = profileAlias.filter((alias) => alias.name !== profile.name);
+
+      if (JSON.stringify(filteredProfileAlias) !== JSON.stringify(availableColleagues)) {
+        setAvailableColleagues(filteredProfileAlias);
+      }
+    }
+  }, [profileAlias, profile.name]);
+
   const {
     setValue,
     watch,
@@ -22,12 +39,17 @@ export default function AddColleagues() {
   const selectedColleagues = watch("colleagues");
 
   const setColleagues = (updatedColleagues) => {
-    setValue("colleagues", updatedColleagues);
+    const nameAsIds = updatedColleagues.map((coll) =>
+      profileAlias.find((alias) => alias.name === coll)
+    );
+    setValue("colleagues", nameAsIds);
   };
 
   const addColleague = (colleague) => {
     const updatedColleagues = [...new Set([...selectedColleagues, colleague])];
-    const filteredAvailableColleagues = availableColleagues.filter((coll) => coll !== colleague);
+    const filteredAvailableColleagues = availableColleagues.filter(
+      (coll) => coll.name !== colleague
+    );
     setAvailableColleagues(filteredAvailableColleagues);
     setColleagues(updatedColleagues);
   };
@@ -56,7 +78,7 @@ export default function AddColleagues() {
           colleaguesErrorMessage ? "border-red-500" : "border-transparent"
         }`}>
         <SearchSuggestor
-          data={availableColleagues}
+          data={availableColleagues.map((coll) => coll.name)}
           select={addColleague}
           disabledPlaceholder="Inga kollegor är för närvarande tillgängliga"
           enabledPlaceHolder="Sök efter kollegor med deras användarnamn"
@@ -64,8 +86,8 @@ export default function AddColleagues() {
         <ul className="flex flex-wrap gap-2 p-4">
           {selectedColleagues?.map((colleague) => {
             return (
-              <OutlineBtn key={colleague} onClick={() => deleteColleague(colleague)}>
-                <span>{colleague}</span>
+              <OutlineBtn key={colleague._id} onClick={() => deleteColleague(colleague)}>
+                <span>{colleague.name}</span>
                 <IoMdClose size={24} color="grey" />
               </OutlineBtn>
             );

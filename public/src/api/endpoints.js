@@ -4,6 +4,7 @@ export const ENDPOINTS = {
   CREATEPROFILE: `${SERVER_URL}/api/admin/createprofile`,
   EDITPROFILE: `${SERVER_URL}/api/admin/editprofile`,
   GETPROFILE: `${SERVER_URL}/api/admin/profile`,
+  GETPROFILEALIAS: `${SERVER_URL}/api/profiles`,
   ADDEVENT: `${SERVER_URL}/api/admin/addevent`,
   EDITEVENT: `${SERVER_URL}/api/admin/editevent`,
   GETEVENTS: `${SERVER_URL}/api/events`,

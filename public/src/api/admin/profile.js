@@ -52,3 +52,20 @@ export const getProfile = async () => {
     }
   }
 };
+
+export const getProfileAlis = async () => {
+  try {
+    const response = await axios.get(ENDPOINTS.GETPROFILEALIAS);
+    return response.data.profileAlias;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        error.response?.data.message || "Ett fel inträffade vid hämtning av profiler"
+      );
+    } else if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("Ett oväntat fel inträffade");
+    }
+  }
+};

@@ -86,8 +86,29 @@ const getProfile = async (req, res) => {
   }
 };
 
+const getProfileAlias = async (_, res) => {
+  try {
+    const profilesData = await ProfileModel.find();
+
+    if (!profilesData) {
+      return res.status(404).json({ message: "Kunde inte hitta några profiler", success: false });
+    }
+
+    const profileAlias = profilesData.map((profile) => ({
+      _id: String(profile._id),
+      name: profile.name,
+    }));
+
+    res.status(200).json({ message: "Profiler hittades", profileAlias, success: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Serverfel", success: false });
+  }
+};
+
 module.exports = {
   createProfile,
   editProfile,
   getProfile,
+  getProfileAlias,
 };
