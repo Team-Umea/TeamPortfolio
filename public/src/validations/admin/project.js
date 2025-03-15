@@ -17,10 +17,14 @@ export const projectSchema = z
     github: z
       .string()
       .url()
-      .refine((val) => validateUrl(val), {
-        message: "Ogiltig URL",
+      .refine((val) => validateUrl(val) && val.includes("github.com"), {
+        message: "Ogiltig github URL",
       }),
-    description: z.string().min(100, "Ange minst 100 tecken").max(2000, "Max 2000 tecken tillåtet"),
+    description: z
+      .string()
+      .min(100, "Ange minst 100 tecken")
+      .max(2000, "Max 2000 tecken tillåtet")
+      .optional(),
     colleagues: z.array(z.string()).optional(),
     techStack: z
       .array(z.string())
@@ -36,12 +40,6 @@ export const projectSchema = z
           path: ["techStack"],
         }
       ),
-    readme: z.union([
-      z.instanceof(File, "En README-fil måste laddas upp").refine((file) => !!file, {
-        message: "En README-fil måste laddas upp",
-      }),
-      z.string().refine(validateUrl, "Ogiltig URL"),
-    ]),
   })
   .refine(
     (data) => {

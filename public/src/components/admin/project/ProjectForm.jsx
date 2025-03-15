@@ -29,6 +29,7 @@ export default function ProjectForm({ project }) {
         ? project
         : {
             startDate: getTodayString(),
+            github: "",
             colleagues: [],
             techStack: [],
           }),
@@ -148,21 +149,7 @@ export default function ProjectForm({ project }) {
               />
             )}
           />
-          <Controller
-            name="github"
-            control={control}
-            render={({ field }) => (
-              <FormInput
-                label="Github"
-                type="url"
-                value={field.value}
-                placeholder="Ange github URL"
-                isRequired={true}
-                errorMessage={translateDefaultErrorMessage("github")}
-                onChange={field.onChange}
-              />
-            )}
-          />
+          <ReadmeInput name="github" placeholder="Ange github URL" label="Github" />
           <Controller
             name="description"
             control={control}
@@ -174,7 +161,6 @@ export default function ProjectForm({ project }) {
                 minLength={100}
                 maxLength={2000}
                 placeholder="Ange en beskrivning evenemanget"
-                isRequired={true}
                 errorMessage={translateDefaultErrorMessage("description")}
                 onChange={field.onChange}
               />
@@ -182,7 +168,6 @@ export default function ProjectForm({ project }) {
           />
           <AddColleagues />
           <AddTech />
-          <ReadmeInput name="readme" />
           <div className="w-fit m-auto mt-8">
             <PrimaryBtn type="submit">
               <span className="flex justify-center items-center gap-x-2 mx-4">

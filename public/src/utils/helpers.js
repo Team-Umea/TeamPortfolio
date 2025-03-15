@@ -24,18 +24,18 @@ export const getFutureDateString = (days) => {
   return futureDate.toISOString().split("T")[0];
 };
 
-export function convertToRawUrl(blobUrl) {
-  const pattern = /https:\/\/github\.com\/(.+)\/blob\/(.+)\/(.+)/;
-  const match = blobUrl.match(pattern);
+export function getRawReadmeUrl(repoUrl, branch = "main") {
+  const pattern = /https:\/\/github\.com\/([^/]+)\/([^/]+)/;
+  const match = repoUrl.match(pattern);
 
   if (match) {
-    const repository = match[1];
-    const branch = match[2];
-    const filePath = match[3];
+    const owner = match[1];
+    const repoName = match[2];
+    const filePath = "README.md";
 
-    const rawUrl = `https://raw.githubusercontent.com/${repository}/${branch}/${filePath}`;
+    const rawUrl = `https://raw.githubusercontent.com/${owner}/${repoName}/${branch}/${filePath}`;
     return rawUrl;
   } else {
-    throw new Error("Invalid GitHub blob URL");
+    throw new Error("Ogiltig github URL");
   }
 }

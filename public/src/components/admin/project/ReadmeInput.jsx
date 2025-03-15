@@ -1,64 +1,98 @@
-import { useState } from "react";
-import { HiOutlineExclamationCircle } from "react-icons/hi";
-import ReactMarkdown from "react-markdown";
-import gfm from "remark-gfm";
-import { convertToRawUrl } from "../../../utils/helpers";
+import { useEffect, useState } from "react";
 
-export default function ReadmeInput() {
-  const [readmeURL, setReadmeURL] = useState("");
+import { getRawReadmeUrl } from "../../../utils/helpers";
+import { Controller, useFormContext } from "react-hook-form";
+import axios from "axios";
+import FormInput from "../../form/FormInput";
+import ReadmeViewer from "./ReadmeViewer";
+
+export default function ReadmeInput({ name, placeholder, label }) {
   const [readmePreview, setReadmePreview] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const {
+    watch,
+    setError,
+    control,
+    formState: { errors },
+  } = useFormContext();
 
-  const handleURLChange = (event) => {
-    setReadmeURL(event.target.value);
-  };
+  const githubUrl = watch(name);
 
-  const fetchReadme = async (url) => {
-    setErrorMessage("");
-    const rawUrl = convertToRawUrl(url);
+  useEffect(() => {
+    (async () => {
+      const containsRepo = githubUrl && githubUrl.includes("github.com");
+      if (containsRepo) {
+        await fetchReadme();
+      }
+    })();
+  }, [githubUrl]);
+
+  const fetchReadme = async () => {
     try {
-      const response = await fetch(rawUrl);
-      if (!response.ok) throw new Error("Network response was not ok");
-      const markdownText = await response.text();
-      setReadmePreview(markdownText);
-    } catch (error) {
-      console.error("Error fetching README:", error);
-      setErrorMessage("Failed to fetch README. Please check the URL.");
-      setReadmePreview("");
+      const rawMainBranchUrl = getRawReadmeUrl(githubUrl, "main");
+      const mainBranchResponse = await axios.get(rawMainBranchUrl);
+
+      setReadmePreview(mainBranchResponse.data);
+      return;
+    } catch {
+      try {
+        const rawMasterBranchUrl = getRawReadmeUrl(githubUrl, "master");
+        const rawMasterBranchResponse = await axios.get(rawMasterBranchUrl);
+        setReadmePreview(rawMasterBranchResponse.data);
+      } catch {
+        setError("github", {
+          type: "manual",
+          message: "Kunde inte hämta README.md",
+        });
+        setReadmePreview("");
+      }
     }
   };
 
-  const handlePaste = async () => {
-    const pastedText = await navigator.clipboard.readText();
-    setReadmeURL(pastedText);
-    fetchReadme(pastedText);
+  const translateDefaultErrorMessage = (messageKey) => {
+    const message = errors && errors[messageKey] ? errors[messageKey].message : undefined;
+    return message === "Required" ? "Fältet får inte vara tomt" : message;
   };
 
+  // const fetchReadme = async (url) => {
+  //   setErrorMessage("");
+  //   const rawUrl = convertToRawUrl(url);
+  //   try {
+  //     const response = await fetch(rawUrl);
+  //     if (!response.ok) throw new Error("Network response was not ok");
+  //     const markdownText = await response.text();
+  //     setReadmePreview(markdownText);
+  //   } catch (error) {
+  //     console.error("Error fetching README:", error);
+  //     setErrorMessage("Failed to fetch README. Please check the URL.");
+  //     setReadmePreview("");
+  //   }
+  // };
+
+  // const handlePaste = async () => {
+  //   const pastedText = await navigator.clipboard.readText();
+  //   setReadmeURL(pastedText);
+  //   fetchReadme(pastedText);
+  // };
+
   return (
-    <div className="w-full h-full">
-      {errorMessage && (
-        <div className="flex justify-between gap-x-12 mb-4 opacity-100">
-          <p className="text text-red-500 font-bold">{errorMessage}</p>
-          <HiOutlineExclamationCircle size={24} color="red" />
-        </div>
-      )}
-      <label htmlFor="readmeURL" className="cursor-pointer">
-        <div className="flex justify-center items-center p-5 h-full border-2 border-gray-300">
-          <input
-            type="text"
-            id="readmeURL"
-            placeholder="Enter README URL"
-            className="border p-2 w-full"
-            value={readmeURL}
-            onChange={handleURLChange}
-            onPaste={handlePaste}
+    <div className="">
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <FormInput
+            label={label}
+            type="url"
+            value={field.value}
+            placeholder={placeholder}
+            isRequired={true}
+            errorMessage={translateDefaultErrorMessage(name)}
+            onChange={field.onChange}
           />
-        </div>
-      </label>
-      <div className="mt-4">
-        <div className="markdown-body bg-white! text-black!">
-          <ReactMarkdown remarkPlugins={[gfm]}>{readmePreview}</ReactMarkdown>
-        </div>
+        )}
+      />
+      <div className="my-10">
+        <ReadmeViewer readmePreview={readmePreview} />
       </div>
     </div>
   );
