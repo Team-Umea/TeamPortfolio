@@ -15,7 +15,6 @@ export default function AddTechInput({ name, number, onDelete }) {
           <FormInputBox
             label={`Teknologi ${number}`}
             value={field.value}
-            autoFocus={true}
             placeholder="Ange teknologi namn"
             onChange={field.onChange}
           />

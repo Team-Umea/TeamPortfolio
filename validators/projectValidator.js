@@ -21,6 +21,10 @@ const projectSchema = Joi.object({
       "string.uri": "Ogiltig github URL",
       "string.pattern.name": "Ogiltig github URL",
     }),
+  website: Joi.string().uri().optional().messages({
+    "string.uri": "Ogiltig URL",
+    "string.pattern.name": "Ogiltig URL",
+  }),
   description: Joi.string().min(100).max(2000).optional().messages({
     "string.min": "Ange minst 100 tecken",
     "string.max": "Max 2000 tecken tillåtet",

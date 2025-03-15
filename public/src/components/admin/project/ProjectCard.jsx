@@ -6,6 +6,7 @@ import { deleteProject } from "../../../api/admin/project";
 import ReadmeViewer from "./ReadmeViewer";
 import TechBadge from "./TechBadge";
 import { FaGithub } from "react-icons/fa6";
+import { CiGlobe } from "react-icons/ci";
 
 export default function ProjectCard({ project, onDelete }) {
   const naviagte = useNavigate();
@@ -26,17 +27,6 @@ export default function ProjectCard({ project, onDelete }) {
     deleteProjectMutation.mutate(project._id);
   };
 
-  const users = [
-    "userOneIShere",
-    "userOneIShere",
-    "userOneIShere",
-    "userOneIShere",
-    "userOneIShere",
-    "userOneIShere",
-    "userOneIShere",
-    "userOneIShere",
-  ];
-
   return (
     <div className="flex flex-col gap-y-6">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-y-6">
@@ -48,10 +38,18 @@ export default function ProjectCard({ project, onDelete }) {
           <DeleteBtn onClick={handleDelete} />
         </div>
       </div>
-      <a href={project.github} target="_blank" className="flex gap-x-2">
-        <FaGithub size={24} />
-        <p>Github</p>
-      </a>
+      <div className="flex gap-x-8 my-4">
+        <a href={project.github} target="_blank" className="flex items-center gap-x-1">
+          <FaGithub size={30} />
+          <p className="text-lg font-medium">Github</p>
+        </a>
+        {project.website && (
+          <a href={project.website} target="_blank" className="flex items-center gap-x-1">
+            <CiGlobe size={30} />
+            <p className="text-lg font-medium">Live demo</p>
+          </a>
+        )}
+      </div>
       <div className="flex flex-col gap-y-8">
         <div className="flex flex-col md:flex-row gap-x-12">
           <div className="flex gap-x-1 text-lg">

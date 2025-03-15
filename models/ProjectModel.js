@@ -20,6 +20,9 @@ const ProjectSchema = new Schema({
     type: String,
     required: true,
   },
+  website: {
+    type: String,
+  },
   colleagues: {
     type: [String],
     required: true,

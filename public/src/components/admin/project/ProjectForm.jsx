@@ -94,9 +94,7 @@ export default function ProjectForm({ project }) {
     }
   };
 
-  const onError = (err) => {
-    console.log("err", err);
-
+  const onError = () => {
     scrollToTopSmooth();
   };
 
@@ -157,6 +155,20 @@ export default function ProjectForm({ project }) {
                 min={minEndDate}
                 placeholder="Ange när projektet avlutades om det har avslutats"
                 errorMessage={translateDefaultErrorMessage("endDate")}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          <Controller
+            name="website"
+            control={control}
+            render={({ field }) => (
+              <FormInput
+                label="Domän"
+                type="url"
+                value={field.value}
+                placeholder="Valfritt ange en domän"
+                errorMessage={translateDefaultErrorMessage("website")}
                 onChange={field.onChange}
               />
             )}

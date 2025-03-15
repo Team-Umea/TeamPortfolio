@@ -20,6 +20,13 @@ export const projectSchema = z
       .refine((val) => validateUrl(val) && val.includes("github.com"), {
         message: "Ogiltig github URL",
       }),
+    website: z
+      .string()
+      .url()
+      .optional()
+      .refine((val) => (val ? validateUrl(val) : true), {
+        message: "Ogiltig URL",
+      }),
     description: z
       .string()
       .nullable()
