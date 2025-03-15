@@ -1,16 +1,13 @@
-import { appendToFormData } from "../../utils/helpers";
 import axios from "axios";
-import { EVENT_ENDPOINTS } from "../endpoints";
+import { PROJECT_ENDPOINTS } from "../endpoints";
 
-export const addEvent = async (event) => {
-  const formData = appendToFormData(event);
-
+export const addProject = async (project) => {
   try {
-    return await axios.post(EVENT_ENDPOINTS.ADDEVENT, formData);
+    return await axios.post(PROJECT_ENDPOINTS.ADDPROJECT, project);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(
-        error.response?.data.message || "Ett fel inträffade när evenemang skulle läggas till"
+        error.response?.data.message || "Ett fel inträffade när projekt skulle läggas till"
       );
     } else if (error instanceof Error) {
       throw new Error(error.message);
@@ -20,15 +17,13 @@ export const addEvent = async (event) => {
   }
 };
 
-export const editEvent = async (event) => {
-  const formData = appendToFormData(event);
-
+export const editProject = async (project) => {
   try {
-    return await axios.put(EVENT_ENDPOINTS.EDITEVENT, formData);
+    return await axios.put(PROJECT_ENDPOINTS.EDITPROJECT, project);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(
-        error.response?.data.message || "Ett fel inträffade när evenemang skulle redigeras"
+        error.response?.data.message || "Ett fel inträffade när projekt skulle redigeras"
       );
     } else if (error instanceof Error) {
       throw new Error(error.message);
@@ -38,14 +33,14 @@ export const editEvent = async (event) => {
   }
 };
 
-export const getEvents = async () => {
+export const getProjects = async () => {
   try {
-    const response = await axios.get(EVENT_ENDPOINTS.GETEVENTS);
-    return response.data.events;
+    const response = await axios.get(PROJECT_ENDPOINTS.GETPROJECTS);
+    return response.data.projects;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(
-        error.response?.data.message || "Ett fel inträffade när evenemang skulle hämtas"
+        error.response?.data.message || "Ett fel inträffade när projekt skulle hämtas"
       );
     } else if (error instanceof Error) {
       throw new Error(error.message);
@@ -55,14 +50,14 @@ export const getEvents = async () => {
   }
 };
 
-export const getEventById = async (eventID) => {
+export const getProjectById = async (projectID) => {
   try {
-    const response = await axios.post(EVENT_ENDPOINTS.GETEVENTBYID, { eventID });
-    return response.data.event;
+    const response = await axios.post(PROJECT_ENDPOINTS.GETPROJECTBYID, { projectID });
+    return response.data.project;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(
-        error.response?.data.message || "Ett fel inträffade när evenemang skulle hämtas"
+        error.response?.data.message || "Ett fel inträffade när projekt skulle hämtas"
       );
     } else if (error instanceof Error) {
       throw new Error(error.message);
@@ -72,13 +67,13 @@ export const getEventById = async (eventID) => {
   }
 };
 
-export const deleteEvent = async (eventID) => {
+export const deleteProject = async (projectID) => {
   try {
-    return await axios.delete(`${EVENT_ENDPOINTS.DELETEEVENT}?eventid=${eventID}`);
+    return await axios.delete(`${PROJECT_ENDPOINTS.DELETEPROJECT}?projectid=${projectID}`);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(
-        error.response?.data.message || "Ett fel inträffade när evenemang skulle raderas"
+        error.response?.data.message || "Ett fel inträffade när projekt skulle raderas"
       );
     } else if (error instanceof Error) {
       throw new Error(error.message);

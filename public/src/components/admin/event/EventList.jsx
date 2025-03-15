@@ -5,11 +5,7 @@ import Loader from "../../common/Loader";
 import EventCard from "./EventCard";
 
 export default function EventList({ setToastMessage }) {
-  const {
-    data: events = [],
-    isLoading,
-    isFetching,
-  } = useQuery({
+  const { data: events = [], isLoading } = useQuery({
     queryFn: getEvents,
     queryKey: ["events"],
     staleTime: 0,
@@ -19,7 +15,7 @@ export default function EventList({ setToastMessage }) {
     setToastMessage(message);
   };
 
-  if (isLoading || isFetching) {
+  if (isLoading) {
     return <Loader />;
   }
 

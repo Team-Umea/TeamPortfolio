@@ -18,10 +18,11 @@ export const getTodayString = () => {
   return today.toISOString().split("T")[0];
 };
 
-export const getFutureDateString = (days) => {
-  const futureDate = new Date();
-  futureDate.setDate(futureDate.getDate() + days);
-  return futureDate.toISOString().split("T")[0];
+export const getFutureDateString = (startDate, days) => {
+  const date = startDate ? new Date(startDate) : new Date();
+
+  date.setDate(date.getDate() + days);
+  return date.toISOString().split("T")[0];
 };
 
 export function getRawReadmeUrl(repoUrl, branch = "main") {

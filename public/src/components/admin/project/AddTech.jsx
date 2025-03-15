@@ -20,10 +20,12 @@ export default function AddTech() {
     const filledFields = techStack.filter((field) => field);
     const isValid = filledFields.length >= 3;
     const hasAddedFields = techStack.length >= 3;
+
     if (isValid) {
       clearErrors("techStack");
     }
-    if (hasAddedFields) {
+
+    if (!hasAddedFields && techStack.length > 0) {
       setError("techStack", {
         type: "manual",
         message: "Minst 3 av teknologierna måste vara ifyllda",

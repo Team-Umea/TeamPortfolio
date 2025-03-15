@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useState } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
-import { useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Toast from "../../common/Toast";
 import useScrollTo from "../../../hooks/useScrollTo";
 import PrimaryBtn from "../../btn/PrimaryBtn";
@@ -14,13 +14,16 @@ import { getFutureDateString, getTodayString } from "../../../utils/helpers";
 import AddTech from "./AddTech";
 import FormInput from "../../form/FormInput";
 import ReadmeInput from "./ReadmeInput";
+import useProfileStore from "../../../hooks/useProfileStore";
+import { addProject, editProject } from "../../../api/admin/project";
 
 export default function ProjectForm({ project }) {
-  //   const navigate = useNavigate();
-  //   const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const { scrollToTopSmooth } = useScrollTo();
+  const { profile } = useProfileStore();
 
   const formMethods = useForm({
     resolver: zodResolver(projectSchema),
@@ -52,39 +55,43 @@ export default function ProjectForm({ project }) {
     return () => subscription.unsubscribe();
   }, [clearErrors]);
 
-  //   const addEventMuation = useMutation({
-  //     mutationFn: addEvent,
-  //     onMutate: () => setIsLoading(true),
-  //     onSuccess: () => {
-  //       queryClient.invalidateQueries(["events"]);
-  //       navigate("/admin/events");
-  //     },
-  //     onError: (error) => {
-  //       setToastMessage(error.message);
-  //     },
-  //     onSettled: () => setIsLoading(false),
-  //   });
+  const addProjectMuation = useMutation({
+    mutationFn: addProject,
+    onMutate: () => setIsLoading(true),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["projects"]);
+      navigate("/admin/projects");
+    },
+    onError: (error) => {
+      setToastMessage(error.message);
+    },
+    onSettled: () => setIsLoading(false),
+  });
 
-  //   const editEventMuation = useMutation({
-  //     mutationFn: editEvent,
-  //     onMutate: () => setIsLoading(true),
-  //     onSuccess: () => {
-  //       queryClient.invalidateQueries(["events"]);
-  //       navigate("/admin/events");
-  //     },
-  //     onError: (error) => {
-  //       setToastMessage(error.message);
-  //     },
-  //     onSettled: () => setIsLoading(false),
-  //   });
+  const editProjectMuation = useMutation({
+    mutationFn: editProject,
+    onMutate: () => setIsLoading(true),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["projects"]);
+      navigate("/admin/projects");
+    },
+    onError: (error) => {
+      setToastMessage(error.message);
+    },
+    onSettled: () => setIsLoading(false),
+  });
 
   const onSubmit = (data) => {
-    console.log(data);
-    // if (event) {
-    //   editEventMuation.mutate(data);
-    // } else {
-    //   addEventMuation.mutate(data);
-    // }
+    const projectData = {
+      ...data,
+      colleagues: [...data.colleagues, profile].map((coll) => coll._id),
+    };
+
+    if (project) {
+      editProjectMuation.mutate(projectData);
+    } else {
+      addProjectMuation.mutate(projectData);
+    }
   };
 
   const onError = () => {
@@ -97,6 +104,9 @@ export default function ProjectForm({ project }) {
   };
 
   const hasRootError = errors?.root?.message;
+
+  const startDate = watch("startDate");
+  const minEndDate = getFutureDateString(startDate, 7);
 
   return (
     <>
@@ -143,6 +153,7 @@ export default function ProjectForm({ project }) {
                 label="Slutdatum"
                 type="date"
                 value={field.value}
+                min={minEndDate}
                 placeholder="Ange när projektet avlutades om det har avslutats"
                 errorMessage={translateDefaultErrorMessage("endDate")}
                 onChange={field.onChange}
@@ -155,12 +166,12 @@ export default function ProjectForm({ project }) {
             control={control}
             render={({ field }) => (
               <FormInput
-                label="Beskrivning av evenemang"
+                label="Beskrivning av projet"
                 type="textarea"
                 value={field.value}
                 minLength={100}
                 maxLength={2000}
-                placeholder="Ange en beskrivning evenemanget"
+                placeholder="Valfritt Ange en beskrivning projektet"
                 errorMessage={translateDefaultErrorMessage("description")}
                 onChange={field.onChange}
               />

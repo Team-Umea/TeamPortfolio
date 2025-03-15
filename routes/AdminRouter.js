@@ -7,6 +7,8 @@ const { validateProfile } = require("../validators/profileValidator");
 const { validateEvent } = require("../validators/eventValidator");
 const { createProfile, editProfile, getProfile } = require("../controllers/ProfileController");
 const { editEvent, addEvent, deleteEvent } = require("../controllers/EventController");
+const { validateProject } = require("../validators/projectValidator");
+const { editProject, addProject, deleteProject } = require("../controllers/ProjectContoller");
 
 router.get("/profile", getProfile);
 
@@ -19,6 +21,7 @@ router.post(
   createProfile
 );
 router.post("/addevent", upload.single("image"), validateEvent, validateImage, addEvent);
+router.post("/addproject", validateProject, addProject);
 
 router.put(
   "/editprofile",
@@ -29,7 +32,9 @@ router.put(
   editProfile
 );
 router.put("/editevent", upload.single("image"), validateEvent, validateImage, editEvent);
+router.put("/editproject", validateProject, editProject);
 
 router.delete("/deleteevent", deleteEvent);
+router.delete("/deleteproject", deleteProject);
 
 module.exports = router;

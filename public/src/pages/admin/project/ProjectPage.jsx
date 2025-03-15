@@ -4,6 +4,7 @@ import PrimaryBtn from "../../../components/btn/PrimaryBtn";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router";
 import useScrollTo from "../../../hooks/useScrollTo";
 import Toast from "../../../components/common/Toast";
+import ProjectList from "../../../components/admin/project/ProjectList";
 
 export default function ProjectPage() {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ export default function ProjectPage() {
           Lägg till project
         </PrimaryBtn>
       </div>
+      <ProjectList setToastMessage={setToastMessage} />
       {/* <EventList setToastMessage={setToastMessage} /> */}
       <Toast message={toastMessage} show={!!toastMessage} onClose={() => setToastMessage("")} />
     </div>

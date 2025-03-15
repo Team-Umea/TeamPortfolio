@@ -15,32 +15,29 @@ export default function AddColleagues() {
     queryFn: getProfileAlis,
     queryKey: ["profileAlias"],
   });
-
   const [availableColleagues, setAvailableColleagues] = useState([]);
-
-  useEffect(() => {
-    if (profileAlias?.length) {
-      const filteredProfileAlias = profileAlias.filter((alias) => alias.name !== profile.name);
-
-      if (JSON.stringify(filteredProfileAlias) !== JSON.stringify(availableColleagues)) {
-        setAvailableColleagues(filteredProfileAlias);
-      }
-    }
-  }, [profileAlias, profile.name]);
-
   const {
     setValue,
     watch,
     formState: { errors },
   } = useFormContext();
 
+  useEffect(() => {
+    if (profileAlias?.length) {
+      const filteredProfileAlias = profileAlias.filter((alias) => alias.name !== profile.name);
+
+      setAvailableColleagues(filteredProfileAlias);
+      setValue("colleagues", filteredProfileAlias);
+    }
+  }, [profileAlias, profile.name]);
+
   const selectedColleagues = watch("colleagues");
 
   const setColleagues = (updatedColleagues) => {
-    const nameAsIds = updatedColleagues.map((coll) =>
+    const alias = updatedColleagues.map((coll) =>
       profileAlias.find((alias) => alias.name === coll)
     );
-    setValue("colleagues", nameAsIds);
+    setValue("colleagues", alias);
   };
 
   const addColleague = (colleague) => {

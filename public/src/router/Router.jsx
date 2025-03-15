@@ -28,7 +28,7 @@ const router = createBrowserRouter(
         </Route>
         <Route path="projects" element={<ProjectPage />}>
           <Route path="addproject" element={<AddProjectPage />} />
-          <Route path=":projectid" element={<ManageEventPage />} />
+          <Route path=":projectid" element={<ManageProjectPage />} />
         </Route>
         <Route path="questions" element={<QuestionPage />} />
       </Route>

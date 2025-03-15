@@ -62,11 +62,10 @@ const editEvent = async (req, res) => {
 
 const getEvents = async (_, res) => {
   try {
-    const eventDocs = await EventModel.find();
+    const eventDocs = await EventModel.find().lean();
 
     const events = eventDocs.map((ev) => {
-      const { __v, ...eventData } = ev.toObject();
-      return { ...eventData, image: ev.image.url };
+      return { ...ev, image: ev.image.url };
     });
 
     res.status(201).json({ events, success: true });
@@ -80,14 +79,13 @@ const getEventById = async (req, res) => {
   const { eventID } = req.body;
 
   try {
-    const eventDoc = await EventModel.findOne({ _id: eventID });
+    const eventDoc = await EventModel.findOne({ _id: eventID }).lean();
 
     if (!eventDoc) {
       return res.status(404).json({ message: "Evenemang kunde inte hittas", success: false });
     }
 
-    const { __v, ...eventData } = eventDoc.toObject();
-    const event = { ...eventData, image: eventData.image.url };
+    const event = { ...eventDoc, image: eventDoc.image.url };
 
     res.status(201).json({ event, success: true });
   } catch (error) {

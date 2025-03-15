@@ -76,7 +76,7 @@ const getProfile = async (req, res) => {
       return res.status(404).json({ message: "Profil kunde inte hittas", success: false });
     }
 
-    const { _id, __v, ...profileDetails } = profileData;
+    const { __v, ...profileDetails } = profileData;
     const profile = { ...profileDetails, profileImage: profileDetails.profileImage.url };
 
     res.status(200).json({ message: "Profil hittades", profile, success: true });

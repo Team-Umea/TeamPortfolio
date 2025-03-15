@@ -1,12 +1,12 @@
 import axios from "axios";
-import { ENDPOINTS } from "../endpoints";
 import { appendToFormData } from "../../utils/helpers";
+import { PROFILE_ENDPOINTS } from "../endpoints";
 
 export const createProfile = async (profile) => {
   const formData = appendToFormData(profile);
 
   try {
-    const response = await axios.post(ENDPOINTS.CREATEPROFILE, formData);
+    const response = await axios.post(PROFILE_ENDPOINTS.CREATEPROFILE, formData);
     return response.data.profile;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -23,7 +23,7 @@ export const editProfile = async (profile) => {
   const formData = appendToFormData(profile);
 
   try {
-    const response = await axios.put(ENDPOINTS.EDITPROFILE, formData);
+    const response = await axios.put(PROFILE_ENDPOINTS.EDITPROFILE, formData);
     return response.data.profile;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -40,7 +40,7 @@ export const editProfile = async (profile) => {
 
 export const getProfile = async () => {
   try {
-    const response = await axios.get(ENDPOINTS.GETPROFILE);
+    const response = await axios.get(PROFILE_ENDPOINTS.GETPROFILE);
     return response.data.profile;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -55,7 +55,7 @@ export const getProfile = async () => {
 
 export const getProfileAlis = async () => {
   try {
-    const response = await axios.get(ENDPOINTS.GETPROFILEALIAS);
+    const response = await axios.get(PROFILE_ENDPOINTS.GETPROFILEALIAS);
     return response.data.profileAlias;
   } catch (error) {
     if (axios.isAxiosError(error)) {

@@ -22,9 +22,15 @@ export const projectSchema = z
       }),
     description: z
       .string()
-      .min(100, "Ange minst 100 tecken")
-      .max(2000, "Max 2000 tecken tillåtet")
-      .optional(),
+      .nullable()
+      .optional()
+      .refine(
+        (value) =>
+          value === "" || value === undefined || (value.length >= 100 && value.length <= 2000),
+        {
+          message: "Ange minst 100 tecken och max 2000 tecken tillåtet",
+        }
+      ),
     colleagues: z.array(z.string()).optional(),
     techStack: z
       .array(z.string())
