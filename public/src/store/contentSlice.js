@@ -6,7 +6,7 @@ const initialState = {
   profiles: [],
   events: [],
   projects: [],
-  loading: false,
+  loading: true,
   error: null,
 };
 

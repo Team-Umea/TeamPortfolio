@@ -3,6 +3,8 @@ import RootLayout from "../layouts/RootLayout";
 import HomePage from "../pages/HomePage";
 import SignInPage from "../pages/auth/SignInPage";
 import UserPage from "../pages/user/UserPage";
+import ContentEventPage from "../pages/content/ContentEventPage";
+import ContentProjectPage from "../pages/content/ContentProjectPage";
 import AdminLayout from "../layouts/admin/AdminLayout";
 import QuestionPage from "../pages/admin/QuestionPage";
 import ProjectPage from "../pages/admin/project/ProjectPage";
@@ -20,6 +22,8 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<HomePage />} />
       <Route path="signin" element={<SignInPage />} />
+      <Route path="events" element={<ContentEventPage />} />
+      <Route path="projects" element={<ContentProjectPage />} />
       <Route path="admin" element={<AdminLayout />}>
         <Route index element={<ProfilePage />} />
         <Route path="manageprofile" element={<ManageProfilePage />} />
