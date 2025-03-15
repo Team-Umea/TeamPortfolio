@@ -1,5 +1,9 @@
 export const SERVER_URL = "http://localhost:3000";
 
+export const ENDPOINTS = {
+  CONTENT: `${SERVER_URL}/api/content`,
+};
+
 export const PROFILE_ENDPOINTS = {
   CREATEPROFILE: `${SERVER_URL}/api/admin/createprofile`,
   EDITPROFILE: `${SERVER_URL}/api/admin/editprofile`,
