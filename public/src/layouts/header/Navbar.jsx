@@ -1,6 +1,6 @@
 import React from "react";
 import PrimaryBtn from "../../components/btn/PrimaryBtn";
-import { useLocation, useNavigate } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
 import useAuthStore from "../../hooks/useAuthStore";
 import { RiAdminLine } from "react-icons/ri";
@@ -46,7 +46,9 @@ export default function Navbar() {
 
   return (
     <nav className="flex justify-between items-center px-8 py-4 bg-slate-400">
-      <ul>{/* Nav links */}</ul>
+      <NavLink className="text-2xl font-semibold" to="/">
+        Team Umeå
+      </NavLink>
       <div>
         <PrimaryBtn onClick={handleAuthAction}>{signInButtonBody}</PrimaryBtn>
       </div>

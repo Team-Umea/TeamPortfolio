@@ -13,6 +13,7 @@ import ProfilePage from "../pages/admin/profile/ProfilePage";
 import ManageProfilePage from "../pages/admin/profile/ManageProfilePage";
 import AddEventPage from "../pages/admin/event/AddEventPage";
 import ManageEventPage from "../pages/admin/event/ManageEventPage";
+import NotFoundPage from "../pages/error/NotFoundPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
         <Route path="questions" element={<QuestionPage />} />
       </Route>
       <Route path="user" element={<UserPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Route>
   )
 );
