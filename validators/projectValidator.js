@@ -51,7 +51,7 @@ const projectSchema = Joi.object({
       }
     }
     return value;
-  }, "End Date Validation")
+  }, "Slutdatum validation")
   .messages({
     "any.invalid": "Slutdatum måste vara minst en vecka efter startdatum",
   });

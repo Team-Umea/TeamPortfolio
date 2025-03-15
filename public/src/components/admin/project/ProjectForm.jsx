@@ -94,7 +94,9 @@ export default function ProjectForm({ project }) {
     }
   };
 
-  const onError = () => {
+  const onError = (err) => {
+    console.log("err", err);
+
     scrollToTopSmooth();
   };
 
@@ -136,7 +138,6 @@ export default function ProjectForm({ project }) {
               <FormInput
                 label="Startdatum"
                 type="date"
-                min={getTodayString()}
                 value={field.value}
                 placeholder="Ange när projektet påbörjades"
                 isRequired={true}

@@ -31,7 +31,7 @@ export const projectSchema = z
           message: "Ange minst 100 tecken och max 2000 tecken tillåtet",
         }
       ),
-    colleagues: z.array(z.string()).optional(),
+    colleagues: z.array(z.object({ _id: z.string(), name: z.string() })).optional(),
     techStack: z
       .array(z.string())
       .min(3, "Minst 3 teknologier krävs")
