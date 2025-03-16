@@ -3,27 +3,25 @@ import useContentStore from "../hooks/useContentStore";
 import Loader from "../components/common/Loader";
 import PrimaryBtn from "../components/btn/PrimaryBtn";
 import { useNavigate } from "react-router";
+import Hero from "../components/content/layout/Hero";
+import ProfileSection from "../components/content/layout/ProfileSection";
+import EventSection from "../components/content/layout/EventSection";
+import ProjectSection from "../components/content/layout/ProjectSection";
 
 export default function HomePage() {
   const navigate = useNavigate();
-  const { profiles, loading } = useContentStore();
+  const { loading } = useContentStore();
 
   if (loading) {
     return <Loader />;
   }
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
-      <h1 className="text-6xl font-bold mb-24">Team Umeå</h1>
-      <ProfileList profiles={profiles} />
-      <div className="flex flex-col items-center gap-y-12 my-22">
-        <PrimaryBtn onClick={() => navigate("events")}>
-          <span className="text-lg font-medium">Se evenemang</span>
-        </PrimaryBtn>
-        <PrimaryBtn onClick={() => navigate("projects")}>
-          <span className="text-lg font-medium">Se projekt</span>
-        </PrimaryBtn>
-      </div>
+    <div className="flex flex-col justify-center items-center min-h-screen">
+      <Hero />
+      <ProfileSection />
+      <EventSection />
+      <ProjectSection />
     </div>
   );
 }
