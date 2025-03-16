@@ -15,7 +15,14 @@ const getContent = async (_, res) => {
       profileImage: profile.profileImage.url,
     }));
 
-    res.status(200).json({ profiles: mappedProfiles, events, projects, success: true });
+    const mappedEvents = events.map((event) => ({
+      ...event,
+      image: event.image.url,
+    }));
+
+    res
+      .status(200)
+      .json({ profiles: mappedProfiles, events: mappedEvents, projects, success: true });
   } catch (error) {
     console.error("Error fetching content:", error);
     res.status(500).json({ message: "Serverfel", success: false });
