@@ -9,7 +9,7 @@ export default function EventSection() {
       <h1 className="text-3xl md:text-4xl font-semibold">Evenemang sektion</h1>
       <div className="w-fit">
         <PrimaryBtn onClick={() => navigate("events")}>
-          <span className="text-lg font-semibold">Evenemang projekt</span>
+          <span className="text-lg font-semibold">Se Evenemang</span>
         </PrimaryBtn>
       </div>
     </div>

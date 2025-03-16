@@ -121,3 +121,37 @@ export const addEventQuestion = async (event) => {
     }
   }
 };
+
+export const getEventQuestions = async (eventID) => {
+  try {
+    const response = await axios.get(`${EVENT_ENDPOINTS.EVENTQUESTIONS}?eventid=${eventID}`);
+    return response.data.questions;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        error.response?.data.message || "Ett fel inträffade när frågor skulle hämtas"
+      );
+    } else if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("Ett oväntat fel inträffade");
+    }
+  }
+};
+
+export const getEventEnrollments = async (eventID) => {
+  try {
+    const response = await axios.get(`${EVENT_ENDPOINTS.EVENTENROLLMENTS}?eventid=${eventID}`);
+    return response.data.enrollment.enrollments;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        error.response?.data.message || "Ett fel inträffade när frågor skulle hämtas"
+      );
+    } else if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("Ett oväntat fel inträffade");
+    }
+  }
+};

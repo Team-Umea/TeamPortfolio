@@ -22,11 +22,6 @@ const ADMIN_LINKS = [
     text: "Projekt",
     icon: <AiOutlineProject size={24} />,
   },
-  {
-    link: "/admin/questions",
-    text: "Frågor",
-    icon: <BsQuestionSquare size={24} />,
-  },
 ];
 
 export default function AdminHeader() {

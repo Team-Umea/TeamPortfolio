@@ -10,7 +10,7 @@ export default function ProjectSection() {
       <h1 className="text-3xl md:text-4xl font-semibold">Projekt sektion</h1>
       <div className="w-fit">
         <PrimaryBtn onClick={() => navigate("projects")}>
-          <span className="text-lg font-semibold">See projekt</span>
+          <span className="text-lg font-semibold">Se projekt</span>
         </PrimaryBtn>
       </div>
     </div>

@@ -1,22 +1,27 @@
 const { required } = require("joi");
 const mongoose = require("mongoose");
 const EventQuestionSchema = require("./EventQuestionSchema");
+const { getCurrentDate } = require("../utils/helpers");
+const EventEnrollmentSchema = require("./EventEnrollmentSchema");
 const Schema = mongoose.Schema;
 
 const EnrollmentSchema = new Schema({
-  orgs: {
-    type: [String],
-    required: true,
-  },
-  names: {
-    type: [String],
-    required: true,
-  },
   eventID: {
     type: String,
     required: true,
   },
-  questions: [EventQuestionSchema],
+  enrollments: {
+    type: [EventEnrollmentSchema],
+    default: [],
+  },
+  date: {
+    type: String,
+    default: getCurrentDate(),
+  },
+  questions: {
+    type: [EventQuestionSchema],
+    default: [],
+  },
 });
 
 const EnrollmentModel = mongoose.model("enrollments", EnrollmentSchema);

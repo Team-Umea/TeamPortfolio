@@ -10,7 +10,7 @@ import { MdOutlineClose } from "react-icons/md";
 const NAV_LINKS = [
   {
     text: "Projekt",
-    link: "project",
+    link: "projects",
   },
   {
     text: "Evenemang",
@@ -73,10 +73,11 @@ export default function Navbar() {
           isExtended ? "right-0" : "right-[-200px]"
         } md:static flex flex-col md:flex-row md:justify-between items-center gap-y-32 h-screen md:h-auto w-[200px] md:w-full pt-20 md:p-0 md:ml-16 md:mr-8 bg-slate-400 md:bg-transparent z-1`}>
         <ul className="flex flex-col md:flex-row gap-x-8 gap-y-12">
-          {NAV_LINKS.map((link) => {
+          {NAV_LINKS.map((link, index) => {
             return (
               <NavLink
                 to={link.link}
+                key={link.link + index}
                 className="text-lg font-medium transition-all duration-300 ease hover:opacity-70">
                 {link.text}
               </NavLink>

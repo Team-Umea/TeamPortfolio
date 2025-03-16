@@ -1,8 +1,9 @@
-export default function OutlineBtn({ type = "button", onClick, children }) {
+export default function OutlineBtn({ type = "button", fullWidth = false, onClick, children }) {
   return (
     <button
       type={type}
       onClick={onClick}
+      style={{ width: fullWidth ? "100%" : "fit-content" }}
       onMouseLeave={(e) => e.target.blur()}
       className="flex justify-center items-center h-fit text-zinc-600 font-semibold py-[10px] px-[25px] rounded-full border-2 border-zinc-600 transition-opacity duration-500 cursor-pointer group hover:opacity-60 bg-transparent">
       {children && (

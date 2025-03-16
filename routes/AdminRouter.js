@@ -6,11 +6,19 @@ const { validateImage } = require("../validators/imageValidator");
 const { validateProfile } = require("../validators/profileValidator");
 const { validateEvent } = require("../validators/eventValidator");
 const { createProfile, editProfile, getProfile } = require("../controllers/ProfileController");
-const { editEvent, addEvent, deleteEvent } = require("../controllers/EventController");
+const {
+  editEvent,
+  addEvent,
+  deleteEvent,
+  getEventQuestions,
+  getEventEnrollments,
+} = require("../controllers/EventController");
 const { validateProject } = require("../validators/projectValidator");
 const { editProject, addProject, deleteProject } = require("../controllers/ProjectContoller");
 
 router.get("/profile", getProfile);
+router.get("/eventquestions", getEventQuestions);
+router.get("/eventenrollments", getEventEnrollments);
 
 router.post(
   "/createprofile",

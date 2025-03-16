@@ -134,11 +134,14 @@ const enrollUser = async (req, res) => {
     let enrollment = await EnrollmentModel.findOne({ eventID });
 
     if (enrollment) {
-      enrollment.orgs.push(org);
-      enrollment.names.push(name);
+      enrollment.enrollments.push({ org, name });
       await enrollment.save();
     } else {
-      const newEnrollment = new EnrollmentModel({ orgs: [org], names: [name], eventID });
+      const newEnrollment = new EnrollmentModel({
+        eventID,
+        enrollments: [{ org, name }],
+        questions: [],
+      });
       await newEnrollment.save();
     }
 
@@ -202,6 +205,48 @@ const addEventQuestion = async (req, res) => {
   }
 };
 
+const getEventQuestions = async (req, res) => {
+  const { eventid: eventID } = req.query;
+
+  try {
+    const enrollment = await EnrollmentModel.findOne({ eventID: eventID });
+
+    if (!enrollment) {
+      return res.status(404).json({ message: "Kunde inte hitta anmälning", success: false });
+    }
+
+    const questions = enrollment.questions;
+
+    res.status(200).json({
+      questions,
+      success: true,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Serverfel", success: false });
+  }
+};
+
+const getEventEnrollments = async (req, res) => {
+  const { eventid: eventID } = req.query;
+
+  try {
+    const enrollment = await EnrollmentModel.findOne({ eventID: eventID });
+
+    if (!enrollment) {
+      return res.status(404).json({ message: "Kunde inte hitta anmälning", success: false });
+    }
+
+    res.status(200).json({
+      enrollment,
+      success: true,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Serverfel", success: false });
+  }
+};
+
 module.exports = {
   addEvent,
   editEvent,
@@ -210,4 +255,6 @@ module.exports = {
   deleteEvent,
   enrollUser,
   addEventQuestion,
+  getEventQuestions,
+  getEventEnrollments,
 };

@@ -2,17 +2,13 @@ const mongoose = require("mongoose");
 const { getCurrentDate } = require("../utils/helpers");
 const Schema = mongoose.Schema;
 
-const EventQuestionSchema = new Schema(
+const EventEnrollmentSchema = new Schema(
   {
-    question: {
+    name: {
       type: String,
       required: true,
     },
     org: {
-      type: String,
-      required: true,
-    },
-    name: {
       type: String,
       required: true,
     },
@@ -24,4 +20,4 @@ const EventQuestionSchema = new Schema(
   { _id: false }
 );
 
-module.exports = EventQuestionSchema;
+module.exports = EventEnrollmentSchema;

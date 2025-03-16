@@ -14,13 +14,15 @@ export default function EventsPage() {
   const [toastMessage, setToastMessage] = useState("");
 
   const isAddEventPage = location.pathname.includes("addevent");
+  const isEnrollmentPage = location.pathname.includes("enrollments");
+  const isInquiriesPage = location.pathname.includes("inquiries");
   const isManageEventPage = !!eventID;
 
   useEffect(() => {
     scrollToTopSmooth();
   }, []);
 
-  if (isAddEventPage || isManageEventPage) {
+  if (isAddEventPage || isManageEventPage || isEnrollmentPage || isInquiriesPage) {
     return <Outlet />;
   }
 

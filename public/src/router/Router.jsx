@@ -6,11 +6,11 @@ import UserPage from "../pages/user/UserPage";
 import ContentEventPage from "../pages/content/ContentEventPage";
 import ContentProjectPage from "../pages/content/ContentProjectPage";
 import AdminLayout from "../layouts/admin/AdminLayout";
-import QuestionPage from "../pages/admin/QuestionPage";
 import ProjectPage from "../pages/admin/project/ProjectPage";
 import AddProjectPage from "../pages/admin/project/AddProjectPage";
 import ManageProjectPage from "../pages/admin/project/ManageProjectPage";
 import EventsPage from "../pages/admin/event/EventsPage";
+import EventsEnrollmentPage from "../pages/admin/event/EventEnrollmentPage";
 import ProfilePage from "../pages/admin/profile/ProfilePage";
 import ManageProfilePage from "../pages/admin/profile/ManageProfilePage";
 import AddEventPage from "../pages/admin/event/AddEventPage";
@@ -18,6 +18,8 @@ import ManageEventPage from "../pages/admin/event/ManageEventPage";
 import NotFoundPage from "../pages/error/NotFoundPage";
 import EnrollPage from "../pages/content/EnrollPage";
 import EventQuestionPage from "../pages/content/EventQuestionPage";
+import EventLayout from "../layouts/admin/EventLayout";
+import EventInquiryPage from "../pages/admin/event/EventInquiryPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,12 +37,15 @@ const router = createBrowserRouter(
         <Route path="events" element={<EventsPage />}>
           <Route path="addevent" element={<AddEventPage />} />
           <Route path=":eventid" element={<ManageEventPage />} />
+          <Route path="event/:eventid" element={<EventLayout />}>
+            <Route path="enrollments" element={<EventsEnrollmentPage />} />
+            <Route path="inquiries" element={<EventInquiryPage />} />
+          </Route>
         </Route>
         <Route path="projects" element={<ProjectPage />}>
           <Route path="addproject" element={<AddProjectPage />} />
           <Route path=":projectid" element={<ManageProjectPage />} />
         </Route>
-        <Route path="questions" element={<QuestionPage />} />
       </Route>
       <Route path="user" element={<UserPage />} />
       <Route path="*" element={<NotFoundPage />} />
