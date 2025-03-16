@@ -1,5 +1,3 @@
-import DeleteBtn from "../../btn/DeleteBtn";
-import PrimaryBtn from "../../btn/PrimaryBtn";
 import { FaGithub } from "react-icons/fa6";
 import { CiGlobe } from "react-icons/ci";
 import TechBadge from "../../admin/project/TechBadge";
