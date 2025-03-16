@@ -1,9 +1,23 @@
+const jwt = require("jsonwebtoken");
 const ProfileModel = require("../models/ProfileModel");
 const EventModel = require("../models/EventModel");
 const ProjectModel = require("../models/ProjectModel");
 
-const getContent = async (_, res) => {
+require("dotenv").config();
+
+const JWT_KEY = process.env.JWT_APP_TOKEN_KEY;
+
+const getContent = async (req, res) => {
   try {
+    const token = req.cookies.enrollmentToken;
+
+    let enrollments;
+
+    if (token) {
+      const decoded = jwt.verify(token, JWT_KEY);
+      enrollments = decoded.enrolledEvents || [];
+    }
+
     const [profiles, events, projects] = await Promise.all([
       ProfileModel.find().lean(),
       EventModel.find().lean(),
@@ -17,6 +31,7 @@ const getContent = async (_, res) => {
 
     const mappedEvents = events.map((event) => ({
       ...event,
+      isEnrolled: enrollments.includes(String(event._id)),
       image: event.image.url,
     }));
 

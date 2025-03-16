@@ -1,12 +1,29 @@
 import useContentStore from "../../hooks/useContentStore";
 import Loader from "../../components/common/Loader";
 import EventList from "../../components/content/event/EventList";
+import { Outlet, useLocation } from "react-router";
+import { useEffect } from "react";
 
 export default function ContentEventPage() {
-  const { events, loading } = useContentStore();
+  const location = useLocation();
+  const { fetchContent, events, loading } = useContentStore();
+
+  const isEnrollPage = location.pathname.includes("enroll");
+
+  useEffect(() => {
+    fetchContent();
+  }, []);
+
+  useEffect(() => {
+    console.log("THis is some events: ", events);
+  }, [events]);
 
   if (loading) {
     return <Loader />;
+  }
+
+  if (isEnrollPage) {
+    return <Outlet />;
   }
 
   return (

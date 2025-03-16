@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 const enrollmentSchema = Joi.object({
-  _id: Joi.string().required().messages({
+  eventID: Joi.string().required().messages({
     "string.base": "Ogiltigt evenemang id",
     "string.empty": "Evenemang id får inte vara tomt",
   }),

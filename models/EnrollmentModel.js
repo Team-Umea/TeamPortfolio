@@ -1,3 +1,4 @@
+const { required } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -8,6 +9,10 @@ const EnrollmentSchema = new Schema({
   },
   names: {
     type: [String],
+    required: true,
+  },
+  eventID: {
+    type: String,
     required: true,
   },
 });

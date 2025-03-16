@@ -138,16 +138,18 @@ const enrollUser = async (req, res) => {
       enrollment.names.push(name);
       await enrollment.save();
     } else {
-      const newEnrollment = new EnrollmentModel({ org: [org], name: [name], eventID });
+      const newEnrollment = new EnrollmentModel({ orgs: [org], names: [name], eventID });
       await newEnrollment.save();
     }
 
     enrolledEvents.push(eventID);
 
-    const newToken = jwt.sign({ enrolledEvents }, SECRET_KEY, { expiresIn: "10y" });
+    const newToken = jwt.sign({ enrolledEvents }, JWT_KEY, { expiresIn: "10y" });
 
     res.cookie("enrollmentToken", newToken, {
       httpOnly: true,
+      sameSite: "Strict",
+      path: "/",
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365 * 10),
     });
 

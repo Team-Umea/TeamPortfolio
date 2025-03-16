@@ -17,6 +17,7 @@ export const EVENT_ENDPOINTS = {
   GETEVENTS: `${SERVER_URL}/api/events`,
   GETEVENTBYID: `${SERVER_URL}/api/event`,
   DELETEEVENT: `${SERVER_URL}/api/admin/deleteevent`,
+  ENROLL: `${SERVER_URL}/api/enroll`,
 };
 
 export const PROJECT_ENDPOINTS = {

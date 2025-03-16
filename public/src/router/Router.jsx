@@ -16,13 +16,16 @@ import ManageProfilePage from "../pages/admin/profile/ManageProfilePage";
 import AddEventPage from "../pages/admin/event/AddEventPage";
 import ManageEventPage from "../pages/admin/event/ManageEventPage";
 import NotFoundPage from "../pages/error/NotFoundPage";
+import EnrollPage from "../pages/content/EnrollPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<HomePage />} />
       <Route path="signin" element={<SignInPage />} />
-      <Route path="events" element={<ContentEventPage />} />
+      <Route path="events" element={<ContentEventPage />}>
+        <Route path="enroll/:eventid" element={<EnrollPage />} />
+      </Route>
       <Route path="projects" element={<ContentProjectPage />} />
       <Route path="admin" element={<AdminLayout />}>
         <Route index element={<ProfilePage />} />

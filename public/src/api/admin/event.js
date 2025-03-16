@@ -87,3 +87,20 @@ export const deleteEvent = async (eventID) => {
     }
   }
 };
+
+export const enrollUser = async (event) => {
+  try {
+    const response = await axios.post(EVENT_ENDPOINTS.ENROLL, event);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        error.response?.data.message || "Ett fel inträffade vid anmälning till evenemang"
+      );
+    } else if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("Ett oväntat fel inträffade");
+    }
+  }
+};
