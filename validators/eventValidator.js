@@ -14,7 +14,7 @@ const eventSchema = Joi.object({
     "date.base": "Ogiltigt datum",
     "date.empty": "Datum får inte vara tomt",
     "date.iso": "Datumet måste ha formatet åååå-mm-dd",
-    "any.required": "Datum är obligatorykt",
+    "any.required": "Datum är obligatoriskt",
   }),
   description: Joi.string().min(100).max(2000).required().messages({
     "string.base": "Ogiltig beskrivning",

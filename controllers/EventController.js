@@ -1,6 +1,12 @@
+const jwt = require("jsonwebtoken");
 const cloudinary = require("../config/cloudinary");
 const { uploadImageToCloudinary } = require("../services/imageService");
 const EventModel = require("../models/EventModel");
+const EnrollmentModel = require("../models/EnrollmentModel");
+
+require("dotenv").config();
+
+const JWT_KEY = process.env.JWT_APP_TOKEN_KEY;
 
 const addEvent = async (req, res) => {
   try {
@@ -107,10 +113,58 @@ const deleteEvent = async (req, res) => {
   }
 };
 
+const enrollUser = async (req, res) => {
+  const { eventID, org, name } = req.body;
+
+  try {
+    const token = req.cookies.enrollmentToken;
+    let enrolledEvents = [];
+
+    if (token) {
+      const decoded = jwt.verify(token, JWT_KEY);
+      enrolledEvents = decoded.enrolledEvents || [];
+    }
+
+    if (enrolledEvents.includes(eventID)) {
+      return res
+        .status(400)
+        .json({ message: "Du har redan anmält till detta event", success: false });
+    }
+
+    let enrollment = await EnrollmentModel.findOne({ eventID });
+
+    if (enrollment) {
+      enrollment.orgs.push(org);
+      enrollment.names.push(name);
+      await enrollment.save();
+    } else {
+      const newEnrollment = new EnrollmentModel({ org: [org], name: [name], eventID });
+      await newEnrollment.save();
+    }
+
+    enrolledEvents.push(eventID);
+
+    const newToken = jwt.sign({ enrolledEvents }, SECRET_KEY, { expiresIn: "10y" });
+
+    res.cookie("enrollmentToken", newToken, {
+      httpOnly: true,
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365 * 10),
+    });
+
+    res
+      .status(200)
+      .json({ message: "Du har framgångsrikt anmält dig till eventet!", success: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Serverfel", success: false });
+  }
+};
+
 module.exports = {
   addEvent,
   editEvent,
   getEvents,
   getEventById,
   deleteEvent,
+  enrollUser,
 };
