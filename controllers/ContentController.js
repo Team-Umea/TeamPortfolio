@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const ProfileModel = require("../models/ProfileModel");
 const EventModel = require("../models/EventModel");
 const ProjectModel = require("../models/ProjectModel");
+const { getColleaguesNames } = require("../services/projectService");
 
 require("dotenv").config();
 
@@ -35,9 +36,21 @@ const getContent = async (req, res) => {
       image: event.image.url,
     }));
 
+    const mappedProjects = await Promise.all(
+      projects.map(async (project) => {
+        const colleaguesNames = await getColleaguesNames(project.colleagues);
+        return { ...project, colleagues: colleaguesNames };
+      })
+    );
+
     res
       .status(200)
-      .json({ profiles: mappedProfiles, events: mappedEvents, projects, success: true });
+      .json({
+        profiles: mappedProfiles,
+        events: mappedEvents,
+        projects: mappedProjects,
+        success: true,
+      });
   } catch (error) {
     console.error("Error fetching content:", error);
     res.status(500).json({ message: "Serverfel", success: false });
