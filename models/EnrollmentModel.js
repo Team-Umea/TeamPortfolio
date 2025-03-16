@@ -1,5 +1,6 @@
 const { required } = require("joi");
 const mongoose = require("mongoose");
+const EventQuestionSchema = require("./EventQuestionSchema");
 const Schema = mongoose.Schema;
 
 const EnrollmentSchema = new Schema({
@@ -15,6 +16,7 @@ const EnrollmentSchema = new Schema({
     type: String,
     required: true,
   },
+  questions: [EventQuestionSchema],
 });
 
 const EnrollmentModel = mongoose.model("enrollments", EnrollmentSchema);

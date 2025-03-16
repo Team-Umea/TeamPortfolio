@@ -144,7 +144,7 @@ const enrollUser = async (req, res) => {
 
     enrolledEvents.push(eventID);
 
-    const newToken = jwt.sign({ enrolledEvents }, JWT_KEY, { expiresIn: "10y" });
+    const newToken = jwt.sign({ enrolledEvents, org, name }, JWT_KEY, { expiresIn: "10y" });
 
     res.cookie("enrollmentToken", newToken, {
       httpOnly: true,
@@ -162,6 +162,46 @@ const enrollUser = async (req, res) => {
   }
 };
 
+const addEventQuestion = async (req, res) => {
+  const { eventID, question } = req.body;
+
+  try {
+    const token = req.cookies.enrollmentToken;
+
+    if (!token) {
+      return res.status(403).json({
+        message: "Anmäl dig till event om du vill skicka in frågor eller önskemål",
+        success: false,
+      });
+    }
+
+    const decoded = jwt.verify(token, JWT_KEY);
+
+    if (!decoded) {
+      return res.status(403).json({
+        message: "Anmäl dig till event om du vill skicka in frågor eller önskemål",
+        success: false,
+      });
+    }
+
+    const org = decoded.org;
+    const name = decoded.name;
+
+    await EnrollmentModel.updateOne(
+      { eventID: eventID },
+      { $push: { questions: { question, org, name } } }
+    );
+
+    res.status(200).json({
+      message: "Tack för din synpunkt. Vi kommer att ta det i beaktning under evenemanget",
+      success: true,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Serverfel", success: false });
+  }
+};
+
 module.exports = {
   addEvent,
   editEvent,
@@ -169,4 +209,5 @@ module.exports = {
   getEventById,
   deleteEvent,
   enrollUser,
+  addEventQuestion,
 };

@@ -31,7 +31,7 @@ const getContent = async (req, res) => {
 
     const mappedEvents = events.map((event) => ({
       ...event,
-      isEnrolled: enrollments.includes(String(event._id)),
+      isEnrolled: enrollments ? enrollments.includes(String(event._id)) : false,
       image: event.image.url,
     }));
 

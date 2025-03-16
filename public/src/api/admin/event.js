@@ -104,3 +104,20 @@ export const enrollUser = async (event) => {
     }
   }
 };
+
+export const addEventQuestion = async (event) => {
+  try {
+    const response = await axios.post(EVENT_ENDPOINTS.EVENTQUESTION, event);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        error.response?.data.message || "Ett fel inträffade när fråga skulle skickas in"
+      );
+    } else if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("Ett oväntat fel inträffade");
+    }
+  }
+};

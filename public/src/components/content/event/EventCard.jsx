@@ -2,17 +2,27 @@ import React from "react";
 import TransparentButton from "../../btn/TransparentButton";
 import { IoCalendarOutline } from "react-icons/io5";
 import { useNavigate } from "react-router";
+import PrimaryBtn from "../../btn/PrimaryBtn";
 
 export default function EventCard({ event }) {
   const navigate = useNavigate();
 
   return (
     <div className="flex flex-col gap-y-6">
-      <div className="flex flex-col gap-y-2">
-        <p className="text-2xl font-semibold">{event.event}</p>
-        <div className="flex items-center gap-x-2">
-          <IoCalendarOutline size={24} />
-          <p className="text-lg">{event.date}</p>
+      <div className="flex justify-between items-center">
+        <div className="flex flex-col gap-y-2">
+          <p className="text-2xl font-semibold">{event.event}</p>
+          <div className="flex items-center gap-x-2">
+            <IoCalendarOutline size={24} />
+            <p className="text-lg">{event.date}</p>
+          </div>
+        </div>
+        <div>
+          {event.isEnrolled && (
+            <PrimaryBtn onClick={() => navigate(`questions/${event._id}`)}>
+              <span>Frågor eller Önskemål</span>
+            </PrimaryBtn>
+          )}
         </div>
       </div>
       <div className="relative">

@@ -17,6 +17,7 @@ import AddEventPage from "../pages/admin/event/AddEventPage";
 import ManageEventPage from "../pages/admin/event/ManageEventPage";
 import NotFoundPage from "../pages/error/NotFoundPage";
 import EnrollPage from "../pages/content/EnrollPage";
+import EventQuestionPage from "../pages/content/EventQuestionPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="signin" element={<SignInPage />} />
       <Route path="events" element={<ContentEventPage />}>
         <Route path="enroll/:eventid" element={<EnrollPage />} />
+        <Route path="questions/:eventid" element={<EventQuestionPage />} />
       </Route>
       <Route path="projects" element={<ContentProjectPage />} />
       <Route path="admin" element={<AdminLayout />}>
