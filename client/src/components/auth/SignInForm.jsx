@@ -110,15 +110,8 @@ export default function SignInForm() {
   const signInTypeIsSecurityQuestion = signInType === "questionAnswer";
   const signInTypeIsPassword = signInType === "password";
 
-  const isValid = Object.keys(errors).length === 0;
-
   const setSignInType = (signInType) => {
     formMethods.setValue("signInType", signInType);
-  };
-
-  const getFormFieldValues = () => {
-    const { formType, ...formData } = getValues();
-    return formData[formType];
   };
 
   const onSubmit = () => {
@@ -152,6 +145,7 @@ export default function SignInForm() {
           user: data.user.user,
           verificationCode: data.verificationCode.verificationCode,
           password: data.password.password,
+          rememberUser: true,
         };
 
         signInMutation.mutate(payload);
