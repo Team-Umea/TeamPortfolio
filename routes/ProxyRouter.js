@@ -61,11 +61,11 @@ if (!isRunningInProd) {
 }
 
 if (isRunningInProd) {
-  router.use(express.static(path.join(__dirname, "..", "public", "dist")));
+  router.use(express.static(path.join(__dirname, "..", "client", "dist")));
 
   router.get("*", (req, res) => {
     if (req.accepts("html")) {
-      res.sendFile(path.join(__dirname, "..", "public", "dist", "index.html"));
+      res.sendFile(path.join(__dirname, "..", "client", "dist", "index.html"));
     }
   });
 }

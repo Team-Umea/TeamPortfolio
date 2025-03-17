@@ -24,6 +24,14 @@ export default function EventInquiryPage() {
     return <Loader />;
   }
 
+  const isEmpty = inquries.length === 0;
+
+  if (isEmpty) {
+    return (
+      <h2 className="p-4 mt-6 text-2xl font-semibold">Inga frågor inskickade till detta event</h2>
+    );
+  }
+
   return (
     <div className="flex justify-center pt-[120px]">
       <ul className="flex flex-col gap-y-32">

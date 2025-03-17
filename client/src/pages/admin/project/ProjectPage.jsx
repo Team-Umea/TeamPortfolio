@@ -29,11 +29,10 @@ export default function ProjectPage() {
       <div className="w-fit p-4">
         <PrimaryBtn onClick={() => navigate("addproject")}>
           <GoPlus size={24} />
-          Lägg till project
+          Lägg till projekt
         </PrimaryBtn>
       </div>
       <ProjectList setToastMessage={setToastMessage} />
-      {/* <EventList setToastMessage={setToastMessage} /> */}
       <Toast message={toastMessage} show={!!toastMessage} onClose={() => setToastMessage("")} />
     </div>
   );

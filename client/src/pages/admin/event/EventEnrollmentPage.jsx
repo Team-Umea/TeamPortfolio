@@ -16,17 +16,20 @@ export default function EventEnrollmentPage() {
   });
 
   if (error) {
-    return <h2 className="p-4 text-2xl font-semibold text-red-500">{error.message}</h2>;
+    return <h2 className="p-4 mt-6 text-2xl font-semibold text-red-500">{error.message}</h2>;
   }
 
   if (isLoading) {
     return <Loader />;
   }
 
-  console.log("enrollment: ", enrollment);
-
-  // Total enrollments
   const totalEnrollments = enrollment.length;
+
+  if (totalEnrollments === 0) {
+    return (
+      <h2 className="p-4 mt-6 text-2xl font-semibold">Inga anmälningar ännu till detta event</h2>
+    );
+  }
 
   return (
     <div className="flex justify-center pt-[120px] px-6">

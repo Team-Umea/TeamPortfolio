@@ -26,7 +26,7 @@ export default function EventCard({ event, onDelete }) {
 
   return (
     <div className="flex flex-col gap-y-6">
-      <div className="flex items-start justify-between">
+      <div className="flex flex-col md:flex-row items-start justify-between gap-y-6">
         <div className="flex items-end gap-x-2">
           <p className="text-2xl font-semibold">{event.event}</p>
           <p className="text-lg">{event.date}</p>
@@ -39,7 +39,7 @@ export default function EventCard({ event, onDelete }) {
             <DeleteBtn onClick={handleDelete} />
           </div>
           <OutlineBtn fullWidth={true} onClick={() => naviagte(`event/${event._id}/enrollments`)}>
-            Anmälningar to frågor
+            Anmälningar och frågor
           </OutlineBtn>
         </div>
       </div>

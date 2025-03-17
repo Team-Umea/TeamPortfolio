@@ -5,11 +5,11 @@
     "main": "server.js",
     "scripts": {
         "start": "node server.js",
-        "build": "cd public && npm run build",
+        "build": "cd client && npm run build",
         "proxy": "node server.js",
-        "react": "cd public && npm run build",
-        "dev": "concurrently \"npm start\" \"cd public && npm run dev\"",
-        "install:all": "npm install && npm install --prefix public"
+        "react": "cd client && npm run client",
+        "dev": "concurrently \"npm start\" \"cd client && npm run dev\"",
+        "install:all": "npm install && npm install --prefix client"
     },
     "repository": {
         "type": "git",

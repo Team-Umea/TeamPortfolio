@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function PrimaryBtn({ type = "button", onClick, children }) {
   return (
     <button
