@@ -32,9 +32,10 @@ const profileSchema = Joi.object({
   github: Joi.string().uri().required().messages({
     "string.uri": "Ogiltig url",
   }),
-  portfolio: Joi.string().uri().optional().messages({
-    "string.uri": "Ogiltig url",
-  }),
+  portfolio: Joi.alternatives().try(
+    Joi.string().uri().messages({ "string.uri": "Ogiltig url" }),
+    Joi.allow(null, "")
+  ),
   bio: Joi.string().min(50).max(500).required().messages({
     "string.base": "Ogiltig biografi",
     "string.empty": "Biografi får inte vara tom",
