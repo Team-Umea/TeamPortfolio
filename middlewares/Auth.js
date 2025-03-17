@@ -36,13 +36,13 @@ const ensureAdmin = (req, res, next) => {
     const decoded = jwt.verify(JWT_TOKEN, JWT_SECRET);
 
     if (!decoded) {
-      return res.status(403).json({ message: "Unauthenticated", success: false });
+      return res.status(403).json({ message: "Du har inte admin rättigheter", success: false });
     }
 
     const isAdmin = decoded.isAdmin;
 
     if (!isAdmin) {
-      return res.status(403).json({ message: "Access denied", success: false });
+      return res.status(403).json({ message: "Du har inte admin rättigheter", success: false });
     }
 
     req.user = decoded;

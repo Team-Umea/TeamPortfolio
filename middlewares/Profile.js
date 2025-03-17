@@ -1,14 +1,14 @@
 const ProfileModel = require("../models/ProfileModel");
 
 const ensureNewProfile = async (req, res, next) => {
-  const { username, email, phone, linkedin, github, portfolio } = req.body;
+  const { name, email, phone, linkedin, github, portfolio } = req.body;
   const currentUserId = req.user._id;
 
   try {
     const duplicateProfile = await ProfileModel.findOne({
       $or: [
         { _id: currentUserId },
-        { username },
+        { name },
         { email },
         { phone },
         { linkedin },
@@ -22,7 +22,7 @@ const ensureNewProfile = async (req, res, next) => {
         return res.status(400).json({ message: "Din profil har redan skapats.", success: false });
       }
 
-      if (duplicateProfile.username === username) {
+      if (duplicateProfile.name === name) {
         return res.status(400).json({ message: "Användarnamnet är redan taget.", success: false });
       }
       if (duplicateProfile.email === email) {
@@ -52,7 +52,7 @@ const ensureNewProfile = async (req, res, next) => {
 };
 
 const ensureUniqueProfile = async (req, res, next) => {
-  const { username, email, phone, linkedin, github, portfolio } = req.body;
+  const { name, email, phone, linkedin, github, portfolio } = req.body;
   const currentUserId = req.user._id;
 
   try {
@@ -60,13 +60,13 @@ const ensureUniqueProfile = async (req, res, next) => {
       $and: [
         { _id: { $ne: currentUserId } },
         {
-          $or: [{ username }, { email }, { phone }, { linkedin }, { github }, { portfolio }],
+          $or: [{ name }, { email }, { phone }, { linkedin }, { github }, { portfolio }],
         },
       ],
     });
 
     if (duplicateProfile) {
-      if (duplicateProfile.username === username) {
+      if (duplicateProfile.name === name) {
         return res.status(400).json({ message: "Användarnamnet är redan taget.", success: false });
       }
       if (duplicateProfile.email === email) {
