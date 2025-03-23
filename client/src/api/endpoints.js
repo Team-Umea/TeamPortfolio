@@ -1,4 +1,6 @@
-export const SERVER_URL = "http://localhost:3000";
+//uncoment this for dev
+// export const SERVER_URL = "http://localhost:3000";
+export const SERVER_URL = "https://teamumea.vercel.app/";
 
 export const ENDPOINTS = {
   CONTENT: `${SERVER_URL}/api/content`,
