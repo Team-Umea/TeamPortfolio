@@ -1,4 +1,5 @@
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const path = require("path");
 
