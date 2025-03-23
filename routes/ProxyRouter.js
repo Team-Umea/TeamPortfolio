@@ -62,6 +62,8 @@ if (!isRunningInProd) {
 }
 
 if (isRunningInProd) {
+  console.log("prod");
+
   router.use(express.static(path.join(__dirname, "..", "client", "dist")));
 
   router.get("*", (req, res) => {
