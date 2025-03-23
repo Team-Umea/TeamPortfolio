@@ -4,6 +4,7 @@ import DeleteBtn from "../../btn/DeleteBtn";
 import PrimaryBtn from "../../btn/PrimaryBtn";
 import OutlineBtn from "../../btn/OutlineBtn";
 import { deleteEvent } from "../../../api/admin/event";
+import { IoCalendarOutline } from "react-icons/io5";
 
 export default function EventCard({ event, onDelete }) {
   const naviagte = useNavigate();
@@ -27,9 +28,16 @@ export default function EventCard({ event, onDelete }) {
   return (
     <div className="flex flex-col gap-y-6">
       <div className="flex flex-col md:flex-row items-start justify-between gap-y-6">
-        <div className="flex items-end gap-x-2">
+        <div className="flex flex-col gap-y-2">
           <p className="text-2xl font-semibold">{event.event}</p>
-          <p className="text-lg">{event.date}</p>
+          <div className="flex items-center gap-x-2">
+            <div className="flex items-center gap-x-2">
+              <IoCalendarOutline size={24} />
+              <p className="text-lg">{event.date}</p>
+            </div>
+            {event.time && event.time !== "undefined" && <p className="text-lg">: {event.time}</p>}
+          </div>
+          <p className="text-lg">{event.place}</p>
         </div>
         <div className="flex flex-col gap-y-4">
           <div className="flex gap-x-4">

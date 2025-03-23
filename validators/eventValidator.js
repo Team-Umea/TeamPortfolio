@@ -10,11 +10,20 @@ const eventSchema = Joi.object({
     "string.empty": "Evenemangsnamn får inte vara tomt",
     "any.required": "Evenemangsnamn är obligatoriskt",
   }),
+  place: Joi.string().required().messages({
+    "string.base": "Ogiltig plats",
+    "string.empty": "Plats får inte vara tomt",
+    "any.required": "Plats är obligatoriskt",
+  }),
   date: Joi.date().iso().required().messages({
     "date.base": "Ogiltigt datum",
     "date.empty": "Datum får inte vara tomt",
     "date.iso": "Datumet måste ha formatet åååå-mm-dd",
     "any.required": "Datum är obligatoriskt",
+  }),
+  time: Joi.string().optional().messages({
+    "string.base": "Ogiltig tid",
+    "string.empty": "Tid får inte vara tomt",
   }),
   description: Joi.string().min(100).max(2000).required().messages({
     "string.base": "Ogiltig beskrivning",

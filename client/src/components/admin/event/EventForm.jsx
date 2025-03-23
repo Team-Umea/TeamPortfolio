@@ -112,6 +112,20 @@ export default function EventForm({ event }) {
             )}
           />
           <Controller
+            name="place"
+            control={control}
+            render={({ field }) => (
+              <FormInput
+                label="Plats"
+                value={field.value}
+                placeholder="Ange var evenemanget ska arrangeras"
+                isRequired={true}
+                errorMessage={translateDefaultErrorMessage("place")}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          <Controller
             name="date"
             control={control}
             render={({ field }) => (
@@ -123,6 +137,20 @@ export default function EventForm({ event }) {
                 placeholder="Ange när evenemanget ska arrangeras"
                 isRequired={true}
                 errorMessage={translateDefaultErrorMessage("date")}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          <Controller
+            name="time"
+            control={control}
+            render={({ field }) => (
+              <FormInput
+                label="Tid"
+                type="time"
+                value={field.value}
+                placeholder="Ange tid när evenemanget ska arrangeras"
+                errorMessage={translateDefaultErrorMessage("time")}
                 onChange={field.onChange}
               />
             )}

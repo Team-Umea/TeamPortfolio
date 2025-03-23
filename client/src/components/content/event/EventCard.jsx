@@ -7,15 +7,21 @@ import PrimaryBtn from "../../btn/PrimaryBtn";
 export default function EventCard({ event }) {
   const navigate = useNavigate();
 
+  console.log(event);
+
   return (
     <div className="flex flex-col gap-y-6">
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-y-2">
           <p className="text-2xl font-semibold">{event.event}</p>
           <div className="flex items-center gap-x-2">
-            <IoCalendarOutline size={24} />
-            <p className="text-lg">{event.date}</p>
+            <div className="flex items-center gap-x-2">
+              <IoCalendarOutline size={24} />
+              <p className="text-lg">{event.date}</p>
+            </div>
+            {event.time && event.time !== "undefined" && <p className="text-lg">: {event.time}</p>}
           </div>
+          <p className="text-lg">{event.place}</p>
         </div>
         <div>
           {event.isEnrolled && (
