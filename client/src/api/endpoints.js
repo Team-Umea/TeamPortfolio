@@ -1,5 +1,5 @@
 export const SERVER_URL = "http://localhost:3000";
-// export const SERVER_URL = "https://teamumea.onrender.com";
+// export const SERVER_URL = "https://teamumea.se";
 
 export const ENDPOINTS = {
   CONTENT: `${SERVER_URL}/api/content`,
