@@ -8,7 +8,7 @@ export default function Hero() {
       style={{ backgroundImage: "url('/images/heroportfolio.webp')" }}
     >
       <div className="absolute inset-0 bg-black/50"></div>
-      <div className="relative z-10 text-white px-6 max-w-lg md:max-w-2xl">
+      <div className="relative text-white px-6 max-w-lg md:max-w-2xl">
         <h1 className="text-3xl md:text-5xl font-bold">Team Umeå</h1>
         <h2 className="text-lg md:text-2xl m-2">Möt framtidens utvecklare</h2>
         <Link to="/events">
