@@ -8,10 +8,10 @@ import { useEffect } from "react";
 import useProfileStore from "../../../hooks/useProfileStore";
 
 export default function ProfilePage() {
-  const { isAuthenticated, isAdmin } = useAuthStore();
+  const { isAuthenticated, isAdmin, userID } = useAuthStore();
   const { updateProfile } = useProfileStore();
   const { data: profile, isLoading } = useQuery({
-    queryFn: getProfile,
+    queryFn: () => getProfile(userID),
     queryKey: ["profile"],
     retry: false,
   });

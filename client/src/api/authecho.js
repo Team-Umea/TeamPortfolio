@@ -61,13 +61,28 @@ export const validateSecurityQuestion = async ({ user, questionAnswer }) => {
   }
 };
 
-export const signIn = async ({ user, verificationCode, password }) => {
-  const data = { user, verificationCode, password };
+export const signIn = async ({ user, verificationCode, password, rememberUser }) => {
+  const data = { user, verificationCode, password, rememberUser };
+
   try {
     return await axios.post(AUTHECHO_ENDPOINTS.SIGNIN, data);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(error.response?.data.message || "Ett fel inträffade vid inloggning.");
+    } else if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("Ett oväntat fel inträffade");
+    }
+  }
+};
+
+export const signOut = async () => {
+  try {
+    return await axios.get(AUTHECHO_ENDPOINTS.SIGNOUT);
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data.message || "Ett fel inträffade vid utloggning.");
     } else if (error instanceof Error) {
       throw new Error(error.message);
     } else {

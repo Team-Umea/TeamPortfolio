@@ -38,9 +38,11 @@ export const editProfile = async (profile) => {
   }
 };
 
-export const getProfile = async () => {
+export const getProfile = async (userID) => {
   try {
-    const response = await axios.get(PROFILE_ENDPOINTS.GETPROFILE);
+    const response = await axios.get(
+      `${PROFILE_ENDPOINTS.GETPROFILE}?userid=${encodeURIComponent(userID)}`
+    );
     return response.data.profile;
   } catch (error) {
     if (axios.isAxiosError(error)) {

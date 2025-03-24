@@ -34,7 +34,6 @@ router.use(
       }
     },
     onProxyRes: (proxyRes, req, res) => {
-      console.log(`Received response from: ${AUTHECHO_SERVER}${req.url}`);
       const setCookieHeaders = proxyRes.headers["set-cookie"];
       if (setCookieHeaders) {
         if (Array.isArray(setCookieHeaders)) {

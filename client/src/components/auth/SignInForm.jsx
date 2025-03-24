@@ -26,18 +26,12 @@ export default function SignInForm() {
       signInType: SignInTypeEnum.User,
     },
   });
-  const { updateIsAuthenticated, updateIsAdmin, updateUsername, updateEmail } = useAuthStore();
+  const { updateIsAuthenticated, updateIsAdmin, updateUsername, updateEmail, updateUserID } =
+    useAuthStore();
   const [securityQuestion, setSecurityQuestion] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const {
-    watch,
-    getValues,
-    setValue,
-    setError,
-    formState: { errors },
-    handleSubmit,
-  } = formMethods;
+  const { watch, getValues, setValue, setError, handleSubmit } = formMethods;
 
   const requestVerificationCodeMutation = useMutation({
     mutationFn: requestVerificationCode,
@@ -85,11 +79,14 @@ export default function SignInForm() {
     onSuccess: (data) => {
       const username = data.data.name;
       const email = data.data.email;
+      const userID = data.data.userID;
       const isAdmin = data.data.isAppAdmin;
 
       updateIsAuthenticated(true);
+
       username && updateUsername(username);
       email && updateEmail(email);
+      userID && updateUserID(userID);
 
       if (isAdmin) {
         updateIsAdmin(true);

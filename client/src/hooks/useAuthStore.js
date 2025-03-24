@@ -4,6 +4,7 @@ import {
   setEmail,
   setIsAdmin,
   setIsAuthenticated,
+  setUserID,
   setUsername,
 } from "../store/authSlice";
 import { useCallback } from "react";
@@ -13,8 +14,10 @@ const useAuthStore = () => {
   const authState = useSelector((state) => state.auth);
 
   const verifySession = useCallback(() => {
-    dispath({ type: "VERIFY_AUTH" });
-  }, [dispath]);
+    if (!authState.isAuthenticated) {
+      dispath({ type: "VERIFY_AUTH" });
+    }
+  }, [dispath, authState]);
 
   const updateIsAuthenticated = useCallback(
     (isAuthenticated) => {
@@ -44,6 +47,13 @@ const useAuthStore = () => {
     [dispath]
   );
 
+  const updateUserID = useCallback(
+    (userID) => {
+      dispath(setUserID(userID));
+    },
+    [dispath]
+  );
+
   const resetAuth = useCallback(() => {
     dispath(clearAuth());
   }, [dispath]);
@@ -55,6 +65,7 @@ const useAuthStore = () => {
     updateIsAdmin,
     updateUsername,
     updateEmail,
+    updateUserID,
     resetAuth,
   };
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PrimaryBtn from "../../components/btn/PrimaryBtn";
 import { NavLink, useLocation, useNavigate } from "react-router";
 import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
@@ -6,6 +6,7 @@ import useAuthStore from "../../hooks/useAuthStore";
 import { RiAdminLine } from "react-icons/ri";
 import { FiMenu } from "react-icons/fi";
 import { MdOutlineClose } from "react-icons/md";
+import { signOut } from "../../api/authecho";
 
 const NAV_LINKS = [
   {
@@ -26,7 +27,11 @@ export default function Navbar() {
 
   const isAdminPage = location.pathname.includes("admin");
 
-  const handleAuthAction = () => {
+  useEffect(() => {
+    setIsExtended(false);
+  }, [location.key]);
+
+  const handleAuthAction = async () => {
     if (!isAdminPage && isAuthenticated) {
       navigate("/admin");
       return;
@@ -34,6 +39,7 @@ export default function Navbar() {
 
     if (isAuthenticated) {
       resetAuth();
+      await signOut();
       navigate("/");
     } else {
       navigate("/signin");
@@ -78,6 +84,7 @@ export default function Navbar() {
               <NavLink
                 to={link.link}
                 key={link.link + index}
+                onClick={() => setIsExtended(false)}
                 className="text-lg font-medium transition-all duration-300 ease hover:opacity-70">
                 {link.text}
               </NavLink>
