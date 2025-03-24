@@ -9,6 +9,7 @@ export default function Footer() {
     "TypeScript",
     "React",
     "TailwindCSS",
+    "Node.js",
     "PostgreSQL",
     "MongoDB",
   ];
