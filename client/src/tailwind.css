@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+    .bg-customColor1 {
+      background-color: #50808e; /* Mörkt grundfärg */
+    }
+    
+    .text-customColor1 {
+      color: #183642; /* texten till bg-1 */
+    }
+  }
+  
+  @layer utilities {
+    .bg-customColor2 {
+      background-color: #69a297; /* Lägg till en annan färg */
+    }
+    .text-customColor2 {
+        color: #f4f9e9; /* texten till bg-1 */
+      }
+  }
+  @layer utilities {
+    .bg-striped {
+      background-image: linear-gradient(
+        135deg, 
+        #50808e 25%, 
+        transparent 25%, 
+        transparent 50%, 
+        #50808e 50%, 
+        #50808e 75%, 
+        transparent 75%, 
+        transparent
+      );
+      background-size: 16px 16px; /* Justera storleken på linjerna */
+    }
+  }

@@ -9,7 +9,7 @@ export default function EventQuestionPage() {
 
   return (
     <>
-      <div className="w-fit p-4 mb">
+      <div className="w-fit p-4 mb ">
         <PrimaryBtn onClick={() => navigate(-1)}>
           <IoIosArrowRoundBack size={24} />
           Tillbaka
