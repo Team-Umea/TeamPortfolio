@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import BlurText from "../../../layouts/animations/BlurText";
-import PrimaryBtn from "../../btn/PrimaryBtn";
+import { ShinyButton } from "@/components/magicui/shiny-button";
 
 export default function Hero() {
   return (
@@ -25,7 +25,9 @@ export default function Hero() {
           className="text-2xl font-bold mb-8"
         />
         <Link to="/events">
-          <PrimaryBtn>Kommande evenemang</PrimaryBtn>
+          <ShinyButton className="bg-blue-700 hover:bg-blue-500 cursor-pointer">
+            <span className="text-white">Kommande evenemang</span>
+          </ShinyButton>
         </Link>
       </div>
     </section>
