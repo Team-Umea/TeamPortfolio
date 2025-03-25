@@ -34,13 +34,10 @@ export default function Footer() {
 
           <div className="w-full md:w-1/3 flex flex-col items-center mb-6 md:mb-0">
             <img
-              src="LOGOGOESHERE"
-              alt="Logo"
-              className="h-10 bg-amber-600 rounded-full p-1"
+              src="/public/images/logo.png"
+              alt="Team Umeå Logo"
+              className="h-50 rounded-full p-1"
             />
-            <span className="text-2xl font-semibold dark:text-white mt-2">
-              Team Umeå
-            </span>
           </div>
 
           <nav className="w-full md:w-1/3 flex flex-col items-center md:items-end gap-8 sm:gap-2">
