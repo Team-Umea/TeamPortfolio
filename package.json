@@ -22,6 +22,7 @@
     },
     "homepage": "https://github.com/Team-Umea/TeamPortfolio#readme",
     "dependencies": {
+        "@react-spring/web": "^9.7.5",
         "axios": "^1.8.3",
         "body-parser": "^1.20.3",
         "cloudinary": "^2.6.0",
