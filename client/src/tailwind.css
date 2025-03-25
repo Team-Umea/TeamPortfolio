@@ -1,36 +1,60 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom Base Styles */
 @layer base {
-    .bg-customColor1 {
-      background-color: #50808e; /* Mörkt grundfärg */
-    }
-    
-    .text-customColor1 {
-      color: #183642; /* texten till bg-1 */
-    }
+  /* Custom Background Color */
+  .bg-customColor1 {
+    background-color: #50808e; /* Mörk grundfärg */
   }
   
-  @layer utilities {
-    .bg-customColor2 {
-      background-color: #69a297; /* Lägg till en annan färg */
-    }
-    .text-customColor2 {
-        color: #f4f9e9; /* texten till bg-1 */
-      }
+  /* Custom Text Color */
+  .text-customColor1 {
+    color: #183642; /* Text till bakgrundsfärg 1 */
   }
-  @layer utilities {
-    .bg-striped {
-      background-image: linear-gradient(
-        135deg, 
-        #50808e 25%, 
-        transparent 25%, 
-        transparent 50%, 
-        #50808e 50%, 
-        #50808e 75%, 
-        transparent 75%, 
-        transparent
-      );
-      background-size: 16px 16px; /* Justera storleken på linjerna */
+}
+
+@layer utilities {
+  /* Custom Background Color 2 */
+  .bg-customColor2 {
+    background-color: #69a297; /* Lägg till en annan färg */
+  }
+
+  /* Custom Text Color 2 */
+  .text-customColor2 {
+    color: #f4f9e9; /* Text till bakgrundsfärg 2 */
+  }
+
+  /* Custom Striped Background */
+  .bg-striped {
+    background-image: linear-gradient(
+      135deg, 
+      #50808e 10%, 
+      transparent 30%, 
+      transparent 70%, 
+      #50808e 50%, 
+      #50808e 75%, 
+      transparent 75%, 
+      transparent
+    );
+    background-size: 16px 16px; /* Justera storleken på linjerna */
+  }
+
+  /* Fade-In Animation */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
+
+  /* Apply animation */
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-out;
+  }
+}
