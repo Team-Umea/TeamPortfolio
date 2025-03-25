@@ -25,7 +25,7 @@ export default function Hero() {
           className="text-2xl font-bold mb-8"
         />
         <Link to="/events">
-          <ShinyButton className="bg-blue-700 hover:bg-blue-500 cursor-pointer">
+          <ShinyButton className="bg-blue-700/60 hover:bg-blue-700 cursor-pointer">
             <span className="text-white">Kommande evenemang</span>
           </ShinyButton>
         </Link>

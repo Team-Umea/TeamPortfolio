@@ -25,7 +25,7 @@ export default function Footer() {
             <ul className="grid grid-cols-1 gap-2 mt-2">
               {technologies.map((tech) => (
                 <li key={tech} className="flex items-center gap-2">
-                  <FaCheckCircle className="text-green-500" />
+                  <FaCheckCircle className="text-green-800 dark:text-green-500" />
                   {tech}
                 </li>
               ))}
