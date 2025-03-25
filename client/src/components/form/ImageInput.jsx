@@ -32,7 +32,7 @@ export default function ImageInput({ name, imagePlaceHolder }) {
         <HiOutlineExclamationCircle size={24} color="red" />
       </div>
       <label htmlFor="profileImage" className="cursor-pointer">
-        <div className="flex justify-center items-center p-5 h-full border-2 border-gray-300">
+        <div className="flex justify-center items-center p-5 h-full border-2 border-gray-300 min-h-[300px]">
           {imagePreview ? (
             <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
           ) : (

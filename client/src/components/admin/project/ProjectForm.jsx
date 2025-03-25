@@ -16,6 +16,7 @@ import FormInput from "../../form/FormInput";
 import ReadmeInput from "./ReadmeInput";
 import useProfileStore from "../../../hooks/useProfileStore";
 import { addProject, editProject } from "../../../api/admin/project";
+import AddProjectImages from "./AddProjectImages";
 
 export default function ProjectForm({ project }) {
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ export default function ProjectForm({ project }) {
             github: "",
             colleagues: [],
             techStack: [],
+            images: [],
           }),
     },
   });
@@ -43,6 +45,7 @@ export default function ProjectForm({ project }) {
     clearErrors,
     watch,
     control,
+    getValues,
     formState: { errors },
     handleSubmit,
   } = formMethods;
@@ -95,6 +98,8 @@ export default function ProjectForm({ project }) {
   };
 
   const onError = () => {
+    console.log(getValues());
+
     scrollToTopSmooth();
   };
 
@@ -107,6 +112,8 @@ export default function ProjectForm({ project }) {
 
   const startDate = watch("startDate");
   const minEndDate = getFutureDateString(startDate, 7);
+
+  console.log("err; ", errors);
 
   return (
     <>
@@ -192,6 +199,7 @@ export default function ProjectForm({ project }) {
           />
           <AddColleagues />
           <AddTech />
+          <AddProjectImages project={project} />
           <div className="w-fit m-auto mt-8">
             <PrimaryBtn type="submit">
               <span className="flex justify-center items-center gap-x-2 mx-4">
