@@ -24,7 +24,7 @@ export default function ContentEventPage() {
 
   return (
     <>
-      <div className="mt-0 mb-6 px-12 py-6 bg-gray-800 font-serif">
+      <div className="mt-0 mb-6 px-12 py-14 bg-gray-800 font-serif ">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-200 bg-clip-text bg-gradient-to-r text-center relative animate-fadeIn">
           <span className="before:text-gray-500 before:absolute before:left-0 before:top-1/2 before:transform before:translate-y-[-50%]">
             Välkommen till vår evenemangssida!
