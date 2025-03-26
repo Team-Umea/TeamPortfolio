@@ -104,6 +104,16 @@ const deleteEvent = async (req, res) => {
   const { eventid: eventID } = req.query;
 
   try {
+    const existingEvent = await EventModel.findById(eventID);
+
+    if (!existingEvent) {
+      return res.status(404).json({ message: "Evenemang kunde inte hittas", success: false });
+    }
+
+    if (existingEvent.image) {
+      await cloudinary.uploader.destroy(existingEvent.image.id);
+    }
+
     await EventModel.deleteOne({ _id: eventID });
 
     res.status(204).json({ message: "Evenemang har raderats", success: true });
