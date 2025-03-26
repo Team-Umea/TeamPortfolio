@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const PROFILE_KEY = "PROFILE_KEY";
+export const PROFILE_KEY = "PROFILE_KEY";
 
 const initialState = {
   profile: JSON.parse(sessionStorage.getItem(PROFILE_KEY) || "null"),
