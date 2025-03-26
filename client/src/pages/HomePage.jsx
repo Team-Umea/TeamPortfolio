@@ -1,7 +1,5 @@
-import ProfileList from "../components/content/profile/ProfileList";
 import useContentStore from "../hooks/useContentStore";
 import Loader from "../components/common/Loader";
-import PrimaryBtn from "../components/btn/PrimaryBtn";
 import { useNavigate } from "react-router";
 import Hero from "../components/content/layout/Hero";
 import ProfileSection from "../components/content/layout/ProfileSection";

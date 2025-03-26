@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const ImageSchema = require("./ImageSchema");
 const Schema = mongoose.Schema;
 
 const ProjectSchema = new Schema({
@@ -30,6 +31,10 @@ const ProjectSchema = new Schema({
   techStack: {
     type: [String],
     required: true,
+  },
+  images: {
+    type: [ImageSchema],
+    default: [],
   },
 });
 
