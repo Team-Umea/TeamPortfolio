@@ -6,34 +6,41 @@ import DefaultBtn from "../../btn/DefaultBtn";
 import { useFormContext } from "react-hook-form";
 
 export default function AddProjectImages({ project }) {
-  const images = project.images;
-  const [numImages, setNumImages] = useState(images ? images.length : 1);
+  const images = project?.images || [];
+  const [numImages, setNumImages] = useState(images.length || 1);
   const { setValue } = useFormContext();
 
   const addImageInput = () => {
     if (numImages >= 3) return;
-
     setNumImages((prev) => prev + 1);
   };
 
   const removeImageInput = () => {
     if (numImages <= 0) return;
 
-    setValue(`${images}.${numImages - 1}`, "");
+    setValue(`images.${numImages - 1}`, undefined);
+
     setNumImages((prev) => prev - 1);
   };
+
+  const hasImages = numImages > 0;
+  const maxNumImages = numImages >= 3;
 
   return (
     <div className="mt-8 w-full">
       <div className="flex justify-between">
-        <p className="text-lg text-slate-600 font-medium">Ladda up bilder av projektet</p>
+        <p className="text-lg text-slate-600 font-medium">Ladda upp bilder av projektet</p>
         <div className="flex gap-x-2">
-          <DefaultBtn onClick={removeImageInput}>
-            <AiOutlineMinus size={24} />
-          </DefaultBtn>
-          <DefaultBtn onClick={addImageInput}>
-            <GoPlus size={24} />
-          </DefaultBtn>
+          {hasImages && (
+            <DefaultBtn onClick={removeImageInput}>
+              <AiOutlineMinus size={24} />
+            </DefaultBtn>
+          )}
+          {!maxNumImages && (
+            <DefaultBtn onClick={addImageInput}>
+              <GoPlus size={24} />
+            </DefaultBtn>
+          )}
         </div>
       </div>
       <ul className="flex flex-col gap-y-8">
@@ -42,7 +49,7 @@ export default function AddProjectImages({ project }) {
             <ImageInput
               key={index}
               name={`images.${index}`}
-              imagePlaceHolder={images && images[index] ? images[index] : null}
+              imagePlaceHolder={images[index] || null}
             />
           );
         })}

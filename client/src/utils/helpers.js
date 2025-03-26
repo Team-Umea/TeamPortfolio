@@ -1,12 +1,17 @@
 export function appendToFormData(dataObject) {
   const formData = new FormData();
 
-  Object.keys(dataObject).forEach((key) => {
-    const value = dataObject[key];
-    if (value instanceof File) {
-      formData.append(key, value);
+  const filteredEntries = Object.entries(dataObject).filter(
+    ([, value]) => value !== null && value !== undefined
+  );
+
+  filteredEntries.forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      value.forEach((item) => {
+        formData.append(key, item);
+      });
     } else {
-      formData.append(key, String(value));
+      formData.append(key, value);
     }
   });
 

@@ -2,7 +2,7 @@ const router = require("express").Router();
 const multer = require("multer");
 const upload = multer();
 const { ensureNewProfile, ensureUniqueProfile } = require("../middlewares/Profile");
-const { validateImage } = require("../validators/imageValidator");
+const { validateImage, validateImages } = require("../validators/imageValidator");
 const { validateProfile } = require("../validators/profileValidator");
 const { validateEvent } = require("../validators/eventValidator");
 const { createProfile, editProfile, getProfile } = require("../controllers/ProfileController");
@@ -29,7 +29,7 @@ router.post(
   createProfile
 );
 router.post("/addevent", upload.single("image"), validateEvent, validateImage, addEvent);
-router.post("/addproject", validateProject, addProject);
+router.post("/addproject", upload.array("images", 3), validateProject, validateImages, addProject);
 
 router.put(
   "/editprofile",
@@ -40,7 +40,7 @@ router.put(
   editProfile
 );
 router.put("/editevent", upload.single("image"), validateEvent, validateImage, editEvent);
-router.put("/editproject", validateProject, editProject);
+router.put("/editproject", upload.array("images", 3), validateProject, validateImages, editProject);
 
 router.delete("/deleteevent", deleteEvent);
 router.delete("/deleteproject", deleteProject);

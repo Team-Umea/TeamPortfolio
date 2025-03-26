@@ -57,7 +57,11 @@ export const projectSchema = z
       .preprocess(
         (val) => {
           if (val instanceof FileList) return Array.from(val);
-          return !val || val.length === 0 || val[0].length === 0 ? [] : val;
+          if (!val) return [];
+          if (Array.isArray(val)) {
+            return val.filter((item) => item);
+          }
+          return [];
         },
         z
           .array(

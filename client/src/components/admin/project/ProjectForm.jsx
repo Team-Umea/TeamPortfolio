@@ -88,6 +88,7 @@ export default function ProjectForm({ project }) {
     const projectData = {
       ...data,
       colleagues: [...data.colleagues, profile].map((coll) => coll._id),
+      images: !data.images ? [] : data.images,
     };
 
     if (project) {
@@ -97,8 +98,8 @@ export default function ProjectForm({ project }) {
     }
   };
 
-  const onError = () => {
-    console.log(getValues());
+  const onError = (err) => {
+    console.log(getValues("website"));
 
     scrollToTopSmooth();
   };
@@ -112,8 +113,6 @@ export default function ProjectForm({ project }) {
 
   const startDate = watch("startDate");
   const minEndDate = getFutureDateString(startDate, 7);
-
-  console.log("err; ", errors);
 
   return (
     <>
