@@ -1,9 +1,10 @@
-import React from 'react'; 
+import React, { useEffect, useState } from 'react'; 
 import { Timeline } from 'primereact/timeline';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faServer, faDesktop, faCode, faFile, faPlay } from '@fortawesome/free-solid-svg-icons';
+import '../../../components/content/ui/Timeline.css';
 
 export default function TemplateDemo({ navigate }) {
     const events = [
@@ -57,17 +58,35 @@ export default function TemplateDemo({ navigate }) {
         } 
     ];
 
+    const [visibleItems, setVisibleItems] = useState([]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const items = document.querySelectorAll('.timeline-item');
+            items.forEach((item, index) => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    setVisibleItems((prev) => [...prev, index]);
+                }
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
     const customizedMarker = (item) => {
         return (
-            <span className="flex w-2rem h-2rem align-items-center justify-content-center text-white border-circle z-1 shadow-1" style={{ backgroundColor: item.color }}>
-                <FontAwesomeIcon icon={item.icon} />
+            <span className="flex items-center mt-5 justify-center w-10 h-10 text-white rounded-full shadow-lg" style={{ backgroundColor: item.color }}>
+                <FontAwesomeIcon icon={item.icon} className="icon" /> 
             </span>
         );
     };
 
-    const customizedContent = (item) => {
+    const customizedContent = (item, index) => {
         return (
-            <Card title={item.status} subTitle={item.date}>
+            <Card className={`timeline-item ${visibleItems.includes(index) ? 'visible' : ''}`} title={item.status} subTitle={item.date}>
                 <img src={item.image} alt={item.status} className="w-full h-auto rounded mb-2" /> 
                 <p>{item.description}</p>
                 <Button 
@@ -78,12 +97,17 @@ export default function TemplateDemo({ navigate }) {
             </Card>
         );
     };
-        
+
     return (
         <div className="card">
-            <h2 className="text-2xl font-bold text-center my-4">Vår Resa</h2> {/* Titel */}
-            <p className="text-center mb-6">En översikt av vår utvecklingsresa och viktiga milstolpar.</p> {/* Beskrivning */}
-            <Timeline value={events} align="alternate" className="customized-timeline" marker={customizedMarker} content={customizedContent} />
+            <h2 className="timeline-title">Vår Resa</h2>
+            <p className="timeline-description">En översikt av vår utvecklingsresa och viktiga milstolpar.</p>
+            <div className="timeline-container">
+                <div className="timeline-line"></div>
+                <div>
+                    <Timeline value={events} align="alternate" className="customized-timeline" marker={customizedMarker} content={customizedContent} />
+                </div>
+            </div>
         </div>
     );
 }
