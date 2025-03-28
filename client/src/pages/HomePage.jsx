@@ -20,7 +20,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
       <Hero />
-      <Timeline navigate={navigate} /> {/* Skicka navigate som prop */}
+      <Timeline navigate={navigate} /> 
       <ProfileSection />
       <EventSection />
       <ProjectSection />

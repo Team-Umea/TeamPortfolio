@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden; /* Förhindra horisontell scrollning */
+}
+
 .card {
     padding: 20px;
     border-radius: 8px;
@@ -5,12 +9,15 @@
 
 .timeline-container {
     display: flex;
-    align-items: flex-start; 
+    align-items: flex-start;
+    flex-direction: column; /* För små skärmar, sätt till column för att göra det mer vertikalt */
+    width: 100%; /* Säkerställ att innehållet inte går över viewport-bredden */
+    box-sizing: border-box; /* Inkludera padding i bredden för att undvika överflöd */
 }
 
 .timeline-line {
-    width: 4px; 
-    background-color: #ccc; 
+    width: 4px;
+    background-color: #ccc;
     position: relative;
     margin-right: 20px;
 }
@@ -19,12 +26,16 @@
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    margin: 40px 0; 
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Säkerställ att varje timeline-item tar upp hela bredden */
 }
 
 .icon {
-    width: 50px; 
-    height: 20px; 
+    width: 40px; /* Standardstorlek på ikoner */
+    height: 20px; /* För att bibehålla proportionerna */
 }
 
 .timeline-item.visible {
@@ -44,24 +55,42 @@
     margin-bottom: 1.5rem;
 }
 
-
 @media (max-width: 640px) {
     .card {
-        padding: 15px; 
+        padding: 15px; /* Justera padding på små skärmar */
     }
 
     .timeline-container {
-        flex-direction: row; 
+        flex-direction: column; /* Placera tidslinjen vertikalt istället för horisontellt */
+        align-items: center; /* Centrerar elementen */
+        width: 100%; /* Förhindra att innehållet går utanför viewport */
     }
 
     .timeline-line {
-        display: block; 
-        margin-right: 20px; 
+        width: 100%; /* Gör linjen fullbredd på små skärmar */
+        height: 4px;
+        margin-right: 0;
     }
 
     .timeline-item {
-        margin: 20px 0; 
-        display: flex; 
-        align-items: flex-start; 
+        margin: 20px 0;
+        display: block; /* Ta bort flex här för att göra varje item block */
+        width: 100%; /* Säkerställ att varje item tar upp hela bredden */
+        text-align: center; /* Centrerar texten för timeline-items */
+    }
+
+    .timeline-item img {
+        max-width: 100%; /* Gör bilderna responsiva */
+        height: auto;
+        margin: 10px 0;
+    }
+
+    .icon {
+        width:30px;/* Minska ikonstorleken för små skärmar */
+        height: 20px; /* Minska ikonerna så att de inte blir för stora */
+    }
+
+    .timeline-item p {
+        font-size: 0.9rem; /* Minska textstorleken för att spara utrymme */
     }
 }
