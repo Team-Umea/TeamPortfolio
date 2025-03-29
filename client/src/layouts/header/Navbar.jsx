@@ -22,7 +22,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isAuthenticated, resetAuth } = useAuthStore();
+  const { isAuthenticated, isAdmin, resetAuth } = useAuthStore();
   const [isExtended, setIsExtended] = useState(false);
 
   const isAdminPage = location.pathname.includes("admin");
@@ -32,7 +32,7 @@ export default function Navbar() {
   }, [location.key]);
 
   const handleAuthAction = async () => {
-    if (!isAdminPage && isAuthenticated) {
+    if (!isAdminPage && isAuthenticated && isAdmin) {
       navigate("/admin");
       return;
     }
@@ -47,7 +47,7 @@ export default function Navbar() {
   };
 
   const signInButtonBody =
-    !isAdminPage && isAuthenticated ? (
+    !isAdminPage && isAdmin && isAuthenticated ? (
       <>
         <span>Admin</span>
         <RiAdminLine size={24} />
