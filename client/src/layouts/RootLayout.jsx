@@ -25,7 +25,7 @@ export default function RootLayout() {
   return (
     <>
       <Header />
-      <main className="relative pb-[100px] min-h-screen bg-gray-800 ">
+      <main className="relative pb-[100px] min-h-screen bg-black text-white">
         <PageTransition>
           <Outlet />
         </PageTransition>
