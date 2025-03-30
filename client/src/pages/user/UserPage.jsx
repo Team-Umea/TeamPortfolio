@@ -21,9 +21,9 @@ export default function UserPage() {
   }
 
   return (
-    <div>
-      <p>Welcome {username}</p>
-      <p>{email}</p>
-    </div>
+    <h1 className="pt-32 text-center text-3xl w-[90%] max-w-[800px] mx-auto">
+      Du har nu prenumererat på vårt nyhetsbrev och kommer att få aviseringar via mejl när vi
+      publicerar nya projekt och evenemang.
+    </h1>
   );
 }

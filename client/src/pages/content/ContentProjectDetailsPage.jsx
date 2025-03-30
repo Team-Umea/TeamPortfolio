@@ -31,7 +31,7 @@ export default function ContentProjectDetailsPage() {
     return (
       <div className="flex flex-col gap-y-12">
         <div className="w-fit p-4">
-          <TransparentButton onClick={() => navigate(-1)}>
+          <TransparentButton onClick={() => navigate("/projects")}>
             <IoIosArrowRoundBack size={24} />
             Tillbaka
           </TransparentButton>
@@ -44,7 +44,7 @@ export default function ContentProjectDetailsPage() {
   return (
     <div className="flex flex-col gap-y-12">
       <div className="w-fit p-4 py-6">
-        <TransparentButton onClick={() => navigate(-1)}>
+        <TransparentButton onClick={() => navigate("/projects")}>
           <IoIosArrowRoundBack size={24} />
           Tillbaka
         </TransparentButton>

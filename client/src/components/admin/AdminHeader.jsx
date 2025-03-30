@@ -34,7 +34,7 @@ export default function AdminHeader() {
         <h3 className="text-gray-200 font-medium">{email}</h3>
         <h4 className="text-md text-gray-200">Admin</h4>
       </div>
-      <ul className="flex items-center gap-x-12 py-2 md:p-0 overflow-x-scroll md:overflow-x-auto!">
+      <ul className="flex items-center gap-x-12 py-2 md:p-0 overflow-x-auto">
         {ADMIN_LINKS.map((link, index) => {
           return (
             <AdminTab key={link.link + index} link={link.link}>

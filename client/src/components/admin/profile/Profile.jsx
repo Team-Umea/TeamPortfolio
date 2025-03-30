@@ -25,7 +25,7 @@ export default function Profile({ profile }) {
 
   return (
     <div className="flex flex-col gap-y-12 m-auto mt-[100px] w-[80%] max-w-[700px]">
-      <div className="grid md:grid-cols-[1fr_1fr] gap-x-12">
+      <div className="flex flex-col md:flex-row! gap-12">
         <div className="flex flex-col items-center md:items-start! gap-y-12">
           <p className="text-lg font-semibold">
             {profile.name}, {profile.age}
@@ -34,7 +34,7 @@ export default function Profile({ profile }) {
             <img src={profile.profileImage} alt={profile.name} className="max-w-[90%]" />
           )}
           <p className="text-gray-400 font-medium">{profile.title}</p>
-          <div className="flex flex-col md:flex-row gap-x-8 gap-y-2">
+          <div className="flex flex-col md:flex-row! items-center gap-x-8 gap-y-8">
             <div className="flex items-center gap-x-2">
               <MdOutlineMailOutline size={24} />
               <p className="font-medium">{profile.email}</p>
@@ -59,7 +59,7 @@ export default function Profile({ profile }) {
             </a>
           )}
         </div>
-        {!isMobile && <img src={profile.profileImage} alt={profile.name} className="" />}
+        {!isMobile && <img src={profile.profileImage} alt={profile.name} className="max-w-82" />}
       </div>
       <p className="break-words">{profile.bio}</p>
 

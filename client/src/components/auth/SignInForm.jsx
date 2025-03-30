@@ -155,7 +155,7 @@ export default function SignInForm() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <PuffLoader size={70} className="m-auto" />
+        <PuffLoader size={70} className="m-auto" color="white" />
       </div>
     );
   }
@@ -170,7 +170,7 @@ export default function SignInForm() {
             <a href="https://authecho.com" className="cursor-pointer">
               <img src="https://authecho.com/assets/authechoLogo-Bv1kmwoB.svg" alt="authecho" />
             </a>
-            <p className="text-lg text-blue-700">Logga in med ditt Authecho konto</p>
+            <p className="text-lg text-blue-300!">Logga in med ditt Authecho konto</p>
           </div>
           {signInTypeIsUser && <UserForm />}
           {signInTypeIsVerificationCode && <VerificationCodeForm />}
@@ -188,7 +188,7 @@ export default function SignInForm() {
           <a
             href="https://authecho.com"
             target="_blank"
-            className="mt-6 max-w-[90%] text-blue-700 cursor-pointer border-b-[1px] border-transparent transition-all duration-300 ease hover:border-blue-700">
+            className="mt-6 max-w-[90%] text-blue-400! cursor-pointer border-b-[1px] border-transparent transition-all duration-300 ease hover:border-blue-700">
             {signInTypeIsUser
               ? "Har du inget konto? Registrera dig här!"
               : "Glömt dina inloggningsuppgifter? Hantera ditt konto här"}
