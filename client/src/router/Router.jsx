@@ -20,6 +20,7 @@ import EnrollPage from "../pages/content/EnrollPage";
 import EventQuestionPage from "../pages/content/EventQuestionPage";
 import EventLayout from "../layouts/admin/EventLayout";
 import EventInquiryPage from "../pages/admin/event/EventInquiryPage";
+import ContentProjectDetailsPage from "@/pages/content/ContentProjectDetailsPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,7 +31,9 @@ const router = createBrowserRouter(
         <Route path="enroll/:eventid" element={<EnrollPage />} />
         <Route path="questions/:eventid" element={<EventQuestionPage />} />
       </Route>
-      <Route path="projects" element={<ContentProjectPage />} />
+      <Route path="projects" element={<ContentProjectPage />}>
+        <Route path=":projectid" element={<ContentProjectDetailsPage />} />
+      </Route>
       <Route path="admin" element={<AdminLayout />}>
         <Route index element={<ProfilePage />} />
         <Route path="manageprofile" element={<ManageProfilePage />} />

@@ -24,10 +24,10 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row! justify-between items-center text-center md:text-left">
           <div className="w-full md:w-1/3 flex flex-col items-center md:items-start mb-6 md:mb-0">
             <h3 className="text-lg font-semibold dark:text-white">Teknologier vi använder</h3>
-            <ul className="grid grid-cols-1 gap-2 mt-2">
+            <ul className="flex flex-col gap-2 mt-2">
               {technologies.map((tech) => (
                 <li key={tech} className="flex items-center gap-2">
-                  <FaCheckCircle className="text-green-800 dark:text-green-500" />
+                  <FaCheckCircle color="green" />
                   {tech}
                 </li>
               ))}
@@ -63,7 +63,7 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="text-center mt-12 sm:mt-6 text-xs text-gray-400 dark:text-gray-400">
+        <div className="text-center mt-12 sm:mt-6 text-md text-gray-600">
           &copy; {new Date().getFullYear()} Copyright Team Umeå
         </div>
       </div>

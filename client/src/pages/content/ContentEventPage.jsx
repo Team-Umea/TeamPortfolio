@@ -33,7 +33,7 @@ export default function ContentEventPage() {
           <span className="after:text-gray-500 after:absolute after:right-0 after:top-1/2 after:transform after:translate-y-[-50%]">
             Här kan du ta del av kommande evenemang som Team Umeå arrangerar.
           </span>
-          <span className="block mt-6 text-lg text-red-300 ">
+          <span className="block mt-6 text-lg text-red-300!">
             Kom ihåg att anmäla dig och säkra din plats till de tillgängliga evenemangen!
             <br />
             Vi ser fram emot att ha dig med!

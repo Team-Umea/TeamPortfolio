@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useState } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Toast from "../../common/Toast";
 import useScrollTo from "../../../hooks/useScrollTo";
 import PrimaryBtn from "../../btn/PrimaryBtn";
@@ -17,6 +17,7 @@ import ReadmeInput from "./ReadmeInput";
 import useProfileStore from "../../../hooks/useProfileStore";
 import { addProject, editProject } from "../../../api/admin/project";
 import AddProjectImages from "./AddProjectImages";
+import { getProfileAlias } from "@/api/admin/profile";
 
 export default function ProjectForm({ project }) {
   const navigate = useNavigate();
@@ -25,6 +26,10 @@ export default function ProjectForm({ project }) {
   const [toastMessage, setToastMessage] = useState("");
   const { scrollToTopSmooth } = useScrollTo();
   const { profile } = useProfileStore();
+  const { data: profileAlias = [] } = useQuery({
+    queryFn: getProfileAlias,
+    queryKey: ["profileAliasProjectForm"],
+  });
 
   const formMethods = useForm({
     resolver: zodResolver(projectSchema),
@@ -45,7 +50,6 @@ export default function ProjectForm({ project }) {
     clearErrors,
     watch,
     control,
-    getValues,
     formState: { errors },
     handleSubmit,
   } = formMethods;
@@ -85,9 +89,13 @@ export default function ProjectForm({ project }) {
   });
 
   const onSubmit = (data) => {
+    const colleagues = [...data.colleagues, profile].map((coll) =>
+      typeof coll === "string" ? profileAlias.find((pro) => pro.name === coll)._id : coll._id
+    );
+
     const projectData = {
       ...data,
-      colleagues: [...data.colleagues, profile].map((coll) => coll._id),
+      colleagues,
       images: !data.images ? [] : data.images,
     };
 
@@ -99,7 +107,7 @@ export default function ProjectForm({ project }) {
   };
 
   const onError = (err) => {
-    console.log(getValues("website"));
+    console.log("error: ", err);
 
     scrollToTopSmooth();
   };

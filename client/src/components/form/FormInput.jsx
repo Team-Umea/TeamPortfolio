@@ -46,21 +46,21 @@ export default function FormInput({
   };
 
   return (
-    <div className="flex flex-col gap-y-2 w-full ">
+    <div className="flex flex-col gap-y-2 w-full">
       <div
         className={`flex justify-between gap-x-12 mb-4 ${
           errorMessage ? "opacity-100" : "opacity-0"
         }`}>
-        <p className="text text-red-500 font-bold">{errorMessage}</p>
+        <p className="text text-red-500! font-bold">{errorMessage}</p>
         <HiOutlineExclamationCircle size={24} color="red" />
       </div>
       <div
         className={`flex flex-col gap-y-2 p-4 border-2 rounded-md ${
-          errorMessage ? "border-red-500" : "border-transparent"
+          errorMessage ? "border-red-500!" : "border-transparent"
         }`}>
         <div className="flex items-center gap-x-2">
           <label className="text-lg text-slate-600 font-medium">{label}</label>
-          {isRequired && <span className="text-2xl text-red-500 font-bold">*</span>}
+          {isRequired && <span className="text-2xl text-red-500! font-bold">*</span>}
         </div>
 
         {type === "textarea" ? (
