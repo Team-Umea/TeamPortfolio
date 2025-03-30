@@ -5,6 +5,7 @@ import { Outlet, useLocation, useNavigate, useParams } from "react-router";
 import EventList from "../../../components/admin/event/EventList";
 import useScrollTo from "../../../hooks/useScrollTo";
 import Toast from "../../../components/common/Toast";
+import TransparentButton from "@/components/btn/TransparentButton";
 
 export default function EventsPage() {
   const navigate = useNavigate();
@@ -29,10 +30,10 @@ export default function EventsPage() {
   return (
     <div className="flex flex-col gap-y-12">
       <div className="w-fit p-4">
-        <PrimaryBtn onClick={() => navigate("addevent")}>
+        <TransparentButton onClick={() => navigate("addevent")}>
           <GoPlus size={24} />
           Lägg till evenemang
-        </PrimaryBtn>
+        </TransparentButton>
       </div>
       <EventList setToastMessage={setToastMessage} />
       <Toast message={toastMessage} show={!!toastMessage} onClose={() => setToastMessage("")} />

@@ -10,10 +10,12 @@ const { getProjectById, getProjects } = require("../controllers/ProjectContoller
 const { getContent } = require("../controllers/ContentController");
 const { ensureAdmin, ensureAuthenticated } = require("../middlewares/Auth");
 const AdminRouter = require("./AdminRouter");
+const UserRouter = require("./UserRouter");
 const { validateEnrollment } = require("../validators/enrollmentValidator");
 const { validateEventQuestion } = require("../validators/eventQuestionValidator");
 
 router.use("/admin", ensureAuthenticated, ensureAdmin, AdminRouter);
+router.use("/user", ensureAuthenticated, UserRouter);
 
 router.get("/profiles", getProfileAlias);
 router.get("/events", getEvents);

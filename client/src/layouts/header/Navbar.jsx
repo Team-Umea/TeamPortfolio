@@ -7,6 +7,7 @@ import { RiAdminLine } from "react-icons/ri";
 import { FiMenu } from "react-icons/fi";
 import { MdOutlineClose } from "react-icons/md";
 import { signOut } from "../../api/authecho";
+import TransparentButton from "@/components/btn/TransparentButton";
 
 const NAV_LINKS = [
   {
@@ -22,7 +23,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isAuthenticated, resetAuth } = useAuthStore();
+  const { isAuthenticated, isAdmin, resetAuth } = useAuthStore();
   const [isExtended, setIsExtended] = useState(false);
 
   const isAdminPage = location.pathname.includes("admin");
@@ -32,7 +33,7 @@ export default function Navbar() {
   }, [location.key]);
 
   const handleAuthAction = async () => {
-    if (!isAdminPage && isAuthenticated) {
+    if (!isAdminPage && isAuthenticated && isAdmin) {
       navigate("/admin");
       return;
     }
@@ -47,52 +48,56 @@ export default function Navbar() {
   };
 
   const signInButtonBody =
-    !isAdminPage && isAuthenticated ? (
+    !isAdminPage && isAdmin && isAuthenticated ? (
       <>
-        <span>Admin</span>
+        <span className="text-lg">Admin</span>
         <RiAdminLine size={24} />
       </>
     ) : isAuthenticated ? (
       <>
-        <span>Logga ut</span>
+        <span className="text-lg">Logga ut</span>
         <IoLogOutOutline size={24} />
       </>
     ) : (
       <>
-        <span>Logga in</span>
+        <span className="text-lg">Logga in</span>
         <IoLogInOutline size={24} />
       </>
     );
 
   return (
-    <nav className="relative flex justify-between items-center px-8 py-4 bg-slate-400">
+    <nav className="fixed z-1000 w-screen flex justify-between items-center px-8 py-4 bg-black shadow-[0_-5px_30px_rgb(255,255,255,0.2)]">
       <NavLink className="text-2xl font-semibold" to="/">
-        <span className="whitespace-nowrap">Team Umeå</span>
+        <img src="/public/images/logo.png" alt="Team Umeå Logo" className="h-20 w-40 lg:w-60" />
       </NavLink>
       <button
         onClick={() => setIsExtended((prev) => !prev)}
-        className="absolute right-4 top-4 md:hidden z-2">
-        {isExtended ? <MdOutlineClose size={32} /> : <FiMenu size={32} />}
+        className="absolute right-8 top-4 lg:hidden z-2 cursor-pointer">
+        {isExtended ? (
+          <MdOutlineClose size={32} color="white" />
+        ) : (
+          <FiMenu size={32} color="white" />
+        )}
       </button>
       <div
-        className={`fixed top-[64px] ${
-          isExtended ? "right-0" : "right-[-200px]"
-        } md:static flex flex-col md:flex-row md:justify-between items-center gap-y-32 h-screen md:h-auto w-[200px] md:w-full pt-20 md:p-0 md:ml-16 md:mr-8 bg-slate-400 md:bg-transparent z-1`}>
-        <ul className="flex flex-col md:flex-row gap-x-8 gap-y-12">
+        className={`fixed! top-[64px]! ${
+          isExtended ? "right-0!" : "right-[-200px]!"
+        } lg:static! flex! flex-col! lg:flex-row! lg:justify-between! items-center! gap-y-32! h-screen! lg:h-auto! w-50! lg:w-full! pt-20! lg:p-0! lg:ml-16! lg:mr-8! bg-black! lg:bg-transparent! z-1!`}>
+        <ul className="flex! flex-col! lg:flex-row! gap-x-20 gap-y-12! text-white">
           {NAV_LINKS.map((link, index) => {
             return (
               <NavLink
                 to={link.link}
                 key={link.link + index}
                 onClick={() => setIsExtended(false)}
-                className="text-lg font-medium transition-all duration-300 ease hover:opacity-70">
+                className="text-2xl font-medium transition-all duration-300 ease hover:opacity-70">
                 {link.text}
               </NavLink>
             );
           })}
         </ul>
         <div>
-          <PrimaryBtn onClick={handleAuthAction}>{signInButtonBody}</PrimaryBtn>
+          <TransparentButton onClick={handleAuthAction}>{signInButtonBody}</TransparentButton>
         </div>
       </div>
     </nav>

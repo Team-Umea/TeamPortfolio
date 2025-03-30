@@ -1,7 +1,7 @@
 import React from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { NavLink, Outlet, useNavigate, useParams } from "react-router";
-import PrimaryBtn from "../../components/btn/PrimaryBtn";
+import TransparentButton from "@/components/btn/TransparentButton";
 
 export default function EventLayout() {
   const navigate = useNavigate();
@@ -11,10 +11,10 @@ export default function EventLayout() {
     <div className="p-4">
       <div className="flex flex-col md:flex-row justify-between gap-y-8">
         <div className="w-fit">
-          <PrimaryBtn onClick={() => navigate("/admin/events")}>
+          <TransparentButton onClick={() => navigate("/admin/events")}>
             <IoIosArrowRoundBack size={24} />
             Tillbaka
-          </PrimaryBtn>
+          </TransparentButton>
         </div>
         <div className="flex gap-x-12 px-4">
           <NavLink

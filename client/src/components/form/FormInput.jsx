@@ -46,7 +46,7 @@ export default function FormInput({
   };
 
   return (
-    <div className="flex flex-col gap-y-2 w-full">
+    <div className="flex flex-col gap-y-2 w-full ">
       <div
         className={`flex justify-between gap-x-12 mb-4 ${
           errorMessage ? "opacity-100" : "opacity-0"
@@ -114,7 +114,7 @@ export default function FormInput({
             {minCharsMet ? (
               remainingChars !== undefined ? (
                 <span>
-                  <span className="text-black font-semibold">{remainingChars}</span> tecken&nbsp;
+                  <span className="text-cyan-500 font-semibold">{remainingChars}</span> tecken&nbsp;
                   {remainingChars !== 1 ? "återstående" : ""}
                 </span>
               ) : (
@@ -123,7 +123,7 @@ export default function FormInput({
             ) : (
               <span>
                 Minst {minLength} tecken krävs. Det aktuella teckenantalet är
-                <span className="text-black font-semibold">&nbsp;{charCount}.</span>
+                <span className="text-cyan-500 font-semibold">&nbsp;{charCount}.</span>
               </span>
             )}
           </div>

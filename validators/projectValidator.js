@@ -1,4 +1,5 @@
 const Joi = require("joi");
+const { processFormData } = require("../utils/helpers");
 
 const projectSchema = Joi.object({
   _id: Joi.string().optional(),
@@ -29,7 +30,7 @@ const projectSchema = Joi.object({
     "string.min": "Ange minst 100 tecken",
     "string.max": "Max 2000 tecken tillåtet",
   }),
-  colleagues: Joi.array().items(Joi.string()),
+  colleagues: Joi.alternatives().try(Joi.string(), Joi.array().items(Joi.string())).optional(),
   techStack: Joi.array()
     .items(
       Joi.string().min(1).messages({
@@ -62,7 +63,9 @@ const projectSchema = Joi.object({
 
 const validateProject = async (req, res, next) => {
   try {
-    await projectSchema.validateAsync(req.body);
+    const { images, ...projectData } = req.body;
+
+    await projectSchema.validateAsync(projectData);
     next();
   } catch (error) {
     return res.status(400).json({

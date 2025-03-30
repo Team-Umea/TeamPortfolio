@@ -20,12 +20,12 @@ export default function RootLayout() {
 
   useEffect(() => {
     scrollToTopSmooth();
-  }, [location.key]);
+  }, [location.pathname, location.key]);
 
   return (
     <>
       <Header />
-      <main className="relative pb-[100px] min-h-screen">
+      <main className="relative pt-[110px] pb-[100px] min-h-screen bg-black text-white">
         <PageTransition>
           <Outlet />
         </PageTransition>

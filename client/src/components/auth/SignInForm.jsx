@@ -165,7 +165,7 @@ export default function SignInForm() {
       <FormProvider {...formMethods}>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col items-center w-[90%] max-w-[500px] px-6 pt-12 pb-6 rounded-xl shadow-lg bg-slate-200">
+          className="flex flex-col items-center w-[90%] max-w-[500px] px-6 pt-12 pb-6 rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.2)]">
           <div className="flex flex-col items-center pb-4 mb-4 border-b-[1px] border-slate-400 w-full">
             <a href="https://authecho.com" className="cursor-pointer">
               <img src="https://authecho.com/assets/authechoLogo-Bv1kmwoB.svg" alt="authecho" />

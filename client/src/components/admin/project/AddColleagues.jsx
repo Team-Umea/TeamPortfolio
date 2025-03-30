@@ -83,7 +83,7 @@ export default function AddColleagues() {
 
   return (
     <div className="flex flex-col gap-y-2 w-full my-10">
-      <div className="flex flex-col md:flex-row justify-between gap-y-4 gap-x-8">
+      <div className="flex flex-col md:flex-row! justify-between gap-y-4 gap-x-8">
         <p className="text-lg text-slate-600 font-medium">
           Lägg till kollegor som har bidragit till projektet
         </p>
