@@ -1,3 +1,7 @@
+
+import ProfileList from "../components/content/profile/ProfileList";
+import useContentStore from "../hooks/useContentStore";
+import Loader from "../components/common/Loader";
 import useContentStore from "../hooks/useContentStore";
 import Loader from "../components/common/Loader";
 import { useNavigate } from "react-router";
@@ -5,6 +9,8 @@ import Hero from "../components/content/layout/Hero";
 import ProfileSection from "../components/content/layout/ProfileSection";
 import EventSection from "../components/content/layout/EventSection";
 import ProjectSection from "../components/content/layout/ProjectSection";
+import Timeline from '../components/content/ui/Timeline';
+import { useNavigate } from "react-router";
 import WorflowBanner from "../components/content/layout/WorkflowBanner";
 
 export default function HomePage() {
@@ -18,6 +24,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
       <Hero />
+      <Timeline navigate={navigate} /> 
       <ProfileSection />
       <EventSection />
       <ProjectSection />
