@@ -17,8 +17,8 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
-      <WorflowBanner />
       <Hero />
+      <WorflowBanner />
       <ProfileSection />
       <EventSection />
       <ProjectSection />
