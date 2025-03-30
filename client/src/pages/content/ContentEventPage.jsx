@@ -24,10 +24,21 @@ export default function ContentEventPage() {
 
   return (
     <>
-      <div className="mb-24 px-12 py-6 bg-gray-200">
-        <h1 className="text-xl text-gray-700 font-medium">
-          Välkommen till vår evenemangssida! Här kan du ta del av kommande evenemang som Team Umeå
-          arrangerar. Du kan även anmäla dig och säkra din plats till de tillgängliga evenemangen.
+      <div className="mt-0 mb-6 px-12 py-14 bg-gray-800 font-serif ">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-200 bg-clip-text bg-gradient-to-r text-center relative animate-fadeIn">
+          <span className="before:text-gray-500 before:absolute before:left-0 before:top-1/2 before:transform before:translate-y-[-50%]">
+            Välkommen till vår evenemangssida!
+          </span>
+          <br />
+          <span className="after:text-gray-500 after:absolute after:right-0 after:top-1/2 after:transform after:translate-y-[-50%]">
+            Här kan du ta del av kommande evenemang som Team Umeå arrangerar.
+          </span>
+          <span className="block mt-2 text-lg text-red-300">
+            Kom ihåg att anmäla dig och säkra din plats till de tillgängliga
+            evenemangen!
+            <br />
+            Vi ser fram emot att ha dig med!
+          </span>
         </h1>
       </div>
       <EventList events={events} />
