@@ -5,6 +5,7 @@ import Loader from "../../../components/common/Loader";
 import PrimaryBtn from "../../../components/btn/PrimaryBtn";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import ProjectForm from "../../../components/admin/project/ProjectForm";
+import TransparentButton from "@/components/btn/TransparentButton";
 
 export default function ManageProjectPage() {
   const navigate = useNavigate();
@@ -27,10 +28,10 @@ export default function ManageProjectPage() {
     return (
       <div className="flex flex-col gap-y-12">
         <div className="w-fit p-4">
-          <PrimaryBtn onClick={() => navigate(-1)}>
+          <TransparentButton onClick={() => navigate(-1)}>
             <IoIosArrowRoundBack size={24} />
             Tillbaka
-          </PrimaryBtn>
+          </TransparentButton>
         </div>
         <h2 className=" px-4 text-2xl text-red-500 font-semibold">{error?.message}</h2>
       </div>
@@ -40,10 +41,10 @@ export default function ManageProjectPage() {
   return (
     <div className="flex flex-col gap-y-12">
       <div className="w-fit p-4">
-        <PrimaryBtn onClick={() => navigate(-1)}>
+        <TransparentButton onClick={() => navigate(-1)}>
           <IoIosArrowRoundBack size={24} />
           Tillbaka
-        </PrimaryBtn>
+        </TransparentButton>
       </div>
       <ProjectForm project={project} />
     </div>

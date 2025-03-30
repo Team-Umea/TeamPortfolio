@@ -20,7 +20,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     scrollToTopSmooth();
-  }, [location.key]);
+  }, [location.pathname, location.key]);
 
   return (
     <>

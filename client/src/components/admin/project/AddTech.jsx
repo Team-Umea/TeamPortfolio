@@ -70,7 +70,7 @@ export default function AddTech() {
         <HiOutlineExclamationCircle size={24} color="red" />
       </div>
       <div
-        className={`flex flex-col md:flex-row justify-between gap-y-4 gap-x-8 p-4 border-2 rounded-md ${
+        className={`flex flex-col md:flex-row! justify-between gap-y-4 gap-x-8 p-4 border-2 rounded-md ${
           errorMessage ? "border-red-500" : "border-transparent"
         }`}>
         <label className="text-lg text-slate-600 font-medium">Visa projektets tech-stack</label>

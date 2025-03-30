@@ -66,8 +66,7 @@ export default function EventQuestionForm() {
   };
 
   const translateDefaultErrorMessage = (messageKey) => {
-    const message =
-      errors && errors[messageKey] ? errors[messageKey].message : undefined;
+    const message = errors && errors[messageKey] ? errors[messageKey].message : undefined;
     return message === "Required" ? "Fältet får inte vara tomt" : message;
   };
 
@@ -78,9 +77,8 @@ export default function EventQuestionForm() {
       <FormProvider {...formMethods}>
         <form
           onSubmit={handleSubmit(onSubmit, onError)}
-          className="flex flex-col  mx-auto w-[90%] max-w-[600px]  shadow-lg rounded-2xl p-8 bg-gray-200 "
-        >
-          <h2 className="   text-2xl font-serif font-bold text-gray-900 mb-4 text-left ">
+          className="flex flex-col mx-auto w-[90%] max-w-[600px]">
+          <h2 className="text-2xl font-serif font-bold text-gray-400 mb-4 text-left ">
             Ställ en fråga eller lämna ett önskemål
           </h2>
           <div className="mt-[-50px] mb-2 ">
@@ -104,11 +102,9 @@ export default function EventQuestionForm() {
             />
           </div>
 
-          {hasRootError && (
-            <p className="text-red-600 text-center">{hasRootError}</p>
-          )}
+          {hasRootError && <p className="text-red-600 text-center">{hasRootError}</p>}
 
-          <div className="w-full flex justify-center ">
+          <div className="w-full flex justify-center mt-12 px-8">
             <PrimaryBtn type="submit" className="w-full max-w-[200px] py-3">
               <span className="flex justify-center items-center gap-x-2">
                 <span className="text-lg">Skicka</span>

@@ -22,8 +22,7 @@ export default function FormInput({
   const [inputType, setInputType] = useState(type);
 
   const charCount = value ? String(value).length : 0;
-  const remainingChars =
-    maxLength !== undefined ? maxLength - charCount : undefined;
+  const remainingChars = maxLength !== undefined ? maxLength - charCount : undefined;
   const minCharsMet = minLength !== undefined ? charCount >= minLength : false;
 
   const controlledValue = value === "undefined" || !value ? "" : value;
@@ -51,21 +50,17 @@ export default function FormInput({
       <div
         className={`flex justify-between gap-x-12 mb-4 ${
           errorMessage ? "opacity-100" : "opacity-0"
-        }`}
-      >
+        }`}>
         <p className="text text-red-500 font-bold">{errorMessage}</p>
         <HiOutlineExclamationCircle size={24} color="red" />
       </div>
       <div
         className={`flex flex-col gap-y-2 p-4 border-2 rounded-md ${
           errorMessage ? "border-red-500" : "border-transparent"
-        }`}
-      >
+        }`}>
         <div className="flex items-center gap-x-2">
           <label className="text-lg text-slate-600 font-medium">{label}</label>
-          {isRequired && (
-            <span className="text-2xl text-red-500 font-bold">*</span>
-          )}
+          {isRequired && <span className="text-2xl text-red-500 font-bold">*</span>}
         </div>
 
         {type === "textarea" ? (
@@ -108,16 +103,8 @@ export default function FormInput({
               className="w-full border-0 outline-none"
             />
             {type === "password" && (
-              <button
-                type="button"
-                onClick={togglePasswordVisibilty}
-                className="cursor-pointer"
-              >
-                {inputType === "password" ? (
-                  <FiEye size={24} />
-                ) : (
-                  <FiEyeOff size={24} />
-                )}
+              <button type="button" onClick={togglePasswordVisibilty} className="cursor-pointer">
+                {inputType === "password" ? <FiEye size={24} /> : <FiEyeOff size={24} />}
               </button>
             )}
           </div>
@@ -127,10 +114,7 @@ export default function FormInput({
             {minCharsMet ? (
               remainingChars !== undefined ? (
                 <span>
-                  <span className="text-black font-semibold">
-                    {remainingChars}
-                  </span>{" "}
-                  tecken&nbsp;
+                  <span className="text-cyan-500 font-semibold">{remainingChars}</span> tecken&nbsp;
                   {remainingChars !== 1 ? "återstående" : ""}
                 </span>
               ) : (
@@ -139,9 +123,7 @@ export default function FormInput({
             ) : (
               <span>
                 Minst {minLength} tecken krävs. Det aktuella teckenantalet är
-                <span className="text-black font-semibold">
-                  &nbsp;{charCount}.
-                </span>
+                <span className="text-cyan-500 font-semibold">&nbsp;{charCount}.</span>
               </span>
             )}
           </div>

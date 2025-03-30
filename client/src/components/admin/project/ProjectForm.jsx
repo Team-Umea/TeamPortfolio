@@ -199,7 +199,7 @@ export default function ProjectForm({ project }) {
           <AddColleagues />
           <AddTech />
           <AddProjectImages project={project} />
-          <div className="w-fit m-auto mt-8">
+          <div className="w-fit m-auto mt-16!">
             <PrimaryBtn type="submit">
               <span className="flex justify-center items-center gap-x-2 mx-4">
                 <span className="text-lg">{project ? "Uppdatera projekt" : "Lägg till"}</span>

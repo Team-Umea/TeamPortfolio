@@ -12,8 +12,8 @@ export default function ContentProjectPage() {
 
   return (
     <>
-      <div className="mb-24 px-12 py-6 bg-gray-200">
-        <h1 className="text-xl text-gray-700 font-medium">
+      <div className="mb-24 px-12 py-12">
+        <h1 className="text-xl text-gray-300 font-medium">
           Här presenterar vi de projekt som vi utvecklar som en grupp med agila arbetsmetoder. Vi
           strävar efter att maximera vårt samarbete och leverera högkvalitativa resultat, samtidigt
           som vi utvecklas och lär oss nya koncept.
