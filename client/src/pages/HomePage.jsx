@@ -7,6 +7,7 @@ import Hero from "../components/content/layout/Hero";
 import ProfileSection from "../components/content/layout/ProfileSection";
 import EventSection from "../components/content/layout/EventSection";
 import ProjectSection from "../components/content/layout/ProjectSection";
+import { AppleCardsCarouselDemo } from "../components/content/layout/AppleCardsCarouselDemo";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -21,7 +22,8 @@ export default function HomePage() {
       <Hero />
       <ProfileSection />
       <EventSection />
-      <ProjectSection />
+      {/* <ProjectSection /> */}
+      <AppleCardsCarouselDemo/>
     </div>
   );
 }
