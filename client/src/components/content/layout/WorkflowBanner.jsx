@@ -82,7 +82,7 @@ export default function WorkflowBanner() {
             <p>Leverans</p>
           </div>
         </div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-full w-2 bg-gradient-to-r from-blue-500 to-fuchsia-600" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-full w-2! bg-gradient-to-r from-blue-500 to-fuchsia-600" />
       </div>
     </div>
   );

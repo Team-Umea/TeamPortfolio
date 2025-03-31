@@ -25,7 +25,7 @@ export default function Hero() {
         />
         <Link to="/events">
           <ShinyButton className="bg-blue-700/50 hover:bg-blue-700/30 transition-all duration-300 ease md:px-8 md:py-3 cursor-pointer">
-            <span className="md:text-xl text-white">Kommande evenemang</span>
+            <span className="text-white">Kommande evenemang</span>
           </ShinyButton>
         </Link>
       </div>

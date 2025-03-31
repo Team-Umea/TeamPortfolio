@@ -45,3 +45,13 @@ export function getRawReadmeUrl(repoUrl, branch = "main") {
     throw new Error("Ogiltig github URL");
   }
 }
+
+export function sortByTodayDate(arr, key) {
+  const today = new Date();
+  return [...arr].sort((a, b) => {
+    const dateA = new Date(a[key]);
+    const dateB = new Date(b[key]);
+
+    return Math.abs(dateA - today) - Math.abs(dateB - today);
+  });
+}
