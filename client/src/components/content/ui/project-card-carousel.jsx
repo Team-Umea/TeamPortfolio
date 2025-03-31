@@ -11,6 +11,9 @@ import React, {
 //   IconArrowNarrowRight,
 //   IconX,
 // } from "@tabler/icons-react";
+
+import { IoIosArrowDropleftCircle } from "react-icons/io";
+import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { cn } from "../../../lib/utils"
 import { AnimatePresence, motion } from "motion/react";
 import { Img } from "react-image";
@@ -92,13 +95,15 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
             ))}
           </div>
         </div>
-        <div className="flex justify-end gap-2 mr-10">
-          <button className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50" onClick={scrollLeft} disabled={!canScrollLeft}>
-            {/* <IconArrowNarrowLeft className="h-6 w-6 text-gray-500" /> */}
-          </button>
-          <button className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50" onClick={scrollRight} disabled={!canScrollRight}>
-            {/* <IconArrowNarrowRight className="h-6 w-6 text-gray-500" /> */}
-          </button>
+        <div className="flex justify-end mx-auto items-end pr-10 max-w-[1200px] w-[90%]">
+            <div className="flex gap-2">
+                <button className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50" onClick={scrollLeft} disabled={!canScrollLeft}>
+                    <IoIosArrowDropleftCircle size={50} className="h-12 w-12 cursor-pointer text-gray-500" />
+                </button>
+                <button className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50" onClick={scrollRight} disabled={!canScrollRight}>
+                    <IoIosArrowDroprightCircle size={50} className="h-12 w-12 cursor-pointer text-gray-500" />
+                </button>
+            </div>
         </div>
       </div>
     </CarouselContext.Provider>
@@ -110,7 +115,7 @@ export const BlurImage = ({ height, width, src, className, alt, ...rest }) => {
 
   return (
     <Img
-      className={cn('h-full',
+      className={cn('h-full w-full opacity-50',
         isLoading ? "blur-sm" : "blur-0",
         className
       )}
@@ -156,19 +161,44 @@ export const Card = ({ card, index, layout = false }) => {
               <motion.p layoutId={layout ? `title-${card.title}` : undefined} className="text-2xl md:text-5xl font-semibold text-neutral-700 mt-4 dark:text-white">
                 {card.title}
               </motion.p>
-              <div className="py-10">{card.content}</div>
+              <motion.p layoutId={layout ? `title-${card.description}` : undefined} className="text-2xl md:text-5xl font-semibold text-neutral-700 mt-4 dark:text-white">
+                {card.description}
+              </motion.p>
             </motion.div>
           </div>
         )}
       </AnimatePresence>
-      <motion.button layoutId={layout ? `card-${card.title}` : undefined} className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10">
-        <div className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none" />
-        <div className="relative z-40 p-8">
-          <motion.p className="text-white text-sm md:text-base font-medium font-sans text-left">{card.category}</motion.p>
-          <motion.p className="text-white text-xl md:text-3xl font-semibold max-w-xs text-left [text-wrap:balance] font-sans mt-2">{card.title}</motion.p>
-        </div>
-        <BlurImage src={card.src} alt={card.title} fill className="object-cover absolute z-10 inset-0" />
-      </motion.button>
+      <motion.button 
+  layoutId={layout ? `card-${card.title}` : undefined} 
+  className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col relative z-10"
+>
+  {/* Gradient overlay */}
+  <div className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none" />
+
+  {/* Content wrapper */}
+  <div className="relative z-40 p-8 flex flex-col h-full justify-between">
+    <div>
+      <motion.p className="text-white  text-sm md:text-base font-medium font-sans text-left">
+        {card.category}
+      </motion.p>
+      <motion.p className="text-white text-xl md:text-3xl font-semibold max-w-xs text-left [text-wrap:balance] font-sans mt-2">
+        {card.title}
+      </motion.p>
+    </div>
+
+    <motion.p className="text-white text-sm md:text-base font-medium font-sans text-left mt-auto">
+      {card.description}
+    </motion.p>
+  </div>
+
+  {/* Background image */}
+  <BlurImage 
+    src={card.src} 
+    alt={card.title} 
+    fill 
+    className="object-cover absolute z-10 inset-0" 
+  />
+</motion.button>
     </>
   );
 };
