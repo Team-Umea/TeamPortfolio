@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
 const SubscribeModel = require("../models/SubscribeModel");
+const { emailLayout } = require("../utils/email");
 
 require("dotenv").config();
 
@@ -16,6 +17,7 @@ const sendEmail = async (recipientEmail, subject, text) => {
     from: process.env.EMAIL,
     to: recipientEmail,
     subject: subject,
+    html: emailLayout(subject, text),
     text: text,
   };
 
