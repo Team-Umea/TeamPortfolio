@@ -14,18 +14,18 @@ export default function Hero() {
           delay={250}
           animateBy="words"
           direction="top"
-          className="text-5xl sm:text-7xl font-bold mb-8"
+          className="text-5xl sm:text-7xl font-bold mb-2 md:mb-8!"
         />
         <BlurText
           text="Möt framtidens utvecklare"
           delay={250}
           animateBy="words"
           direction="top"
-          className="text-2xl font-bold mb-8"
+          className="text-2xl font-bold mb-2 md:mb-8!"
         />
         <Link to="/events">
-          <ShinyButton className="bg-blue-700/50 hover:bg-blue-700/30 transition-all duration-300 ease md:px-8 md:py-3 cursor-pointer">
-            <span className="text-white">Kommande evenemang</span>
+          <ShinyButton className="bg-blue-700/50 hover:bg-blue-700/30 transition-all duration-300 ease px-4 md:px-8! md:py-3 w-fit cursor-pointer">
+            <span className="text-white whitespace-nowrap">Kommande evenemang</span>
           </ShinyButton>
         </Link>
       </div>

@@ -1,14 +1,12 @@
-import React from "react";
-import useContentStore from "../../../hooks/useContentStore";
-import ProfileList from "../profile/ProfileList";
+import AnimatedTestimonials from "../ui/AnimatedTestimonials";
 
 export default function ProfileSection() {
-  const { profiles } = useContentStore();
-
   return (
-    <div className="flex flex-col items-center gap-y-16 w-full p-8">
-      <h1 className="w-full text-3xl md:text-4xl font-semibold">Team medlemmar </h1>
-      <ProfileList profiles={profiles} />
+    <div>
+      <h2 className="text-3xl md:text-4xl! font-semibold m-auto text-center mt-8">
+        Team Medlemmar
+      </h2>
+      <AnimatedTestimonials />
     </div>
   );
 }
