@@ -38,7 +38,17 @@ export const projectSchema = z
           message: "Ange minst 100 tecken och max 2000 tecken tillåtet",
         }
       ),
-    colleagues: z.array(z.object({ _id: z.string(), name: z.string() })).optional(),
+    colleagues: z
+      .union([
+        z.array(
+          z.object({
+            _id: z.string(),
+            name: z.string(),
+          })
+        ),
+        z.array(z.string()),
+      ])
+      .optional(),
     techStack: z
       .array(z.string())
       .min(3, "Minst 3 teknologier krävs")
@@ -53,6 +63,30 @@ export const projectSchema = z
           path: ["techStack"],
         }
       ),
+    images: z
+      .preprocess(
+        (val) => {
+          if (val instanceof FileList) return Array.from(val);
+          if (!val) return [];
+          if (Array.isArray(val)) {
+            return val.filter((item) => item);
+          }
+          return [];
+        },
+        z
+          .array(
+            z.union([
+              z
+                .instanceof(File, { message: "En bild måste laddas upp" })
+                .refine((file) => file.type === "image/webp", {
+                  message: "Endast WEBP-format är tillåtet",
+                }),
+              z.string().refine(validateUrl, { message: "Ogiltig bild-url" }),
+            ])
+          )
+          .optional()
+      )
+      .default([]),
   })
   .refine(
     (data) => {

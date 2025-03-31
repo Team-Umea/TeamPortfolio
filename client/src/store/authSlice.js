@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { AUTHECHO_ENDPOINTS } from "../api/endpoints";
+import { PROFILE_KEY } from "./profileSlice";
 
 const IS_AUTHENTICATED_KEY = "IS_AUTHENTICATED_KEY";
 const IS_ADMIN_KEY = "IS_ADMIN_KEY";
@@ -63,6 +64,7 @@ const authSlice = createSlice({
       sessionStorage.removeItem(USERNAME_KEY);
       sessionStorage.removeItem(EMAIL_KEY);
       sessionStorage.removeItem(USER_ID_KEY);
+      sessionStorage.removeItem(PROFILE_KEY);
     },
   },
   extraReducers: (builder) => {

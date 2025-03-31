@@ -42,3 +42,7 @@ export const AUTHECHO_ENDPOINTS = {
   VERIFYSESSION: `${SERVER_URL}/authecho/app/verifysession`,
   TRACKACTIVITY: `${SERVER_URL}/authecho/app/activity`,
 };
+
+export const USER_ENDPOINTS = {
+  SUBSCRIBE: `${SERVER_URL}/api/user/subscribe`,
+};

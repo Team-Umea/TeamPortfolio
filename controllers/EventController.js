@@ -3,6 +3,7 @@ const cloudinary = require("../config/cloudinary");
 const { uploadImageToCloudinary } = require("../services/imageService");
 const EventModel = require("../models/EventModel");
 const EnrollmentModel = require("../models/EnrollmentModel");
+const { notifyAllSubscribers } = require("../services/emailService");
 
 require("dotenv").config();
 
@@ -21,6 +22,11 @@ const addEvent = async (req, res) => {
 
     const { __v, ...eventDetails } = newEvent.toObject();
     const event = { ...eventDetails, image: image.url };
+
+    const emailSubject = "Team Umeå";
+    const emailText = `Nu har vi lagt upp ett nytt evenemang på vår sida! Läs mer om evenemanget: "${eventData.event}" på teamumea.se.`;
+
+    await notifyAllSubscribers(emailSubject, emailText);
 
     res.status(201).json({ message: "Evenemang har lagts till", event, success: true });
   } catch (error) {
@@ -104,6 +110,16 @@ const deleteEvent = async (req, res) => {
   const { eventid: eventID } = req.query;
 
   try {
+    const existingEvent = await EventModel.findById(eventID);
+
+    if (!existingEvent) {
+      return res.status(404).json({ message: "Evenemang kunde inte hittas", success: false });
+    }
+
+    if (existingEvent.image) {
+      await cloudinary.uploader.destroy(existingEvent.image.id);
+    }
+
     await EventModel.deleteOne({ _id: eventID });
 
     res.status(204).json({ message: "Evenemang har raderats", success: true });

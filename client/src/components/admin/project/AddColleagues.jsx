@@ -6,15 +6,16 @@ import { useFormContext } from "react-hook-form";
 import useProfileStore from "../../../hooks/useProfileStore";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { useQuery } from "@tanstack/react-query";
-import { getProfileAlis } from "../../../api/admin/profile";
+import { getProfileAlias } from "../../../api/admin/profile";
 import { useEffect } from "react";
 import PrimaryBtn from "../../btn/PrimaryBtn";
 
 export default function AddColleagues() {
   const { profile } = useProfileStore();
   const [availableColleagues, setAvailableColleagues] = useState([]);
+  const [hasSetColleagues, setHasSetColleagues] = useState(false);
   const { data: profileAlias = [] } = useQuery({
-    queryFn: getProfileAlis,
+    queryFn: getProfileAlias,
     queryKey: ["profileAlias"],
   });
 
@@ -33,15 +34,18 @@ export default function AddColleagues() {
       const hasMappedNameId = !selectedColleagues.some((coll) => typeof coll === "string");
       const isEmpty = availableColleagues.length === 0;
 
-      if (
+      const allowSet =
+        !hasSetColleagues ||
         (JSON.stringify(filteredProfileAlias) !== JSON.stringify(availableColleagues) &&
           !hasMappedNameId) ||
-        (!hasMappedNameId && isEmpty)
-      ) {
+        (!hasMappedNameId && isEmpty);
+
+      if (allowSet) {
         setAvailableColleagues(filteredProfileAlias);
 
         const filteredColleagues = selectedColleagues.filter((coll) => coll !== profile.name);
         setValue("colleagues", filteredColleagues);
+        setHasSetColleagues(true);
       }
     }
   }, [profileAlias, profile.name]);
@@ -83,7 +87,7 @@ export default function AddColleagues() {
 
   return (
     <div className="flex flex-col gap-y-2 w-full my-10">
-      <div className="flex flex-col md:flex-row justify-between gap-y-4 gap-x-8">
+      <div className="flex flex-col md:flex-row! justify-between gap-y-4 gap-x-8">
         <p className="text-lg text-slate-600 font-medium">
           Lägg till kollegor som har bidragit till projektet
         </p>
@@ -95,12 +99,12 @@ export default function AddColleagues() {
         className={`flex justify-between gap-x-12 mb-4 ${
           colleaguesErrorMessage ? "opacity-100" : "opacity-0"
         }`}>
-        <p className="text text-red-500 font-bold">{colleaguesErrorMessage}</p>
+        <p className="text text-red-500! font-bold">{colleaguesErrorMessage}</p>
         <HiOutlineExclamationCircle size={24} color="red" />
       </div>
       <div
         className={`flex flex-col w-full p-4 border-2 rounded-md ${
-          colleaguesErrorMessage ? "border-red-500" : "border-transparent"
+          colleaguesErrorMessage ? "border-red-500!" : "border-transparent"
         }`}>
         <SearchSuggestor
           data={availableUserNames}

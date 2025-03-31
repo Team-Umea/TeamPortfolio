@@ -66,12 +66,12 @@ export default function AddTech() {
     <div className="flex flex-col gap-y-6 w-full">
       <div
         className={`flex justify-between gap-x-12 ${errorMessage ? "opacity-100" : "opacity-0"}`}>
-        <p className="text text-red-500 font-bold">{errorMessage}</p>
+        <p className="text text-red-500! font-bold">{errorMessage}</p>
         <HiOutlineExclamationCircle size={24} color="red" />
       </div>
       <div
-        className={`flex flex-col md:flex-row justify-between gap-y-4 gap-x-8 p-4 border-2 rounded-md ${
-          errorMessage ? "border-red-500" : "border-transparent"
+        className={`flex flex-col md:flex-row! justify-between gap-y-4 gap-x-8 p-4 border-2 rounded-md ${
+          errorMessage ? "border-red-500!" : "border-transparent"
         }`}>
         <label className="text-lg text-slate-600 font-medium">Visa projektets tech-stack</label>
         <div className="w-fit">

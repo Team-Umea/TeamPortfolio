@@ -11,9 +11,8 @@ import {
   IconArrowNarrowRight,
   IconX,
 } from "@tabler/icons-react";
-import { cn } from "../../lib/utils"
+import { cn } from "../../../lib/utils"
 import { AnimatePresence, motion } from "motion/react";
-import { useOutsideClick } from "../../hooks/use-outside-click";
 import { Img } from "react-image";
 
 export const CarouselContext = createContext({
@@ -111,8 +110,7 @@ export const BlurImage = ({ height, width, src, className, alt, ...rest }) => {
 
   return (
     <Img
-      className={cn(
-        "transition duration-300",
+      className={cn('h-full',
         isLoading ? "blur-sm" : "blur-0",
         className
       )}
@@ -134,30 +132,6 @@ export const Card = ({ card, index, layout = false }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
   const { onCardClose, currentIndex } = useContext(CarouselContext);
-
-  useEffect(() => {
-    const onKeyDown = (event) => {
-      if (event.key === "Escape") {
-        handleClose();
-      }
-    };
-
-    document.body.style.overflow = open ? "hidden" : "auto";
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open]);
-
-  useOutsideClick(containerRef, () => handleClose());
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    onCardClose(index);
-  };
 
   return (
     <>
@@ -187,7 +161,7 @@ export const Card = ({ card, index, layout = false }) => {
           </div>
         )}
       </AnimatePresence>
-      <motion.button layoutId={layout ? `card-${card.title}` : undefined} onClick={handleOpen} className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10">
+      <motion.button layoutId={layout ? `card-${card.title}` : undefined} className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10">
         <div className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none" />
         <div className="relative z-40 p-8">
           <motion.p className="text-white text-sm md:text-base font-medium font-sans text-left">{card.category}</motion.p>

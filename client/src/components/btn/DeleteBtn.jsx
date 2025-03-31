@@ -13,7 +13,7 @@ export default function DeleteBtn({ onClick, iconSize = 24 }) {
   return (
     <button
       onClick={handleClick}
-      className="px-4 py-1 shadow-lg rounded-full bg-red-700 transition-all duration-300 ease hover:opacity-70 shadow-xl cursor-pointer">
+      className="px-4 py-1 shadow-lg rounded-full bg-red-700! transition-all duration-300 ease hover:opacity-70 shadow-xl cursor-pointer">
       {hasConfirmed ? (
         <IoMdCheckmark size={iconSize} color="white" />
       ) : (

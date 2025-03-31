@@ -55,7 +55,7 @@ export const getProfile = async (userID) => {
   }
 };
 
-export const getProfileAlis = async () => {
+export const getProfileAlias = async () => {
   try {
     const response = await axios.get(PROFILE_ENDPOINTS.GETPROFILEALIAS);
     return response.data.profileAlias;
