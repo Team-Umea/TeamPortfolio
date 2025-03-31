@@ -2,6 +2,7 @@ const ProjectModel = require("../models/ProjectModel");
 const cloudinary = require("../config/cloudinary");
 const { uploadImageToCloudinary } = require("../services/imageService");
 const { getColleaguesNames } = require("../services/projectService");
+const { notifyAllSubscribers } = require("../services/emailService");
 
 const addProject = async (req, res) => {
   try {
@@ -24,6 +25,11 @@ const addProject = async (req, res) => {
     await newProject.save();
 
     const { __v, ...project } = newProject.toObject();
+
+    const emailSubject = "Team Umeå";
+    const emailText = `Vi har publicerat ett nytt projekt på vår sida! Kolla in vårt senaste projekt: "${projectData.project}".`;
+
+    await notifyAllSubscribers(emailSubject, emailText);
 
     res.status(201).json({ message: "Projekt har lagts till", project, success: true });
   } catch (error) {

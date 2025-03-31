@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const SubscribeModel = require("../models/SubscribeModel");
 
 require("dotenv").config();
 
@@ -25,6 +26,22 @@ const sendEmail = async (recipientEmail, subject, text) => {
   }
 };
 
+const notifyAllSubscribers = async (subject, text) => {
+  try {
+    const subscribers = await SubscribeModel.find();
+
+    const emails = subscribers.map((sub) => sub.email);
+
+    const notify = emails.map((email) => sendEmail(email, subject, text));
+
+    await Promise.all(notify);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Serverfel", success: false });
+  }
+};
+
 module.exports = {
   sendEmail,
+  notifyAllSubscribers,
 };
