@@ -79,7 +79,7 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
           onScroll={checkScrollability}
         >
           <div className="absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l"></div>
-          <div className="flex flex-row justify-start gap-4 pl-4 max-w-7xl mx-auto">
+          <div className="flex flex-row gap-4 max-w-7xl lg:pl-96">
             {items.map((item, index) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
