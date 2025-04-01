@@ -5,14 +5,19 @@ import { LuCodeXml } from "react-icons/lu";
 
 export default function WorkflowBanner() {
   return (
-    <div className="flex flex-col items-center w-[90%] max-w-[1200px] my-24 pt-8 pb-32 rounded-lg bg-black">
+    <div className="flex flex-col items-center w-[90%] max-w-[1200px] my-24 pt-8 pb-32 rounded-lg bg-slate-800">
       <p className="text-3xl lg:text-4xl md:mb-12 text-gray-300 text-center font-medium">
         The Team Umeå Workflow
       </p>
       <div className="hidden md:flex! relative justify-between mt-16 mx-8 w-full">
         <div className="relative flex flex-col items-center z-2">
-          <p className="absolute top-[-27px] text-lg text-gray-400 font-bold">1</p>
-          <HiOutlineLightBulb size={44} className="p-2 rounded-full bg-black" />
+          <p className="absolute top-[-27px] text-lg text-gray-400 font-bold">
+            1
+          </p>
+          <HiOutlineLightBulb
+            size={44}
+            className="p-2 rounded-full bg-slate-950"
+          />
           <div className="flex flex-col items-center absolute top-[40px] text-lg text-gray-400 font-bold">
             <p>Kreativitet</p>
             <p>&</p>
@@ -20,8 +25,10 @@ export default function WorkflowBanner() {
           </div>
         </div>
         <div className="relative flex flex-col items-center z-2">
-          <p className="absolute top-[-27px] text-lg text-gray-400 font-bold">2</p>
-          <PiUsersThree size={44} className="p-2 rounded-full bg-black" />
+          <p className="absolute top-[-27px] text-lg text-gray-400 font-bold">
+            2
+          </p>
+          <PiUsersThree size={44} className="p-2 rounded-full bg-slate-950" />
           <div className="flex flex-col items-center absolute top-[40px] text-lg text-gray-400 font-bold">
             <p>Sammarbete</p>
             <p>&</p>
@@ -29,8 +36,10 @@ export default function WorkflowBanner() {
           </div>
         </div>
         <div className="relative flex flex-col items-center z-2">
-          <p className="absolute top-[-27px] text-lg text-gray-400 font-bold">3</p>
-          <LuCodeXml size={44} className="p-2 rounded-full bg-black" />
+          <p className="absolute top-[-27px] text-lg text-gray-400 font-bold">
+            3
+          </p>
+          <LuCodeXml size={44} className="p-2 rounded-full bg-slate-950" />
           <div className="flex flex-col items-center absolute top-[40px] text-lg text-gray-400 font-bold">
             <p>Kod</p>
             <p>&</p>
@@ -38,8 +47,10 @@ export default function WorkflowBanner() {
           </div>
         </div>
         <div className="relative flex flex-col items-center z-2">
-          <p className="absolute top-[-27px] text-lg text-gray-400 font-bold">4</p>
-          <MdDone size={44} className="p-2 rounded-full bg-black" />
+          <p className="absolute top-[-27px] text-lg text-gray-400 font-bold">
+            4
+          </p>
+          <MdDone size={44} className="p-2 rounded-full bg-slate-950" />
           <div className="flex flex-col items-center absolute top-[40px] text-lg text-gray-400 font-bold">
             <p>Deadline</p>
             <p>&</p>
@@ -51,32 +62,35 @@ export default function WorkflowBanner() {
 
       <div className="flex md:hidden! relative flex-col gap-y-54 mt-16 mx-8 w-full">
         <div className="relative flex flex-col items-center z-2">
-          <HiOutlineLightBulb size={44} className="p-2 rounded-full bg-black" />
-          <div className="flex flex-col items-center absolute top-[40px] text-lg text-gray-400 font-bold bg-black">
+          <HiOutlineLightBulb
+            size={44}
+            className="p-2 rounded-full bg-slate-950"
+          />
+          <div className="flex flex-col items-center absolute top-[40px] text-lg text-gray-400 font-bold bg-slate-800">
             <p>Kreativitet</p>
             <p>&</p>
             <p>AI</p>
           </div>
         </div>
         <div className="relative flex flex-col items-center z-2">
-          <PiUsersThree size={44} className="p-2 rounded-full bg-black" />
-          <div className="flex flex-col items-center absolute top-[40px] text-lg text-gray-400 font-bold bg-black">
+          <PiUsersThree size={44} className="p-2 rounded-full bg-slate-950" />
+          <div className="flex flex-col items-center absolute top-[40px] text-lg text-gray-400 font-bold bg-slate-800">
             <p>Sammarbete</p>
             <p>&</p>
             <p>Agil/Scrum</p>
           </div>
         </div>
         <div className="relative flex flex-col items-center z-2">
-          <LuCodeXml size={44} className="p-2 rounded-full bg-black" />
-          <div className="flex flex-col items-center absolute top-[40px] text-lg text-gray-400 font-bold bg-black">
+          <LuCodeXml size={44} className="p-2 rounded-full bg-slate-950" />
+          <div className="flex flex-col items-center absolute top-[40px] text-lg text-gray-400 font-bold bg-slate-800">
             <p>Kod</p>
             <p>&</p>
             <p>Versionshantering</p>
           </div>
         </div>
         <div className="relative flex flex-col items-center z-2">
-          <MdDone size={44} className="p-2 rounded-full bg-black" />
-          <div className="flex flex-col items-center absolute top-[40px] text-lg text-gray-400 font-bold bg-black">
+          <MdDone size={44} className="p-2 rounded-full bg-slate-950" />
+          <div className="flex flex-col items-center absolute top-[40px] text-lg text-gray-400 font-bold bg-slate-800">
             <p>Deadline</p>
             <p>&</p>
             <p>Leverans</p>
