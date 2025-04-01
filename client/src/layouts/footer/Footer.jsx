@@ -66,7 +66,7 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="text-center mt-12 sm:mt-6 text-md text-gray-600">
+        <div className="text-center mt-18 sm:mt-6 text-gray-500">
           &copy; {new Date().getFullYear()} Copyright Team Umeå
         </div>
       </div>
