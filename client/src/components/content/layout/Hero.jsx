@@ -5,7 +5,7 @@ import { ShinyButton } from "@/components/magicui/shiny-button";
 export default function Hero() {
   return (
     <section
-      className="relative flex overflow-hidden w-full h-auto min-h-60 sm:min-h-100 xl:min-h-screen justify-center items-center text-center bg-cover bg-center"
+      className="relative flex overflow-hidden w-full h-auto min-h-90 sm:min-h-100 xl:min-h-screen justify-center items-center text-center bg-cover bg-center"
       style={{ backgroundImage: "url('/images/heroportfolio.webp')" }}
     >
       <div className="absolute inset-0 bg-black/50" />
