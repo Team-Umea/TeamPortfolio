@@ -1,12 +1,8 @@
-"use client";
-import { Img } from "react-image";
 import React from "react";
 import { Carousel, Card } from "../ui/project-card-carousel";
 
 export function ProjectCardCarousel() {
-  const cards = data.map((card, index) => (
-    <Card key={card.src} card={card} index={index} />
-  ));
+  const cards = data.map((card, index) => <Card key={card.src} card={card} index={index} />);
 
   return (
     <div className="w-full h-full py-20">
