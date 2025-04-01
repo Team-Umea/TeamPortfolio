@@ -161,17 +161,15 @@ export default function AnimatedTestimonials() {
           </motion.div>
         </div>
       </div>
-      <div className="flex gap-4 pt-12 md:pt-0">
-        <button
-          onClick={handlePrev}
-          className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800">
-          <IoIosArrowDropleftCircle size={38} className="cursor-pointer" />
-        </button>
-        <button
-          onClick={handleNext}
-          className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800">
-          <IoIosArrowDroprightCircle size={38} className="cursor-pointer" />
-        </button>
+      <div className="flex justify-end mx-auto items-end pr-10 max-w-[1200px] w-[90%]">
+          <div className="flex gap-2">
+              <button className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50" onClick={handlePrev}>
+                  <IoIosArrowDropleftCircle size={50} className="h-12 w-12 cursor-pointer text-gray-500" />
+              </button>
+              <button className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50" onClick={handleNext}>
+                  <IoIosArrowDroprightCircle size={50} className="h-12 w-12 cursor-pointer text-gray-500" />
+              </button>
+          </div>
       </div>
     </div>
   );

@@ -5,12 +5,7 @@ import React, {
   createContext,
   useContext,
 } from "react";
-// import {
-//   IconArrowNarrowLeft,
-//   IconArrowNarrowRight,
-//   IconX,
-// } from "@tabler/icons-react";
-
+import { useNavigate } from "react-router";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { cn } from "../../../lib/utils"
@@ -18,7 +13,6 @@ import { AnimatePresence, motion } from "motion/react";
 import { Img } from "react-image";
 
 export const CarouselContext = createContext({
-  onCardClose: () => {},
   currentIndex: 0,
 });
 
@@ -81,7 +75,7 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
           onScroll={checkScrollability}
         >
           <div className="absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l"></div>
-          <div className="flex flex-row gap-4 max-w-7xl lg:pl-96">
+          <div className="flex flex-row gap-4 max-w-7xl 2xl:pl-96">
             {items.map((item, index) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -134,6 +128,7 @@ export const BlurImage = ({ height, width, src, className, alt, ...rest }) => {
 
 export const Card = ({ card, index, layout = false }) => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const containerRef = useRef(null);
   const { onCardClose, currentIndex } = useContext(CarouselContext);
 
@@ -151,9 +146,6 @@ export const Card = ({ card, index, layout = false }) => {
               layoutId={layout ? `card-${card.title}` : undefined}
               className="max-w-5xl mx-auto bg-white dark:bg-neutral-900 h-fit z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
             >
-              <button className="sticky top-4 h-8 w-8 right-0 ml-auto bg-black dark:bg-white rounded-full flex items-center justify-center" onClick={handleClose}>
-                {/* <IconX className="h-6 w-6 text-neutral-100 dark:text-neutral-900" /> */}
-              </button>
               <motion.p layoutId={layout ? `category-${card.title}` : undefined} className="text-base font-medium text-black dark:text-white">
                 {card.category}
               </motion.p>
@@ -168,9 +160,12 @@ export const Card = ({ card, index, layout = false }) => {
         )}
       </AnimatePresence>
       <motion.button 
-  layoutId={layout ? `card-${card.title}` : undefined} 
-  className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col relative z-10"
->
+        layoutId={layout ? `card-${card.title}` : undefined} 
+        className="test rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col relative z-10 cursor-pointer
+        hover:bg-gradient-to-r from-blue-600 to-fuchsia-700 transition-all duration-300 ease-in-out focus:outline-2 focus:ring-3 focus:outline-white
+        focus:bg-gradient-to-r"
+        onClick={() => navigate('/projects/'+card.id)}
+      >
   {/* Gradient overlay */}
   <div className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none" />
 
@@ -185,7 +180,7 @@ export const Card = ({ card, index, layout = false }) => {
       </motion.p>
     </div>
 
-    <motion.p className="text-white text-sm md:text-base font-medium font-sans text-left mt-auto">
+    <motion.p className="text-white hidden text-sm md:block md:text-base font-medium font-sans text-left mt-auto">
       {card.description}
     </motion.p>
   </div>

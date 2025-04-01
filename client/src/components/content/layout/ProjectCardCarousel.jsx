@@ -6,9 +6,6 @@ import useContentStore from "@/hooks/useContentStore";
 
 export function ProjectCardCarousel() {
   const {projects} = useContentStore();
-  // const cards = data.map((card, index) => (
-  //   <Card key={card.src} card={card} index={index} />
-  // ));
 
   const cards = projects.map((project, index) => (
     <Card
@@ -17,7 +14,8 @@ export function ProjectCardCarousel() {
         category: project.techStack?.join(", ") || "Unknown", // Convert tech stack to a string
         title: project.project,
         src: project.images?.[1]?.url || project.images?.[0]?.url, // Fallback image
-        description: project.description
+        description: project.description,
+        id: project._id
       }}
       index={index}
     />
