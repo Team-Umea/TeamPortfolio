@@ -27,19 +27,9 @@ export default function ProfileForm() {
 
   const {
     setError,
-    clearErrors,
-    watch,
     formState: { errors },
     handleSubmit,
   } = formMethods;
-
-  useEffect(() => {
-    const subscription = watch(() => {
-      clearErrors("root");
-    });
-
-    return () => subscription.unsubscribe();
-  }, [clearErrors]);
 
   const createProfileMuation = useMutation({
     mutationFn: createProfile,
@@ -98,7 +88,7 @@ export default function ProfileForm() {
         <form
           onSubmit={handleSubmit(onSubmit, onError)}
           className="flex flex-col items-center gap-y-6 m-auto w-[90%]">
-          <div className="flex flex-col-reverse md:flex-row justify-between gap-x-24 w-full">
+          <div className="flex flex-col-reverse md:flex-row! justify-between gap-x-24 w-full">
             <ProfileDetailsForm isLoading={isLoading} />
             <div className="mx-auto w-full md:w-[600px] max-w-[400px] h-[500px]">
               <ImageInput name="profileImage" imagePlaceHolder={profileImage} />

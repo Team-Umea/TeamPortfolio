@@ -1,9 +1,12 @@
 import axios from "axios";
 import { PROJECT_ENDPOINTS } from "../endpoints";
+import { appendToFormData } from "../../utils/helpers";
 
 export const addProject = async (project) => {
+  const formData = appendToFormData(project);
+
   try {
-    return await axios.post(PROJECT_ENDPOINTS.ADDPROJECT, project);
+    return await axios.post(PROJECT_ENDPOINTS.ADDPROJECT, formData);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(
@@ -18,8 +21,10 @@ export const addProject = async (project) => {
 };
 
 export const editProject = async (project) => {
+  const formData = appendToFormData(project);
+
   try {
-    return await axios.put(PROJECT_ENDPOINTS.EDITPROJECT, project);
+    return await axios.put(PROJECT_ENDPOINTS.EDITPROJECT, formData);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(

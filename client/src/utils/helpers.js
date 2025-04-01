@@ -1,12 +1,17 @@
 export function appendToFormData(dataObject) {
   const formData = new FormData();
 
-  Object.keys(dataObject).forEach((key) => {
-    const value = dataObject[key];
-    if (value instanceof File) {
-      formData.append(key, value);
+  const filteredEntries = Object.entries(dataObject).filter(
+    ([, value]) => value !== null && value !== undefined
+  );
+
+  filteredEntries.forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      value.forEach((item) => {
+        formData.append(key, item);
+      });
     } else {
-      formData.append(key, String(value));
+      formData.append(key, value);
     }
   });
 
@@ -39,4 +44,14 @@ export function getRawReadmeUrl(repoUrl, branch = "main") {
   } else {
     throw new Error("Ogiltig github URL");
   }
+}
+
+export function sortByTodayDate(arr, key) {
+  const today = new Date();
+  return [...arr].sort((a, b) => {
+    const dateA = new Date(a[key]);
+    const dateB = new Date(b[key]);
+
+    return Math.abs(dateA - today) - Math.abs(dateB - today);
+  });
 }

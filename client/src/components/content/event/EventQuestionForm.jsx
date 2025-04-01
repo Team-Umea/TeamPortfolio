@@ -77,27 +77,36 @@ export default function EventQuestionForm() {
       <FormProvider {...formMethods}>
         <form
           onSubmit={handleSubmit(onSubmit, onError)}
-          className="flex flex-col items-center gap-y-32 m-auto w-[90%] max-w-[900px]">
-          <Controller
-            name="question"
-            control={control}
-            render={({ field }) => (
-              <FormInput
-                label="Fråga eller önskemål"
-                type="textarea"
-                value={field.value}
-                minLength={20}
-                maxLength={400}
-                placeholder="Ange eventuella frågor eller önskemål inför evenemanget"
-                isRequired={true}
-                errorMessage={translateDefaultErrorMessage("question")}
-                onChange={field.onChange}
-              />
-            )}
-          />
-          <div className="w-fit m-auto mt-8">
-            <PrimaryBtn type="submit">
-              <span className="flex justify-center items-center gap-x-2 mx-4">
+          className="flex flex-col mx-auto w-[90%] max-w-[600px]">
+          <h2 className="text-2xl font-serif font-bold text-gray-400 mb-4 text-left ">
+            Ställ en fråga eller lämna ett önskemål
+          </h2>
+          <div className="mt-[-50px] mb-2 ">
+            <Controller
+              name="question"
+              control={control}
+              render={({ field }) => (
+                <FormInput
+                  label="Fråga eller önskemål"
+                  type="textarea"
+                  value={field.value}
+                  minLength={20}
+                  maxLength={400}
+                  placeholder="Skriv din fråga eller ditt önskemål här..."
+                  isRequired={true}
+                  errorMessage={translateDefaultErrorMessage("question")}
+                  onChange={field.onChange}
+                  className="w-full border-gray-300 rounded-lg shadow-sm  "
+                />
+              )}
+            />
+          </div>
+
+          {hasRootError && <p className="text-red-600 text-center">{hasRootError}</p>}
+
+          <div className="w-full flex justify-center mt-12 px-8">
+            <PrimaryBtn type="submit" className="w-full max-w-[200px] py-3">
+              <span className="flex justify-center items-center gap-x-2">
                 <span className="text-lg">Skicka</span>
                 {isLoading && <PuffLoader size={28} color="white" />}
               </span>
@@ -105,6 +114,7 @@ export default function EventQuestionForm() {
           </div>
         </form>
       </FormProvider>
+
       <Toast
         message={toastMessage}
         show={!!toastMessage}

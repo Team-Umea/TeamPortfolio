@@ -2,16 +2,17 @@ import { Controller, FormProvider, useForm } from "react-hook-form";
 import PrimaryBtn from "../../btn/PrimaryBtn";
 import { PuffLoader } from "react-spinners";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useScrollTo from "../../../hooks/useScrollTo";
 import { enrollUser } from "../../../api/admin/event";
 import FormInput from "../../form/FormInput";
 import Toast from "../../common/Toast";
-import { useParams } from "react-router";
+import { Navigate, useParams } from "react-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { enrollmentSchema } from "../../../validations/content/enroll";
-
+import { useNavigate } from "react-router";
 export default function EnrollForm() {
+  const navigate = useNavigate();
   const { eventid: eventID } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -45,6 +46,7 @@ export default function EnrollForm() {
     onSuccess: (data) => {
       setToastMessage(data.message);
       reset();
+      navigate("/events");
     },
     onError: (error) => {
       setError("root", {
@@ -66,7 +68,8 @@ export default function EnrollForm() {
   };
 
   const translateDefaultErrorMessage = (messageKey) => {
-    const message = errors && errors[messageKey] ? errors[messageKey].message : undefined;
+    const message =
+      errors && errors[messageKey] ? errors[messageKey].message : undefined;
     return message === "Required" ? "Fältet får inte vara tomt" : message;
   };
 
@@ -77,7 +80,8 @@ export default function EnrollForm() {
       <FormProvider {...formMethods}>
         <form
           onSubmit={handleSubmit(onSubmit, onError)}
-          className="flex flex-col items-center gap-y-32 m-auto w-[90%] max-w-[900px]">
+          className="flex flex-col items-center gap-y-32 m-auto w-[90%] max-w-[900px]"
+        >
           <Controller
             name="name"
             control={control}

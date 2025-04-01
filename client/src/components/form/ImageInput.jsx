@@ -31,8 +31,8 @@ export default function ImageInput({ name, imagePlaceHolder }) {
         <p className="text text-red-500 font-bold">{errorMessage}</p>
         <HiOutlineExclamationCircle size={24} color="red" />
       </div>
-      <label htmlFor="profileImage" className="cursor-pointer">
-        <div className="flex justify-center items-center p-5 h-full border-2 border-gray-300">
+      <label htmlFor={name} className="cursor-pointer">
+        <div className="flex justify-center items-center p-5 h-full border-2 border-gray-300 min-h-[300px]">
           {imagePreview ? (
             <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
           ) : (
@@ -45,7 +45,7 @@ export default function ImageInput({ name, imagePlaceHolder }) {
       </label>
       <input
         type="file"
-        id="profileImage"
+        id={name}
         accept="image/webp"
         className="hidden"
         {...register(name)}

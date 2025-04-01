@@ -40,7 +40,7 @@ export default function ReadmeViewer({ githubUrl, setError }) {
 
   return (
     <div className="mt-4">
-      <div className="markdown-body bg-white! text-black!">
+      <div className="markdown-body bg-black! text-white!">
         <ReactMarkdown remarkPlugins={[gfm]}>{readmePreview}</ReactMarkdown>
       </div>
     </div>

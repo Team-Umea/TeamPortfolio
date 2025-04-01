@@ -28,9 +28,33 @@ const getCurrentDate = () => {
   return `${year}-${month}-${day}`;
 };
 
+const processFormData = (projectData) => {
+  return Object.keys(projectData).reduce((acc, key) => {
+    const value = projectData[key];
+
+    if (Array.isArray(value)) {
+      acc[key] = value.map((item) => cleanValue(item));
+    } else {
+      acc[key] = cleanValue(value);
+    }
+
+    return acc;
+  }, {});
+};
+
+const cleanValue = (value) => {
+  const cleanedValue = typeof value === "string" ? value.replace(/^'|'$/g, "") : value;
+
+  if (cleanedValue === "undefined") return undefined;
+  if (cleanedValue === "null") return null;
+
+  return cleanedValue;
+};
+
 module.exports = {
   validateUrl,
   isImageUrl,
   hasValidImageUrl,
   getCurrentDate,
+  processFormData,
 };

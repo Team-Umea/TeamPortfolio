@@ -20,12 +20,17 @@ export default function RootLayout() {
 
   useEffect(() => {
     scrollToTopSmooth();
-  }, [location.key]);
+  }, [location.pathname, location.key]);
+
+  const isAdminPage = location.pathname.includes("admin");
 
   return (
     <>
       <Header />
-      <main className="relative pb-[100px] min-h-screen">
+      <main
+        className={`${
+          isAdminPage ? "pb-[200px]" : "pt-[90px]"
+        } relative min-h-screen bg-black text-white`}>
         <PageTransition>
           <Outlet />
         </PageTransition>

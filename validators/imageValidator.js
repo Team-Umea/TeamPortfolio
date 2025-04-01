@@ -13,6 +13,8 @@ const imageSchema = Joi.object({
   }),
 }).unknown(true);
 
+const imagesSchema = Joi.array().items(imageSchema);
+
 const validateImage = async (req, res, next) => {
   const hasImage = await hasValidImageUrl(req.body);
 
@@ -36,6 +38,27 @@ const validateImage = async (req, res, next) => {
   next();
 };
 
+const validateImages = async (req, res, next) => {
+  const hasImages = !req.files;
+
+  if (hasImages) {
+    req.images = req.files;
+    return next();
+  }
+
+  const { error } = imagesSchema.validate(req.files);
+
+  if (error) {
+    const message = error.details.map((err) => err.message);
+    return res.status(400).json({ message, success: false });
+  }
+
+  req.images = req.files;
+
+  next();
+};
+
 module.exports = {
   validateImage,
+  validateImages,
 };

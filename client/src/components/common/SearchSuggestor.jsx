@@ -69,7 +69,7 @@ export default function SearchSuggestor({
       {showSuggestions && (
         <ul
           ref={suggestionsRef}
-          className="flex flex-col gap-y-2 absolute top-[30px] left-0 w-full max-h-[140px] p-2 overflow-y-auto bg-gray-200">
+          className="flex flex-col gap-y-2 absolute top-[30px] left-0 w-full max-h-[140px] p-2 overflow-y-auto bg-black!">
           {visibleSuggestions.map((suggestion) => {
             return (
               <li
