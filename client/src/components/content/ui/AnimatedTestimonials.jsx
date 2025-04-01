@@ -127,14 +127,18 @@ export default function AnimatedTestimonials() {
             <div className="flex flex-col gap-y-2 my-4">
               <a
                 href={profiles[active].linkedin}
-                className="flex gap-x-2 cursor-pointer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex gap-x-2 cursor-pointer hover:underline underline-offset-2"
               >
                 <FaLinkedin size={24} />
                 <span className="break-words max-w-[90%]">Linkedin</span>
               </a>
               <a
                 href={profiles[active].github}
-                className="flex gap-x-2 cursor-pointer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex gap-x-2 cursor-pointer hover:underline underline-offset-2"
               >
                 <FaGithub size={24} />
                 <span className="break-words max-w-[90%]">Github</span>
@@ -142,7 +146,9 @@ export default function AnimatedTestimonials() {
               {profiles[active].portfolio && (
                 <a
                   href={profiles[active].portfolio}
-                  className="flex gap-x-2 cursor-pointer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex gap-x-2 cursor-pointer hover:underline underline-offset-2"
                 >
                   <FaRegStar size={24} />
                   <span className="break-words max-w-[90%]">Portfölj</span>
@@ -178,14 +184,26 @@ export default function AnimatedTestimonials() {
         </div>
       </div>
       <div className="flex justify-end mx-auto items-end pr-10 max-w-[1200px] w-[90%]">
-          <div className="flex gap-2">
-              <button className="relative z-40 h-10 w-10 rounded-full bg-gray-700 flex items-center justify-center disabled:opacity-50" onClick={handlePrev}>
-                  <IoIosArrowDropleftCircle size={50} className="h-12 w-12 cursor-pointer text-gray-500 hover:ring-2 rounded-full hover:ring-offset-1" />
-              </button>
-              <button className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50" onClick={handleNext}>
-                  <IoIosArrowDroprightCircle size={50} className="h-12 w-12 cursor-pointer text-gray-500 hover:ring-2 rounded-full hover:ring-offset-1" />
-              </button>
-          </div>
+        <div className="flex gap-2">
+          <button
+            className="relative z-40 h-10 w-10 rounded-full bg-gray-700 flex items-center justify-center disabled:opacity-50"
+            onClick={handlePrev}
+          >
+            <IoIosArrowDropleftCircle
+              size={50}
+              className="h-12 w-12 cursor-pointer text-gray-500 hover:ring-2 rounded-full hover:ring-offset-1"
+            />
+          </button>
+          <button
+            className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50"
+            onClick={handleNext}
+          >
+            <IoIosArrowDroprightCircle
+              size={50}
+              className="h-12 w-12 cursor-pointer text-gray-500 hover:ring-2 rounded-full hover:ring-offset-1"
+            />
+          </button>
+        </div>
       </div>
     </div>
   );
