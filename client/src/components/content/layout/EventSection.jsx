@@ -20,7 +20,7 @@ export default function EventSection() {
         <h3 className="text-2xl md:text-3xl md:text-left! col-start-1 row-start-1">
           Är du nyfiken på våra evenemang?
         </h3>
-        <p className="text-lg text-gray-400! text-center md:text-left! col-start-1 row-start-2  px-4 md:px-0! w-screen md:w-auto!">
+        <p className="text-lg text-white! text-center md:text-left! col-start-1 row-start-2  px-4 md:px-0! max-w-screen md:w-auto!">
           Vi arrangerar evenemang för att utöka vårt kontaktnät genom att knyta
           an till branschkollegor. Målet är både att ta till oss ny kunskap och
           att dela med oss av den expertis vi besitter. Tillsammans arbetar vi

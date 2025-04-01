@@ -87,7 +87,7 @@ export default function Navbar() {
       <div
         className={`fixed! top-[64px]! ${
           isExtended ? "right-0!" : "right-[-200px]!"
-        } lg:static! flex! flex-col! lg:flex-row! lg:justify-between! items-center! gap-y-32! h-screen! lg:h-auto! w-50! lg:w-full! pt-20! lg:p-0! lg:ml-16! lg:mr-8! bg-black! lg:bg-transparent! z-1!`}
+        } lg:static! flex! flex-col! lg:flex-row! lg:justify-between! items-center! gap-y-32! h-screen! lg:h-auto! w-50! lg:w-full! pt-20! lg:p-0! lg:ml-16! lg:mr-8! bg-slate-900! lg:bg-transparent! z-1!`}
       >
         <ul className="flex! flex-col! lg:flex-row! gap-x-20 gap-y-12! text-white">
           {NAV_LINKS.map((link, index) => {
