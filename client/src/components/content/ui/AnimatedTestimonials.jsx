@@ -37,7 +37,7 @@ export default function AnimatedTestimonials() {
   };
 
   return (
-    <div className="mx-auto! max-w-sm! px-4! py-20! font-sans! antialiased! md:max-w-4xl! md:px-8! lg:px-12!">
+    <div className="mx-auto! overflow-x-hidden max-w-sm! px-4! py-20! font-sans! antialiased! md:max-w-4xl! md:px-8! lg:px-12!">
       <div className="relative! grid! grid-cols-1! gap-20! md:grid-cols-2!">
         <div>
           <div className="relative! h-80 w-full!">
@@ -134,7 +134,7 @@ export default function AnimatedTestimonials() {
                 </a>
               )}
             </div>
-            <motion.p className="mt-8 text-lg text-gray-500 max-w-[400px] break-words dark:text-neutral-300">
+            <motion.p className="mt-8 text-lg text-gray-500 max-w-[400px] break-words dark:text-neutral-300 min-h-[400px]">
               {profiles[active].bio.split(" ").map((word, index) => (
                 <motion.span
                   key={index}

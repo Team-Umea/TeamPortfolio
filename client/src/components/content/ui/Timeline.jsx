@@ -44,33 +44,24 @@ export default function TemplateDemo() {
   }, []);
 
   const customizedMarker = (project) => {
-    return (
-      <p className="whitespace-nowrap text-lg my-4">{project.startDate}</p>
-    );
+    return <p className="whitespace-nowrap text-lg my-4">{project.startDate}</p>;
   };
 
   const customizedContent = (project, index) => {
     return (
       <Card
-        className={`timeline-item ${
+        className={`timeline-item md:p-4 rounded-2xl! ${
           visibleItems.includes(index) ? "visible" : ""
-        } bg-transparent`}
+        } bg-slate-800/20!`}
         title={project.project}
-        subTitle={`${project.startDate} - ${
-          project.endDate ? project.endDate : "Now"
-        }`}
-      >
+        subTitle={`${project.startDate} - ${project.endDate ? project.endDate : "Now"}`}>
         <ul className="flex flex-wrap justify-center gap-4 my-3">
           {project.techStack.map((tech, index) => {
             return <TechBadge key={tech + index} tech={tech} />;
           })}
         </ul>
         <p className="text-lg mb-4">{project.description}</p>
-        <img
-          alt="img"
-          src={project.images[0].url}
-          className="w-full opacity-80"
-        />
+        <img alt="img" src={project.images[0].url} className="w-full opacity-80" />
         <div className="w-fit mx-auto mt-4">
           <PrimaryBtn onClick={() => navigate(project._id)}>
             <span className="text-lg font-semibold">Se mer</span>
