@@ -19,7 +19,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-slate-950 text-white py-20 border-t-[1px] border-white!">
+    <footer className="bg-black text-white py-20 border-t-[1px] border-white!">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row! justify-between items-center text-center md:text-left">
           <div className="w-full md:w-1/3 flex flex-col items-center md:items-start mb-6 md:mb-0">
@@ -45,22 +45,13 @@ export default function Footer() {
 
           <nav className="w-full md:w-1/3 flex flex-col items-center md:items-end gap-8 sm:gap-2">
             <h3 className="text-lg font-semibold">Navigation</h3>
-            <Link
-              to="/"
-              className="hover:text-white hover:underline underline-offset-4"
-            >
+            <Link to="/" className="hover:text-white hover:underline underline-offset-4">
               Hem
             </Link>
-            <Link
-              to="projects"
-              className="hover:text-white hover:underline underline-offset-4"
-            >
+            <Link to="projects" className="hover:text-white hover:underline underline-offset-4">
               Projekt
             </Link>
-            <Link
-              to="events"
-              className="hover:text-white hover:underline underline-offset-4"
-            >
+            <Link to="events" className="hover:text-white hover:underline underline-offset-4">
               Evenemang
             </Link>
           </nav>

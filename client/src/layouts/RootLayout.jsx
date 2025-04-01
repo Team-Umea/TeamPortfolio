@@ -22,10 +22,15 @@ export default function RootLayout() {
     scrollToTopSmooth();
   }, [location.pathname, location.key]);
 
+  const isAdminPage = location.pathname.includes("admin");
+
   return (
     <>
       <Header />
-      <main className="relative min-h-screen bg-slate-800 text-white">
+      <main
+        className={`${
+          isAdminPage ? "pb-[200px]" : "pt-[90px]"
+        } relative min-h-screen bg-black text-white`}>
         <PageTransition>
           <Outlet />
         </PageTransition>

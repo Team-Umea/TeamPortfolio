@@ -28,7 +28,7 @@ export default function AdminHeader() {
   const { username, email } = useAuthStore();
 
   return (
-    <div className="flex flex-col md:flex-row! justify-between gap-y-4 py-4 px-4 bg-black">
+    <div className="flex flex-col md:flex-row! justify-between gap-y-4 py-4 px-4 pt-[100px]! mb-[100px] bg-black">
       <div className="flex flex-col">
         <h2 className="text-lg text-white font-semibold">Välkommen {username}</h2>
         <h3 className="text-gray-200 font-medium">{email}</h3>
