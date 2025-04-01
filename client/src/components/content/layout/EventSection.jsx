@@ -11,7 +11,8 @@ export default function EventSection() {
 
   const sortedEvents = sortByTodayDate(events, "date");
 
-  const firstEvent = sortedEvents && sortedEvents.length > 0 ? sortedEvents[0] : null;
+  const firstEvent =
+    sortedEvents && sortedEvents.length > 0 ? sortedEvents[0] : null;
 
   return (
     <FadeInOnScroll>
@@ -20,10 +21,11 @@ export default function EventSection() {
           Är du nyfiken på våra evenemang?
         </h3>
         <p className="text-lg text-gray-400! text-center md:text-left! col-start-1 row-start-2  px-4 md:px-0! w-screen md:w-auto!">
-          Vi arrangerar evenemang för att utöka vårt kontaktnät genom att knyta an till
-          branschkollegor. Målet är både att ta till oss ny kunskap och att dela med oss av den
-          expertis vi besitter. Tillsammans arbetar vi som ett team för att skapa betydelsefulla och
-          användbara projekt som verkligen kan göra skillnad.
+          Vi arrangerar evenemang för att utöka vårt kontaktnät genom att knyta
+          an till branschkollegor. Målet är både att ta till oss ny kunskap och
+          att dela med oss av den expertis vi besitter. Tillsammans arbetar vi
+          som ett team för att skapa betydelsefulla och användbara projekt som
+          verkligen kan göra skillnad.
         </p>
         {firstEvent && (
           <div className="flex flex-col items-end col-start-2 row-start-1">

@@ -67,7 +67,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed z-1000 w-screen flex justify-between items-center px-6  bg-slate-900 shadow-[0_-5px_30px_rgb(255,255,255,0.2)]">
-      <NavLink className="text-2xl font-semibold" to="/">
+      <NavLink to="/">
         <img
           src="/public/images/logo.png"
           alt="Team Umeå Logo"
@@ -96,7 +96,7 @@ export default function Navbar() {
                 to={link.link}
                 key={link.link + index}
                 onClick={() => setIsExtended(false)}
-                className="text-2xl font-medium transition-all duration-300 ease hover:opacity-70"
+                className="text-xl font-medium transition-all duration-300 ease hover:opacity-70"
               >
                 {link.text}
               </NavLink>
