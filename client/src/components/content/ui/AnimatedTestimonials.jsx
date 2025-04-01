@@ -43,7 +43,7 @@ export default function AnimatedTestimonials() {
           <div className="relative! h-80 w-full!">
             <AnimatePresence>
               {profiles.map((profile, index) => (
-                <>
+                <div key={profile._id}>
                   <motion.div
                     key={profile._id}
                     initial={{
@@ -57,7 +57,9 @@ export default function AnimatedTestimonials() {
                       scale: isActive(index) ? 1 : 0.95,
                       z: isActive(index) ? 0 : -100,
                       rotate: isActive(index) ? 0 : randomRotateY(),
-                      zIndex: isActive(index) ? 40 : profiles.length + 2 - index,
+                      zIndex: isActive(index)
+                        ? 40
+                        : profiles.length + 2 - index,
                       y: isActive(index) ? [0, -80, 0] : 0,
                     }}
                     exit={{
@@ -70,7 +72,8 @@ export default function AnimatedTestimonials() {
                       duration: 0.4,
                       ease: "easeInOut",
                     }}
-                    className="absolute! inset-0 origin-bottom!">
+                    className="absolute! inset-0 origin-bottom!"
+                  >
                     <img
                       src={profile.profileImage}
                       alt={profile.name}
@@ -80,7 +83,7 @@ export default function AnimatedTestimonials() {
                       className="h-full! w-full! rounded-3xl! object-cover! object-center!"
                     />
                   </motion.div>
-                </>
+                </div>
               ))}
             </AnimatePresence>
           </div>
@@ -103,10 +106,13 @@ export default function AnimatedTestimonials() {
             transition={{
               duration: 0.2,
               ease: "easeInOut",
-            }}>
+            }}
+          >
             <div>
               <h2 className="text-2xl font-bold">{profiles[active].name}</h2>
-              <p className="text-lg text-gray-400! font-bold">{profiles[active].age}</p>
+              <p className="text-lg text-gray-400! font-bold">
+                {profiles[active].age}
+              </p>
             </div>
             <div className="flex flex-col md:flex-row! items-start gap-x-8 gap-y-2 md:gap-y-8! my-4">
               <div className="flex items-center gap-x-2">
@@ -119,16 +125,25 @@ export default function AnimatedTestimonials() {
               </div>
             </div>
             <div className="flex flex-col gap-y-2 my-4">
-              <a href={profiles[active].linkedin} className="flex gap-x-2 cursor-pointer">
+              <a
+                href={profiles[active].linkedin}
+                className="flex gap-x-2 cursor-pointer"
+              >
                 <FaLinkedin size={24} />
                 <span className="break-words max-w-[90%]">Linkedin</span>
               </a>
-              <a href={profiles[active].github} className="flex gap-x-2 cursor-pointer">
+              <a
+                href={profiles[active].github}
+                className="flex gap-x-2 cursor-pointer"
+              >
                 <FaGithub size={24} />
                 <span className="break-words max-w-[90%]">Github</span>
               </a>
               {profiles[active].portfolio && (
-                <a href={profiles[active].portfolio} className="flex gap-x-2 cursor-pointer">
+                <a
+                  href={profiles[active].portfolio}
+                  className="flex gap-x-2 cursor-pointer"
+                >
                   <FaRegStar size={24} />
                   <span className="break-words max-w-[90%]">Portfölj</span>
                 </a>
@@ -153,7 +168,8 @@ export default function AnimatedTestimonials() {
                     ease: "easeInOut",
                     delay: 0.02 * index,
                   }}
-                  className="inline-block  max-w-[400px] break-words">
+                  className="inline-block  max-w-[400px] break-words"
+                >
                   {word}&nbsp;
                 </motion.span>
               ))}

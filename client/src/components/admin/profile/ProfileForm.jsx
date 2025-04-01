@@ -27,19 +27,9 @@ export default function ProfileForm() {
 
   const {
     setError,
-    clearErrors,
-    watch,
     formState: { errors },
     handleSubmit,
   } = formMethods;
-
-  useEffect(() => {
-    const subscription = watch(() => {
-      clearErrors("root");
-    });
-
-    return () => subscription.unsubscribe();
-  }, [clearErrors]);
 
   const createProfileMuation = useMutation({
     mutationFn: createProfile,

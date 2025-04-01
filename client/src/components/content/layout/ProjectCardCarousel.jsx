@@ -1,6 +1,3 @@
-"use client";
-import { Img } from "react-image";
-import React, { useEffect } from "react";
 import { Carousel, Card } from "../ui/project-card-carousel";
 import useContentStore from "@/hooks/useContentStore";
 
@@ -11,7 +8,7 @@ export function ProjectCardCarousel() {
     <Card
       key={project._id}
       card={{
-        category: project.techStack?.join(", ") || "Unknown", // Convert tech stack to a string
+        category: project.techStack?.join(", ") || "Unknown",
         title: project.project,
         src: project.images?.[1]?.url || project.images?.[0]?.url, // Fallback image
         description: project.description,
@@ -20,10 +17,6 @@ export function ProjectCardCarousel() {
       index={index}
     />
   ));
-
-  useEffect(() => {
-    console.log(projects);
-  });
 
   return (
     <div className="w-full h-full">
