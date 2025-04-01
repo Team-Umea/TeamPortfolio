@@ -8,6 +8,12 @@ import useContentStore from "@/hooks/useContentStore";
 import TechBadge from "@/components/admin/project/TechBadge";
 import PrimaryBtn from "@/components/btn/PrimaryBtn";
 
+import 'primereact/resources/themes/saga-blue/theme.css';  // Välj ett tema
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import 'primeflex/primeflex.css';
+
+
 export default function TemplateDemo() {
   const navigate = useNavigate();
   const { projects } = useContentStore();
