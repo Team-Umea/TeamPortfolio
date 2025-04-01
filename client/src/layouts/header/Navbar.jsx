@@ -66,13 +66,18 @@ export default function Navbar() {
     );
 
   return (
-    <nav className="fixed z-1000 w-screen flex justify-between items-center px-8 py-4 bg-black shadow-[0_-5px_30px_rgb(255,255,255,0.2)]">
+    <nav className="fixed z-1000 w-screen flex justify-between items-center px-6  bg-slate-900 shadow-[0_-5px_30px_rgb(255,255,255,0.2)]">
       <NavLink className="text-2xl font-semibold" to="/">
-        <img src="/public/images/logo.png" alt="Team Umeå Logo" className="h-20 w-40 lg:w-60" />
+        <img
+          src="/public/images/logo.png"
+          alt="Team Umeå Logo"
+          className="h-20 w-30 scale-170"
+        />
       </NavLink>
       <button
         onClick={() => setIsExtended((prev) => !prev)}
-        className="absolute right-8 top-4 lg:hidden z-2 cursor-pointer">
+        className="absolute right-8 top-4 lg:hidden z-2 cursor-pointer"
+      >
         {isExtended ? (
           <MdOutlineClose size={32} color="white" />
         ) : (
@@ -82,7 +87,8 @@ export default function Navbar() {
       <div
         className={`fixed! top-[64px]! ${
           isExtended ? "right-0!" : "right-[-200px]!"
-        } lg:static! flex! flex-col! lg:flex-row! lg:justify-between! items-center! gap-y-32! h-screen! lg:h-auto! w-50! lg:w-full! pt-20! lg:p-0! lg:ml-16! lg:mr-8! bg-black! lg:bg-transparent! z-1!`}>
+        } lg:static! flex! flex-col! lg:flex-row! lg:justify-between! items-center! gap-y-32! h-screen! lg:h-auto! w-50! lg:w-full! pt-20! lg:p-0! lg:ml-16! lg:mr-8! bg-black! lg:bg-transparent! z-1!`}
+      >
         <ul className="flex! flex-col! lg:flex-row! gap-x-20 gap-y-12! text-white">
           {NAV_LINKS.map((link, index) => {
             return (
@@ -90,14 +96,17 @@ export default function Navbar() {
                 to={link.link}
                 key={link.link + index}
                 onClick={() => setIsExtended(false)}
-                className="text-2xl font-medium transition-all duration-300 ease hover:opacity-70">
+                className="text-2xl font-medium transition-all duration-300 ease hover:opacity-70"
+              >
                 {link.text}
               </NavLink>
             );
           })}
         </ul>
         <div>
-          <TransparentButton onClick={handleAuthAction}>{signInButtonBody}</TransparentButton>
+          <TransparentButton onClick={handleAuthAction}>
+            {signInButtonBody}
+          </TransparentButton>
         </div>
       </div>
     </nav>
