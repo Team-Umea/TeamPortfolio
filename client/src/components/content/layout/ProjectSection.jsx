@@ -11,16 +11,7 @@ export default function ProjectSection() {
       <h1 className="max-w-8xl mx-auto md:text-5xl text-xl font-bold font-sans">
         Projekt sektion
       </h1>
-      {/* <div className="w-full h-full py-20"> */}
-      
-        {/* <div className="w-fit">
-          <PrimaryBtn onClick={() => navigate("projects")}>
-            <span className="text-lg font-semibold">Se projekt</span>
-          </PrimaryBtn>
-        </div> 
-      </div>*/}
       <ProjectCardCarousel/>
-      
     </div>
   );
 }

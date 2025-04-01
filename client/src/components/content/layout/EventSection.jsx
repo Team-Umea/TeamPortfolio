@@ -11,19 +11,21 @@ export default function EventSection() {
 
   const sortedEvents = sortByTodayDate(events, "date");
 
-  const firstEvent = sortedEvents && sortedEvents.length > 0 ? sortedEvents[0] : null;
+  const firstEvent =
+    sortedEvents && sortedEvents.length > 0 ? sortedEvents[0] : null;
 
   return (
     <FadeInOnScroll>
-      <div className="flex md:grid! grid-cols-[repeat(2,1fr)] flex-col items-center md:items-start! gap-6 py-6 px-22! mx-auto w-[90%] max-w-[1200px] my-22 border-y-2 md:border-x-2 md:border-y-0!">
+      <div className="flex md:grid! md:grid-cols-[repeat(2,1fr)]! flex-col items-center md:items-start! gap-6 py-6 px-22! mx-auto w-[90%] max-w-[1200px] my-22 border-y-2 md:border-x-2 md:border-y-0!">
         <h3 className="text-2xl md:text-3xl md:text-left! col-start-1 row-start-1">
           Är du nyfiken på våra evenemang?
         </h3>
-        <p className="text-lg text-gray-400! text-center md:text-left! col-start-1 row-start-2">
-          Vi arrangerar evenemang för att utöka vårt kontaktnät genom att knyta an till
-          branschkollegor. Målet är både att ta till oss ny kunskap och att dela med oss av den
-          expertis vi besitter. Tillsammans arbetar vi som ett team för att skapa betydelsefulla och
-          användbara projekt som verkligen kan göra skillnad.
+        <p className="text-lg text-white! text-left! col-start-1 row-start-2  px-4 md:px-0! max-w-screen md:w-auto!">
+          Vi arrangerar evenemang för att utöka vårt kontaktnät genom att knyta
+          an till branschkollegor. Målet är både att ta till oss ny kunskap och
+          att dela med oss av den expertis vi besitter. Tillsammans arbetar vi
+          som ett team för att skapa betydelsefulla och användbara projekt som
+          verkligen kan göra skillnad.
         </p>
         {firstEvent && (
           <div className="flex flex-col items-end col-start-2 row-start-1">
