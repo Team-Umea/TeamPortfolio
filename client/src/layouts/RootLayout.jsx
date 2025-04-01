@@ -29,7 +29,7 @@ export default function RootLayout() {
       <Header />
       <main
         className={`${
-          isAdminPage ? "pb-[200px]" : "pt-[90px]"
+          isAdminPage ? "pb-[200px]" : "py-[90px]"
         } relative min-h-screen bg-black text-white`}>
         <PageTransition>
           <Outlet />

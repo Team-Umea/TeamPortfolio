@@ -68,11 +68,7 @@ export default function Navbar() {
   return (
     <nav className="fixed z-1000 w-screen flex justify-between items-center px-6 bg-black shadow-[0_-5px_30px_rgb(255,255,255,0.2)]">
       <NavLink to="/">
-        <img
-          src="/public/images/logo.png"
-          alt="Team Umeå Logo"
-          className="h-20 w-30 scale-170 my-2"
-        />
+        <img src="/images/logo.png" alt="Team Umeå Logo" className="h-20 w-30 scale-170 my-2" />
       </NavLink>
       <button
         onClick={() => setIsExtended((prev) => !prev)}

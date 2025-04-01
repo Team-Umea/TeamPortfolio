@@ -43,7 +43,7 @@ export default function EventCard({ event }) {
         </div>
       </div>
       <div className="rounded-b-lg mb-[-40px] md:mb-0">
-        <ul className="flex flex-col gap-y-4 text-gray-200 text-customColor1 font-serif text-xl p-8 pt-2 text-left md:my-12">
+        <ul className="flex flex-col gap-y-4 text-gray-200 text-customColor1 font-serif text-xl p-8! pt-2 text-left md:my-12">
           {text.map((t, i) => {
             const endsWithLetterOrNumber = /[a-zA-Z0-9]$/.test(t);
             return (

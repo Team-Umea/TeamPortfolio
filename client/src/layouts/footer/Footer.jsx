@@ -36,7 +36,7 @@ export default function Footer() {
 
           <div className="w-full md:w-1/3 flex flex-col items-center mb-6 md:mb-0">
             <img
-              src="/public/images/logo.png"
+              src="/images/logo.png"
               alt="Team Umeå Logo"
               onClick={scrollToTop}
               className="h-30 scale-170 my-12 rounded-full p-1 cursor-pointer"

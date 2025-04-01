@@ -37,7 +37,7 @@ export default function AnimatedTestimonials() {
   };
 
   return (
-    <div className="mx-auto! overflow-x-hidden max-w-sm! px-4! py-20! font-sans! antialiased! md:max-w-4xl! md:px-8! lg:px-12!">
+    <div className="mx-auto! overflow-x-hidden max-w-sm! px-4! py-20! font-sans! antialiased! md:max-w-5xl! md:px-8! lg:px-12!">
       <div className="relative! grid! grid-cols-1! gap-20! md:grid-cols-2!">
         <div>
           <div className="relative! h-80 w-full!">
@@ -57,9 +57,7 @@ export default function AnimatedTestimonials() {
                       scale: isActive(index) ? 1 : 0.95,
                       z: isActive(index) ? 0 : -100,
                       rotate: isActive(index) ? 0 : randomRotateY(),
-                      zIndex: isActive(index)
-                        ? 40
-                        : profiles.length + 2 - index,
+                      zIndex: isActive(index) ? 40 : profiles.length + 2 - index,
                       y: isActive(index) ? [0, -80, 0] : 0,
                     }}
                     exit={{
@@ -72,8 +70,7 @@ export default function AnimatedTestimonials() {
                       duration: 0.4,
                       ease: "easeInOut",
                     }}
-                    className="absolute! inset-0 origin-bottom!"
-                  >
+                    className="absolute! inset-0 origin-bottom!">
                     <img
                       src={profile.profileImage}
                       alt={profile.name}
@@ -106,13 +103,10 @@ export default function AnimatedTestimonials() {
             transition={{
               duration: 0.2,
               ease: "easeInOut",
-            }}
-          >
+            }}>
             <div>
               <h2 className="text-2xl font-bold">{profiles[active].name}</h2>
-              <p className="text-lg text-gray-400! font-bold">
-                {profiles[active].age}
-              </p>
+              <p className="text-lg text-gray-400! font-bold">{profiles[active].age}</p>
             </div>
             <div className="flex flex-col md:flex-row! items-start gap-x-8 gap-y-2 md:gap-y-8! my-4">
               <div className="flex items-center gap-x-2">
@@ -125,31 +119,22 @@ export default function AnimatedTestimonials() {
               </div>
             </div>
             <div className="flex flex-col gap-y-2 my-4">
-              <a
-                href={profiles[active].linkedin}
-                className="flex gap-x-2 cursor-pointer"
-              >
+              <a href={profiles[active].linkedin} className="flex gap-x-2 cursor-pointer">
                 <FaLinkedin size={24} />
                 <span className="break-words max-w-[90%]">Linkedin</span>
               </a>
-              <a
-                href={profiles[active].github}
-                className="flex gap-x-2 cursor-pointer"
-              >
+              <a href={profiles[active].github} className="flex gap-x-2 cursor-pointer">
                 <FaGithub size={24} />
                 <span className="break-words max-w-[90%]">Github</span>
               </a>
               {profiles[active].portfolio && (
-                <a
-                  href={profiles[active].portfolio}
-                  className="flex gap-x-2 cursor-pointer"
-                >
+                <a href={profiles[active].portfolio} className="flex gap-x-2 cursor-pointer">
                   <FaRegStar size={24} />
                   <span className="break-words max-w-[90%]">Portfölj</span>
                 </a>
               )}
             </div>
-            <motion.p className="mt-8 text-lg text-gray-500 max-w-[400px] break-words dark:text-neutral-300 min-h-[400px]">
+            <motion.p className="mt-8 text-lg text-gray-500 dark:text-neutral-300 min-h-[400px]">
               {profiles[active].bio.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
@@ -168,8 +153,7 @@ export default function AnimatedTestimonials() {
                     ease: "easeInOut",
                     delay: 0.02 * index,
                   }}
-                  className="inline-block  max-w-[400px] break-words"
-                >
+                  className="inline-block  max-w-[400px] break-words">
                   {word}&nbsp;
                 </motion.span>
               ))}
@@ -178,14 +162,24 @@ export default function AnimatedTestimonials() {
         </div>
       </div>
       <div className="flex justify-end mx-auto items-end pr-10 max-w-[1200px] w-[90%]">
-          <div className="flex gap-2">
-              <button className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50" onClick={handlePrev}>
-                  <IoIosArrowDropleftCircle size={50} className="h-12 w-12 cursor-pointer text-gray-500" />
-              </button>
-              <button className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50" onClick={handleNext}>
-                  <IoIosArrowDroprightCircle size={50} className="h-12 w-12 cursor-pointer text-gray-500" />
-              </button>
-          </div>
+        <div className="flex gap-2">
+          <button
+            className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50"
+            onClick={handlePrev}>
+            <IoIosArrowDropleftCircle
+              size={50}
+              className="h-12 w-12 cursor-pointer text-gray-500"
+            />
+          </button>
+          <button
+            className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50"
+            onClick={handleNext}>
+            <IoIosArrowDroprightCircle
+              size={50}
+              className="h-12 w-12 cursor-pointer text-gray-500"
+            />
+          </button>
+        </div>
       </div>
     </div>
   );
