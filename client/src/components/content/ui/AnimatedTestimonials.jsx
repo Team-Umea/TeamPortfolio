@@ -168,7 +168,7 @@ export default function AnimatedTestimonials() {
             onClick={handlePrev}>
             <IoIosArrowDropleftCircle
               size={50}
-              className="h-12 w-12 cursor-pointer text-gray-500"
+              className="h-12 w-12 cursor-pointer text-gray-500 hover:ring-2 rounded-full hover:ring-offset-1"
             />
           </button>
           <button
@@ -176,7 +176,7 @@ export default function AnimatedTestimonials() {
             onClick={handleNext}>
             <IoIosArrowDroprightCircle
               size={50}
-              className="h-12 w-12 cursor-pointer text-gray-500"
+              className="h-12 w-12 cursor-pointer text-gray-500 hover:ring-2 rounded-full hover:ring-offset-1"
             />
           </button>
         </div>
