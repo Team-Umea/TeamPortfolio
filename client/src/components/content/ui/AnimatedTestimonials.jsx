@@ -123,8 +123,11 @@ export default function AnimatedTestimonials() {
               ease: "easeInOut",
             }}>
             <div>
-              <h2 className="text-2xl font-bold">{profiles[active].name}</h2>
-              <p className="text-lg text-gray-400! font-bold">{profiles[active].age}</p>
+              <div className="flex flex-wrap gap-x-4">
+                <h2 className="text-2xl font-bold">{profiles[active].name}</h2>
+                <p className="text-2xl font-bold text-gray-200!">{profiles[active].age}</p>
+              </div>
+              <p className="text-lg text-gray-400! font-bold">{profiles[active].title}</p>
             </div>
             <div className="flex flex-col md:flex-row! items-start gap-x-8 gap-y-2 md:gap-y-8! my-4">
               <div className="flex items-center gap-x-2">
