@@ -32,12 +32,12 @@ export default function EventCard({ event }) {
           style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
           className="absolute top-0 left-0 flex justify-center items-center w-full h-full rounded-2xl">
           {event.isEnrolled ? (
-            <div className="px-6 py-3 text-2xl font-bold text-white border-1 border-white rounded-lg bg-transparent transform transition-all duration-300 hover:text-green-400! hover:border-green-400! hover:scale-105">
+            <div className="px-6 py-3 text-base md:text-2xl! font-bold text-white border-1 border-white rounded-lg bg-transparent transform transition-all duration-300 hover:text-green-400! hover:border-green-400! hover:scale-105! focus:text-green-400! focus:border-green-400! focus:scale-105!">
               🎉 Du är anmäld 🎉
             </div>
           ) : (
             <TransparentButton onClick={() => navigate(`enroll/${event._id}`)}>
-              <span className="text-xl font-semibold">Anmäl dig här</span>
+              <span className="text-xl md:text-2xl! font-semibold">Anmäl dig här</span>
             </TransparentButton>
           )}
         </div>

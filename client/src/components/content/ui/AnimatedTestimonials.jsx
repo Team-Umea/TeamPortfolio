@@ -11,7 +11,7 @@ import { MdOutlineMailOutline, MdOutlinePhoneEnabled } from "react-icons/md";
 export default function AnimatedTestimonials() {
   const { profiles } = useContentStore();
   const [active, setActive] = useState(0);
-  const autoplay = true;
+  const autoplay = false;
 
   const handleNext = () => {
     setActive((prev) => (prev + 1) % profiles.length);
@@ -38,8 +38,8 @@ export default function AnimatedTestimonials() {
 
   return (
     <div className="mx-auto! overflow-x-hidden max-w-sm! px-4! py-20! font-sans! antialiased! md:max-w-5xl! md:px-8! lg:px-12!">
-      <div className="relative! grid! grid-cols-1! gap-20! md:grid-cols-2!">
-        <div>
+      <div className="relative! grid! grid-cols-1! gap-x-20! md:grid-cols-2!">
+        <div className="flex flex-col items-center gap-y-10">
           <div className="relative! h-80 w-full!">
             <AnimatePresence>
               {profiles.map((profile, index) => (
@@ -83,6 +83,24 @@ export default function AnimatedTestimonials() {
                 </div>
               ))}
             </AnimatePresence>
+          </div>
+          <div className="flex gap-6">
+            <button
+              className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50"
+              onClick={handlePrev}>
+              <IoIosArrowDropleftCircle
+                size={50}
+                className="h-12 w-12 cursor-pointer text-gray-500 hover:ring-2 rounded-full hover:ring-offset-1"
+              />
+            </button>
+            <button
+              className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50"
+              onClick={handleNext}>
+              <IoIosArrowDroprightCircle
+                size={50}
+                className="h-12 w-12 cursor-pointer text-gray-500 hover:ring-2 rounded-full hover:ring-offset-1"
+              />
+            </button>
           </div>
         </div>
         <div className="flex flex-col justify-between py-4">
@@ -159,26 +177,6 @@ export default function AnimatedTestimonials() {
               ))}
             </motion.p>
           </motion.div>
-        </div>
-      </div>
-      <div className="flex justify-end mx-auto items-end pr-10 max-w-[1200px] w-[90%]">
-        <div className="flex gap-2">
-          <button
-            className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50"
-            onClick={handlePrev}>
-            <IoIosArrowDropleftCircle
-              size={50}
-              className="h-12 w-12 cursor-pointer text-gray-500 hover:ring-2 rounded-full hover:ring-offset-1"
-            />
-          </button>
-          <button
-            className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50"
-            onClick={handleNext}>
-            <IoIosArrowDroprightCircle
-              size={50}
-              className="h-12 w-12 cursor-pointer text-gray-500 hover:ring-2 rounded-full hover:ring-offset-1"
-            />
-          </button>
         </div>
       </div>
     </div>

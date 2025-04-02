@@ -23,21 +23,11 @@ export default function EventQuestionForm() {
 
   const {
     control,
-    watch,
-    clearErrors,
     setError,
     reset,
     formState: { errors },
     handleSubmit,
   } = formMethods;
-
-  useEffect(() => {
-    const subscription = watch(() => {
-      clearErrors("root");
-    });
-
-    return () => subscription.unsubscribe();
-  }, [clearErrors]);
 
   const eventQuestionMutation = useMutation({
     mutationFn: addEventQuestion,

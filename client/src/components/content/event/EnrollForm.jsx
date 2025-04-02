@@ -24,21 +24,11 @@ export default function EnrollForm() {
 
   const {
     control,
-    watch,
-    clearErrors,
     setError,
     reset,
     formState: { errors },
     handleSubmit,
   } = formMethods;
-
-  useEffect(() => {
-    const subscription = watch(() => {
-      clearErrors("root");
-    });
-
-    return () => subscription.unsubscribe();
-  }, [clearErrors]);
 
   const enrollMutation = useMutation({
     mutationFn: enrollUser,
@@ -68,8 +58,7 @@ export default function EnrollForm() {
   };
 
   const translateDefaultErrorMessage = (messageKey) => {
-    const message =
-      errors && errors[messageKey] ? errors[messageKey].message : undefined;
+    const message = errors && errors[messageKey] ? errors[messageKey].message : undefined;
     return message === "Required" ? "Fältet får inte vara tomt" : message;
   };
 
@@ -80,8 +69,7 @@ export default function EnrollForm() {
       <FormProvider {...formMethods}>
         <form
           onSubmit={handleSubmit(onSubmit, onError)}
-          className="flex flex-col items-center gap-y-32 m-auto w-[90%] max-w-[900px]"
-        >
+          className="flex flex-col items-center gap-y-32 m-auto w-[90%] max-w-[900px]">
           <Controller
             name="name"
             control={control}

@@ -17,7 +17,7 @@ export default function EventSection() {
     <div className="bg-slate-800/20 my-24 w-screen">
       <FadeInOnScroll>
         <div className="flex md:grid! md:grid-cols-[repeat(2,1fr)]! flex-col items-center md:items-start! gap-6 py-6 px-22! mx-auto w-[90%] max-w-[1200px] my-22 border-y-2 md:border-x-2 md:border-y-0!">
-          <h3 className="text-2xl md:text-3xl md:text-left! col-start-1 row-start-1">
+          <h3 className="mx-auto md:text-4xl text-xl font-bold font-sans text-gray-200!">
             Är du nyfiken på våra evenemang?
           </h3>
           <p className="text-lg text-white! text-left! col-start-1 row-start-2 px-4 md:px-0! max-w-screen md:w-auto! w-screen  md:w-auto!">

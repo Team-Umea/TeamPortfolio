@@ -72,7 +72,7 @@ export default function Navbar() {
       </NavLink>
       <button
         onClick={() => setIsExtended((prev) => !prev)}
-        className="absolute right-12 top-6 lg:hidden z-2 cursor-pointer">
+        className="absolute right-8 top-6 lg:hidden z-2 cursor-pointer">
         {isExtended ? (
           <MdOutlineClose size={40} color="white" />
         ) : (
