@@ -40,7 +40,7 @@ export default function AnimatedTestimonials() {
     <div className="mx-auto! overflow-x-hidden max-w-sm! px-4! py-20! font-sans! antialiased! md:max-w-5xl! md:px-8! lg:px-12!">
       <div className="relative! grid! grid-cols-1! gap-x-20! md:grid-cols-2!">
         <div className="flex flex-col items-center gap-y-10">
-          <div className="relative! h-80 w-full!">
+          <div className="relative! h-100 w-full!">
             <AnimatePresence>
               {profiles.map((profile, index) => (
                 <div key={profile._id}>
@@ -77,7 +77,7 @@ export default function AnimatedTestimonials() {
                       width={500}
                       height={500}
                       draggable={false}
-                      className="h-full! w-full! rounded-3xl! object-cover! object-center!"
+                      className="h-full! w-full! rounded-3xl! object-cover! object-top!"
                     />
                   </motion.div>
                 </div>
@@ -140,16 +140,25 @@ export default function AnimatedTestimonials() {
               </div>
             </div>
             <div className="flex flex-col gap-y-2 my-4">
-              <a href={profiles[active].linkedin} className="flex gap-x-2 cursor-pointer">
+              <a
+                href={profiles[active].linkedin}
+                target="_blank"
+                className="flex gap-x-2 cursor-pointer">
                 <FaLinkedin size={24} />
                 <span className="break-words max-w-[90%]">Linkedin</span>
               </a>
-              <a href={profiles[active].github} className="flex gap-x-2 cursor-pointer">
+              <a
+                href={profiles[active].github}
+                target="_blank"
+                className="flex gap-x-2 cursor-pointer">
                 <FaGithub size={24} />
                 <span className="break-words max-w-[90%]">Github</span>
               </a>
               {profiles[active].portfolio && (
-                <a href={profiles[active].portfolio} className="flex gap-x-2 cursor-pointer">
+                <a
+                  href={profiles[active].portfolio}
+                  target="_blank"
+                  className="flex gap-x-2 cursor-pointer">
                   <FaRegStar size={24} />
                   <span className="break-words max-w-[90%]">Portfölj</span>
                 </a>
