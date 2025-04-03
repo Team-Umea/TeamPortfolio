@@ -47,20 +47,11 @@ export default function ProjectForm({ project }) {
   });
 
   const {
-    clearErrors,
     watch,
     control,
     formState: { errors },
     handleSubmit,
   } = formMethods;
-
-  useEffect(() => {
-    const subscription = watch(() => {
-      clearErrors("root");
-    });
-
-    return () => subscription.unsubscribe();
-  }, [clearErrors]);
 
   const addProjectMuation = useMutation({
     mutationFn: addProject,

@@ -29,20 +29,10 @@ export default function EventForm({ event }) {
   });
 
   const {
-    clearErrors,
-    watch,
     control,
     formState: { errors },
     handleSubmit,
   } = formMethods;
-
-  useEffect(() => {
-    const subscription = watch(() => {
-      clearErrors("root");
-    });
-
-    return () => subscription.unsubscribe();
-  }, [clearErrors]);
 
   const addEventMuation = useMutation({
     mutationFn: addEvent,
