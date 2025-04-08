@@ -12,7 +12,9 @@ export default function TemplateDemo() {
   const navigate = useNavigate();
   const { projects } = useContentStore();
 
-  const reversedProjects = [...projects].reverse();
+  const sortedProjects = [...projects].sort(
+    (a, b) => new Date(b.startDate) - new Date(a.startDate)
+  );
 
   const [visibleItems, setVisibleItems] = useState([]);
 
@@ -54,7 +56,7 @@ export default function TemplateDemo() {
           visibleItems.includes(index) ? "visible" : ""
         } bg-slate-800/20!`}
         title={project.project}
-        subTitle={`${project.startDate} - ${project.endDate ? project.endDate : "Now"}`}>
+        subTitle={`${project.startDate} - ${project.endDate ? project.endDate : "Nu"}`}>
         <ul className="flex flex-wrap justify-center gap-4 my-3">
           {project.techStack.map((tech, index) => {
             return <TechBadge key={tech + index} tech={tech} />;
@@ -83,11 +85,11 @@ export default function TemplateDemo() {
           </span>
         </h1>
       </div>
-      <div className="timeline-container">
+      <div className="hidden! lg:flex! timeline-container">
         <div className="timeline-line" />
         <div className="w-[90%] m-auto">
           <Timeline
-            value={reversedProjects}
+            value={sortedProjects}
             align="alternate"
             className="customized-timeline"
             marker={customizedMarker}
@@ -95,6 +97,33 @@ export default function TemplateDemo() {
           />
         </div>
       </div>
+      <ul className="flex! lg:hidden! flex-col! gap-y-22">
+        {sortedProjects.map((project, index) => {
+          return (
+            <li key={project._id} className="">
+              <Card
+                className={`md:p-4 rounded-2xl! ${
+                  visibleItems.includes(index) ? "visible" : ""
+                } bg-slate-800/20!`}
+                title={project.project}
+                subTitle={`${project.startDate} - ${project.endDate ? project.endDate : "Nu"}`}>
+                <ul className="flex flex-wrap justify-center gap-4 my-3">
+                  {project.techStack.map((tech, index) => {
+                    return <TechBadge key={tech + index} tech={tech} />;
+                  })}
+                </ul>
+                <p className="text-lg mb-4">{project.description}</p>
+                <img alt="img" src={project.images[0].url} className="w-full opacity-80" />
+                <div className="w-fit mx-auto mt-4">
+                  <PrimaryBtn onClick={() => navigate(project._id)}>
+                    <span className="text-lg font-semibold">Se mer</span>
+                  </PrimaryBtn>
+                </div>
+              </Card>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
